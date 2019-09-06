@@ -16,5 +16,10 @@ namespace Sistema_de_Control_de_Stock
         {
             InitializeComponent();
         }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
