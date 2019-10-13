@@ -36,7 +36,10 @@
     <StartupObject>Presentacion.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -91,6 +94,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_ALinks.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_BLinks.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_CLinks.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_FLinks.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_KLinks.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_SLinks.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_vbppv3.HxC" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_vbppv3.HxT" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_vbppv3_namedurls.HxK" />
+    <None Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\_vbppv3_Samples.HxK" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -103,6 +116,13 @@
       <Project>{e3d71c05-9517-4019-8972-ec7e93bc38d7}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\dv_vboshapelinecon.HxS" />
+    <Content Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Help\dv_vboshapelineref.HxS" />
+    <Content Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Microsoft.VisualBasic.PowerPacks.dll" />
+    <Content Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\Microsoft.VisualBasic.PowerPacks.xml" />
+    <Content Include="Soportes\Microsoft Visual Basic 2005 Power Packs\3.0\redist.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
