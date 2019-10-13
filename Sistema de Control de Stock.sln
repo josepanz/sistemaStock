@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema de Control de Stock", "Sistema de Control de Stock\Sistema de Control de Stock.csproj", "{2E00BC1C-200B-4B47-A7AB-E10A65FED812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "..\sistemaStock\AccesoDatos\AccesoDatos.csproj", "{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "..\sistemaStock\Negocio\Negocio.csproj", "{E3D71C05-9517-4019-8972-EC7E93BC38D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{E3D71C05-9517-4019-8972-EC7E93BC38D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "..\sistemaStock\capaPresentacion\Presentacion.csproj", "{AD0A82EE-33A6-4460-9040-B442CEFF709E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{AD0A82EE-33A6-4460-9040-B442CEFF709E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
