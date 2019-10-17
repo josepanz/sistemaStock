@@ -1,4 +1,5 @@
-﻿using Presentacion.Formularios;
+﻿using capaPresentacion.Formularios;
+using Presentacion.Formularios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Presentacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEmpleado());
+            Application.Run(new FormMenu());
         }
     }
 

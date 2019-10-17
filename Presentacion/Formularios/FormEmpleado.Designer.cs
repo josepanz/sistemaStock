@@ -218,6 +218,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "FormEmpleado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEmpleado";
             this.Load += new System.EventHandler(this.FormEmpleado_Load);
             this.panel1.ResumeLayout(false);
