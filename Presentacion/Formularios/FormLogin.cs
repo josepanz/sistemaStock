@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using capaPresentacion.Formularios;
 
 namespace Presentacion
 {
-    public partial class FormLogin : Form
+    public partial class frmLogin : Form
     {
-        public FormLogin()
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -39,39 +40,39 @@ namespace Presentacion
         #region Placeholder or WaterMark
         private void txtuser_Enter(object sender, EventArgs e)
         {
-            if (txtuser.Text == "Usuario")
+            if (txtUsuario.Text == "Usuario")
             {
-                txtuser.Text = "";
-                txtuser.ForeColor = Color.LightGray;
+                txtUsuario.Text = "";
+                txtUsuario.ForeColor = Color.LightGray;
             }
         }
 
         private void txtuser_Leave(object sender, EventArgs e)
         {
-            if (txtuser.Text == "")
+            if (txtUsuario.Text == "")
             {
-                txtuser.Text = "Usuario";
-                txtuser.ForeColor = Color.Silver;
+                txtUsuario.Text = "Usuario";
+                txtUsuario.ForeColor = Color.Silver;
             }
         }
 
         private void txtpass_Enter(object sender, EventArgs e)
         {
-            if (txtpass.Text == "Contraseña")
+            if (txtPass.Text == "Contraseña")
             {
-                txtpass.Text = "";
-                txtpass.ForeColor = Color.LightGray;
-                txtpass.UseSystemPasswordChar = true;
+                txtPass.Text = "";
+                txtPass.ForeColor = Color.LightGray;
+                txtPass.UseSystemPasswordChar = true;
             }
         }
 
         private void txtpass_Leave(object sender, EventArgs e)
         {
-            if (txtpass.Text == "")
+            if (txtPass.Text == "")
             {
-                txtpass.Text = "Contraseña";
-                txtpass.ForeColor = Color.Silver;
-                txtpass.UseSystemPasswordChar = false;
+                txtPass.Text = "Contraseña";
+                txtPass.ForeColor = Color.Silver;
+                txtPass.UseSystemPasswordChar = false;
             }
         }
 
@@ -89,18 +90,24 @@ namespace Presentacion
 
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            /*this.Hide();
-            FormPrincipal frm = new FormPrincipal();
+            if (txtUsuario.Text == "admin" && txtPass.Text == "admin")
+            {
+                FormMenu frmMenu = new FormMenu();
+                frmMenu.Show();
+                this.Hide();
+            }
+            else {
+                MessageBox.Show("Credenciales de Acceso Incorrecta");
+            }
+        }
 
-            frm.Show();*/
-
+        private void LinkServer_Click(object sender, EventArgs e)
+        {
+            FormConfiguration formConfiguration = new FormConfiguration();
+            formConfiguration.Show();
+            this.Hide();
         }
     }
 }

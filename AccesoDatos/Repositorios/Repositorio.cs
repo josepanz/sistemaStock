@@ -8,7 +8,7 @@ namespace AccesoDatos.Repositorios
 {
     public abstract class Repositorio
     {
-        private readonly string connectString;
+        private string connectString;
         public  Repositorio()
         {
             connectString = ConfigurationManager.ConnectionStrings["connStock"].ToString();
