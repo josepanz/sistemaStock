@@ -78,6 +78,7 @@ namespace capaPresentacion.Formularios
             pro.Ruc = txtRuc.Text;
             pro.RazonSocial = txtRazon.Text;
             pro.Telefono = txtTelefono.Text;
+            pro.Direccion = txtDireccion.Text;
             
 
             return pro;
