@@ -10,5 +10,28 @@ namespace AccesoDatos.Entidades
     {
         public string codigo { get; set; }
         public string descripcion { get; set; }
+        public static List<Marca> listaMarca = new List<Marca>();
+
+        public static void AgregarMarca(Marca M)
+        {
+            listaMarca.Add(M);
+        }
+
+        public static void EliminarMarcas(int posicion_item)
+        {
+            listaMarca.RemoveAt(posicion_item);
+        }
+
+        public static List<Marca> ObtenerMarcas()
+        {
+            return listaMarca;
+        }
+
+        public override string ToString()
+        {
+            return this.descripcion;
+        }
     }
+
+    
 }
