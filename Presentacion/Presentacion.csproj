@@ -56,53 +56,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Formularios\FormConfiguration.cs">
+    <Compile Include="Formularios\frmProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\FormConfiguration.Designer.cs">
-      <DependentUpon>FormConfiguration.cs</DependentUpon>
+    <Compile Include="Formularios\frmProducto.Designer.cs">
+      <DependentUpon>frmProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\FormEmpleado.cs">
+    <Compile Include="Formularios\frmConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\FormEmpleado.Designer.cs">
-      <DependentUpon>FormEmpleado.cs</DependentUpon>
+    <Compile Include="Formularios\frmConfiguration.Designer.cs">
+      <DependentUpon>frmConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\FormLogin.cs">
+    <Compile Include="Formularios\frmEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\FormLogin.designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <Compile Include="Formularios\frmEmpleado.Designer.cs">
+      <DependentUpon>frmEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\FormMenu.cs">
+    <Compile Include="Formularios\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\FormMenu.Designer.cs">
-      <DependentUpon>FormMenu.cs</DependentUpon>
+    <Compile Include="Formularios\frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\FormProveedor.cs">
+    <Compile Include="Formularios\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\FormProveedor.Designer.cs">
-      <DependentUpon>FormProveedor.cs</DependentUpon>
+    <Compile Include="Formularios\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmProveedor.Designer.cs">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Soportes\ValidacionDatos.cs" />
-    <EmbeddedResource Include="Formularios\FormConfiguration.resx">
-      <DependentUpon>FormConfiguration.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\frmProducto.resx">
+      <DependentUpon>frmProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\FormEmpleado.resx">
-      <DependentUpon>FormEmpleado.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\frmConfiguration.resx">
+      <DependentUpon>frmConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\frmEmpleado.resx">
+      <DependentUpon>frmEmpleado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\FormMenu.resx">
-      <DependentUpon>FormMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\FormProveedor.resx">
-      <DependentUpon>FormProveedor.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmProveedor.resx">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

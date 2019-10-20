@@ -1,6 +1,6 @@
 ﻿namespace capaPresentacion.Formularios
 {
-    partial class FormProveedor
+    partial class frmProveedor
     {
         /// <summary>
         /// Required designer variable.
@@ -157,7 +157,7 @@
             this.dgvProveedor.TabIndex = 12;
             this.dgvProveedor.Click += new System.EventHandler(this.dgvProveedor_Click);
             // 
-            // FormProveedor
+            // frmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,7 +175,8 @@
             this.Controls.Add(this.lblTelefono);
             this.Controls.Add(this.lblDireccion);
             this.Controls.Add(this.lblTitulo);
-            this.Name = "FormProveedor";
+            this.Name = "frmProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.FormProveedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProveedor)).EndInit();

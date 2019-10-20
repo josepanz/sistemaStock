@@ -1,6 +1,6 @@
 ﻿namespace Presentacion.Formularios
 {
-    partial class FormEmpleado
+    partial class frmEmpleado
     {
         /// <summary>
         /// Required designer variable.
@@ -210,16 +210,16 @@
             this.txtIDNumero.Size = new System.Drawing.Size(172, 20);
             this.txtIDNumero.TabIndex = 0;
             // 
-            // FormEmpleado
+            // frmEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 372);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Name = "FormEmpleado";
+            this.Name = "frmEmpleado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormEmpleado";
+            this.Text = "Empleado";
             this.Load += new System.EventHandler(this.FormEmpleado_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

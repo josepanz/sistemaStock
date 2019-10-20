@@ -11,9 +11,9 @@ using AccesoDatos.Entidades;
 
 namespace capaPresentacion.Formularios
 {
-    public partial class FormProveedor : Form
+    public partial class frmProveedor : Form
     {
-        public FormProveedor()
+        public frmProveedor()
         {
             InitializeComponent();
         }

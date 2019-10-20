@@ -12,9 +12,9 @@ using Presentacion;
 
 namespace capaPresentacion.Formularios
 {
-    public partial class FormConfiguration : Form
+    public partial class frmConfiguration : Form
     {
-        public FormConfiguration()
+        public frmConfiguration()
         {
             InitializeComponent();
         }

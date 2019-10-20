@@ -1,6 +1,6 @@
 ﻿namespace capaPresentacion.Formularios
 {
-    partial class FormConfiguration
+    partial class frmConfiguration
     {
         /// <summary>
         /// Required designer variable.
@@ -99,7 +99,7 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
-            // FormConfiguration
+            // frmConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,8 +111,9 @@
             this.Controls.Add(this.lblBaseDatos);
             this.Controls.Add(this.lblServidor);
             this.Controls.Add(this.lblConfiguracion);
-            this.Name = "FormConfiguration";
-            this.Text = "FormConfiguration";
+            this.Name = "frmConfiguration";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Configuration";
             this.Load += new System.EventHandler(this.FormConfiguration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

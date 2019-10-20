@@ -14,10 +14,10 @@ using Negocio.ObjetosValores;
 
 namespace Presentacion.Formularios
 {
-    public partial class FormEmpleado : Form
+    public partial class frmEmpleado : Form
     {
         private ModeloEmpleado empleado = new ModeloEmpleado();
-        public FormEmpleado()
+        public frmEmpleado()
         {
             InitializeComponent();
             panel3.Enabled = false;

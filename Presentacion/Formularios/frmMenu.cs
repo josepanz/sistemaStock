@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace capaPresentacion.Formularios
 {
-    public partial class FormMenu : Form
+    public partial class frmMenu : Form
     {
-        public FormMenu()
+        public frmMenu()
         {
             InitializeComponent();
         }
 
         private void empleadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormEmpleado frmprov = new FormEmpleado();
-            frmprov.Show();
+            frmEmpleado frmEmpl = new frmEmpleado();
+            frmEmpl.Show();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,8 +33,21 @@ namespace capaPresentacion.Formularios
             if (MessageBox.Show("¿Está seguro que desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)==DialogResult.Yes)
             {
                 this.Close();
+                Close();
             }
             
+        }
+
+        private void ProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProveedor frmProv = new frmProveedor();
+            frmProv.Show();
+        }
+
+        private void ProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProducto frmPro = new frmProducto();
+            frmPro.Show();
         }
     }
 }

@@ -94,7 +94,7 @@ namespace Presentacion
         {
             if (txtUsuario.Text == "admin" && txtPass.Text == "admin")
             {
-                FormMenu frmMenu = new FormMenu();
+                frmMenu frmMenu = new frmMenu();
                 frmMenu.Show();
                 this.Hide();
             }
@@ -105,7 +105,7 @@ namespace Presentacion
 
         private void LinkServer_Click(object sender, EventArgs e)
         {
-            FormConfiguration formConfiguration = new FormConfiguration();
+            frmConfiguration formConfiguration = new frmConfiguration();
             formConfiguration.Show();
             this.Hide();
         }

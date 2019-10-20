@@ -45,8 +45,12 @@
   <ItemGroup>
     <Compile Include="Contratos\IRepositorioEmpleado.cs" />
     <Compile Include="Contratos\IRepositorioGenerico.cs" />
+    <Compile Include="Entidades\Categoria.cs" />
     <Compile Include="Entidades\Empleado.cs" />
+    <Compile Include="Entidades\Marca.cs" />
+    <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
+    <Compile Include="Entidades\TipoProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\RepositorioEmpleado.cs" />
