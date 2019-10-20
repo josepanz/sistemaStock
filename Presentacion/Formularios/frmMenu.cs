@@ -49,5 +49,23 @@ namespace capaPresentacion.Formularios
             frmProducto frmPro = new frmProducto();
             frmPro.Show();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmMarca frmMarca = new frmMarca();
+            frmMarca.Show();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            frmCategoria frmCategoria = new frmCategoria();
+            frmCategoria.Show();
+        }
+
+        private void tipoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTipoProducto frmTipoProducto = new frmTipoProducto();
+            frmTipoProducto.Show();
+        }
     }
 }
