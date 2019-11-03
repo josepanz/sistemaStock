@@ -26,16 +26,11 @@ namespace capaPresentacion.Formularios
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*if (MessageBox.Show("¿Está seguro que desea salir del sistema?") == DialogResult.Yes)
-            {
-                this.Close();
-            }*/
             if (MessageBox.Show("¿Está seguro que desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)==DialogResult.Yes)
             {
-                this.Close();
                 Close();
+                //YO CREO QUE HAY QUE CERRAR LA CONEXIÓN... NO SE NOMAS COMO XD
             }
-            
         }
 
         private void ProveedorToolStripMenuItem_Click(object sender, EventArgs e)

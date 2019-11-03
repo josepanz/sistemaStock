@@ -136,6 +136,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmCategoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categoria";
             this.Load += new System.EventHandler(this.Categoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).EndInit();

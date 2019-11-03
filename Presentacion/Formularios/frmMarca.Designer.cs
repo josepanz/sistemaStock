@@ -136,6 +136,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmMarca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Marca";
             this.Load += new System.EventHandler(this.frmMarca_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMarca)).EndInit();

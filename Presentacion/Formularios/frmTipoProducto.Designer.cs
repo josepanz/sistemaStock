@@ -136,6 +136,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmTipoProducto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tipo Producto";
             this.Load += new System.EventHandler(this.frmTipoProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipoProducto)).EndInit();

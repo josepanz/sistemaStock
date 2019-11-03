@@ -41,7 +41,7 @@ namespace capaPresentacion.Formularios
 
                     frmLogin formLogin = new frmLogin();
                     formLogin.Show();
-                    Close();
+                    this.Hide();//esconde el formulario
                 }
                 catch (Exception ex)
                 {
@@ -52,8 +52,6 @@ namespace capaPresentacion.Formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            frmLogin formLogin = new frmLogin();
-            formLogin.Show();
             Close();
         }
     }
