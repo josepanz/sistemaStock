@@ -52,6 +52,8 @@ namespace capaPresentacion.Formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
+            frmLogin form = new frmLogin();
+            form.Show();
             Close();
         }
     }
