@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{E3D71C05-9517-4019-8972-EC7E93BC38D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clases", "AccesoDatos\Clases.csproj", "{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{AD0A82EE-33A6-4460-9040-B442CEFF709E}"
 EndProject
@@ -19,10 +17,6 @@ Global
 		{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E71F9ABA-3922-4EAC-98B3-8BE4544FD863}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3D71C05-9517-4019-8972-EC7E93BC38D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3D71C05-9517-4019-8972-EC7E93BC38D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3D71C05-9517-4019-8972-EC7E93BC38D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3D71C05-9517-4019-8972-EC7E93BC38D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD0A82EE-33A6-4460-9040-B442CEFF709E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD0A82EE-33A6-4460-9040-B442CEFF709E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD0A82EE-33A6-4460-9040-B442CEFF709E}.Release|Any CPU.ActiveCfg = Release|Any CPU

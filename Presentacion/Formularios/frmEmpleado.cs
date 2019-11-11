@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Negocio.Modelos;
-using Negocio.ObjetosValores;
+using Clases;
+
 
 
 
@@ -16,7 +16,8 @@ namespace Presentacion.Formularios
 {
     public partial class frmEmpleado : Form
     {
-        private ModeloEmpleado empleado = new ModeloEmpleado();
+        public string modo;
+
         public frmEmpleado()
         {
             InitializeComponent();
@@ -26,45 +27,80 @@ namespace Presentacion.Formularios
         private void FormEmpleado_Load(object sender, EventArgs e)
         {
             ListarEmpleado();
+            cboCargo.DataSource = Cargo.ObtenerCargos();
+            cboCargo.SelectedItem = null;
         }
 
         private void ListarEmpleado()
         {
             try
             {
-                dgvEmpleado.DataSource = empleado.GetAll();
+                dgvEmpleado.DataSource = null;
+                dgvEmpleado.DataSource = Empleado.ObtenerEmpleados();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
+        }        
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            //dgvEmpleado.DataSource = empleado.findById(txtBuscar.Text);
+            dgvEmpleado.DataSource = Empleado.ObtenerEmpleado(Convert.ToInt32((txtBuscar.Text)));
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            dgvEmpleado.DataSource = empleado.findById(txtBuscar.Text);
+            dgvEmpleado.DataSource = Empleado.ObtenerEmpleado(Convert.ToInt32((txtBuscar.Text)));
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            empleado.IdNumero = txtIDNumero.Text;
-            empleado.Email = txtEmail.Text;
-            empleado.Nombre = txtNombre.Text;
-            empleado.Nacimiento = txtFechaNac.Value;
-
-            bool valid = new Soportes.ValidacionDatos(empleado).Validate();
-            if(valid == true)
+            Empleado empl = null;
+            if (modo == "I")
             {
-                string result = empleado.SaveChanges();
-                MessageBox.Show(result);
-                ListarEmpleado();
-                limpiar();
+                empl = ObtenerEmpleadoFormulario();
+                Empleado.AgregarEmpleado(empl);
             }
+            else if (modo == "E")
+            {
+
+                if (dgvEmpleado.SelectedRows.Count > 0)
+                {                    
+                    int index = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
+                    empl = ObtenerEmpleadoFormulario();
+                    Empleado.EditarEmpleado(index, empl);                    
+
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
+                
+            }
+
+            ListarEmpleado();
+            limpiar();
+            panel3.Enabled = false;
+
+
+        }
+
+        private Empleado ObtenerEmpleadoFormulario()
+        {
+            Empleado empl = new Empleado();
+            if (!string.IsNullOrEmpty(txtidPK.Text))
+            {
+                empl.idPK = Convert.ToInt32(txtidPK.Text);
+            }
+
+            empl.idNumero = Convert.ToInt32(txtIDNumero.Text);
+            empl.nombre = txtNombre.Text;
+            empl.email = txtEmail.Text;
+            empl.nacimiento = txtFechaNac.Value.Date;
+            empl.cargo = (Cargo)cboCargo.SelectedItem;
+            
+            return empl;
         }
         private void limpiar()
         {
@@ -72,47 +108,65 @@ namespace Presentacion.Formularios
             txtEmail.Clear();
             txtIDNumero.Clear();
             txtNombre.Clear();
+            cboCargo.SelectedItem = null;
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
+            modo = "I";
+            limpiar();
             panel3.Enabled = true;
-            empleado.Estado = EstadoEntidad.Agregado;
+            
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
+            Empleado empleado = new Empleado();
             if(dgvEmpleado.SelectedRows.Count > 0)
             {
                 panel3.Enabled = true;
-                empleado.Estado = EstadoEntidad.Modificado;
-                empleado.IdPK = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
-                txtIDNumero.Text=dgvEmpleado.CurrentRow.Cells[1].Value.ToString();
-                txtNombre.Text = dgvEmpleado.CurrentRow.Cells[2].Value.ToString();
-                txtEmail.Text = dgvEmpleado.CurrentRow.Cells[3].Value.ToString();
-                txtFechaNac.Value = Convert.ToDateTime(dgvEmpleado.CurrentRow.Cells[4].Value);
+                empleado = (Empleado)dgvEmpleado.CurrentRow.DataBoundItem;
+                //empleado.idPK = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
+                txtidPK.Text = empleado.idPK.ToString();
+                txtIDNumero.Text=empleado.idNumero.ToString();
+                txtNombre.Text = empleado.nombre;
+                txtEmail.Text = empleado.email;
+                txtFechaNac.Value = empleado.nacimiento;
+                cboCargo.SelectedIndex = empleado.cargo.codCargo-1;
+                
+                
+
             }
             else
             {
                 MessageBox.Show("Seleccione una fila");
             }
+            
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvEmpleado.SelectedRows.Count > 0)
-            {
-                empleado.Estado = EstadoEntidad.Eliminado;
-                empleado.IdPK = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
-                string result = empleado.SaveChanges();
-                MessageBox.Show(result);
-                ListarEmpleado();
-                
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una fila");
-            }
+            int idPK;
+           
+             if (dgvEmpleado.SelectedRows.Count > 0)
+             {
+                 
+                 idPK = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
+
+                Empleado.EliminarEmpleado(idPK);
+                 
+                 ListarEmpleado();
+
+             }
+             else
+             {
+                 MessageBox.Show("Seleccione una fila");
+             }
+     
+        }
+
+        private void Panel3_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

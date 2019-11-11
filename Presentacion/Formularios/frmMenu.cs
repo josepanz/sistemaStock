@@ -28,7 +28,8 @@ namespace capaPresentacion.Formularios
         {
             if (MessageBox.Show("¿Está seguro que desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)==DialogResult.Yes)
             {
-                Close();
+                Application.Exit();
+                //Close();
                 //YO CREO QUE HAY QUE CERRAR LA CONEXIÓN... NO SE NOMAS COMO XD
             }
         }

@@ -25,6 +25,8 @@ namespace Negocio.Modelos
 
         private int edad;
 
+        private Cargo cargo;
+
         private IRepositorioEmpleado repositorioEmpleado;
         public EstadoEntidad Estado { private get; set; }
 
@@ -44,6 +46,8 @@ namespace Negocio.Modelos
         public DateTime Nacimiento { get => nacimiento; set => nacimiento = value; }
         public int Edad { get => edad; private set => edad = value; }
 
+        public Cargo Cargo { get => cargo; set => cargo = value; }
+
         public ModeloEmpleado()
         {
             repositorioEmpleado = new RepositorioEmpleado();
@@ -60,6 +64,7 @@ namespace Negocio.Modelos
                 empleadoDataModel.nombre = nombre;
                 empleadoDataModel.email = email;
                 empleadoDataModel.nacimiento = nacimiento;
+                empleadoDataModel.cargo = cargo;
                 switch (Estado)
                 {
                     case EstadoEntidad.Agregado:
@@ -93,6 +98,7 @@ namespace Negocio.Modelos
         }
         public List<ModeloEmpleado> GetAll()
         {
+            ModeloCargo mc = new ModeloCargo();
             var empleadoDataModel = repositorioEmpleado.GetAll();
             listaEmpleados = new List<ModeloEmpleado>();
             foreach(Empleado item in empleadoDataModel)
@@ -105,9 +111,10 @@ namespace Negocio.Modelos
                     nombre=item.nombre,
                     email = item.email,
                     nacimiento = item.nacimiento,
-                    edad = calcularEdad(fechaNac)
+                    edad = calcularEdad(fechaNac),
+                    cargo = (item.cargo)
 
-                });;
+                });;;
             }
             return listaEmpleados;
         }

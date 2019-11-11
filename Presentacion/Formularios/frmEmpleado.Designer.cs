@@ -35,6 +35,8 @@
             this.dgvEmpleado = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblCargo = new System.Windows.Forms.Label();
+            this.cboCargo = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtFechaNac = new System.Windows.Forms.DateTimePicker();
@@ -45,6 +47,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtIDNumero = new System.Windows.Forms.TextBox();
+            this.txtidPK = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleado)).BeginInit();
             this.panel3.SuspendLayout();
@@ -111,6 +114,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.Controls.Add(this.txtidPK);
+            this.panel3.Controls.Add(this.lblCargo);
+            this.panel3.Controls.Add(this.cboCargo);
             this.panel3.Controls.Add(this.btnCancelar);
             this.panel3.Controls.Add(this.btnGuardar);
             this.panel3.Controls.Add(this.txtFechaNac);
@@ -125,10 +131,29 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(272, 388);
             this.panel3.TabIndex = 3;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel3_Paint);
+            // 
+            // lblCargo
+            // 
+            this.lblCargo.AutoSize = true;
+            this.lblCargo.Location = new System.Drawing.Point(45, 228);
+            this.lblCargo.Name = "lblCargo";
+            this.lblCargo.Size = new System.Drawing.Size(35, 13);
+            this.lblCargo.TabIndex = 11;
+            this.lblCargo.Text = "Cargo";
+            // 
+            // cboCargo
+            // 
+            this.cboCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCargo.FormattingEnabled = true;
+            this.cboCargo.Location = new System.Drawing.Point(48, 244);
+            this.cboCargo.Name = "cboCargo";
+            this.cboCargo.Size = new System.Drawing.Size(172, 21);
+            this.cboCargo.TabIndex = 10;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(145, 234);
+            this.btnCancelar.Location = new System.Drawing.Point(145, 281);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 9;
@@ -137,7 +162,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(48, 234);
+            this.btnGuardar.Location = new System.Drawing.Point(48, 281);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 8;
@@ -210,6 +235,14 @@
             this.txtIDNumero.Size = new System.Drawing.Size(172, 20);
             this.txtIDNumero.TabIndex = 0;
             // 
+            // txtidPK
+            // 
+            this.txtidPK.Location = new System.Drawing.Point(35, 9);
+            this.txtidPK.Name = "txtidPK";
+            this.txtidPK.Size = new System.Drawing.Size(100, 20);
+            this.txtidPK.TabIndex = 12;
+            this.txtidPK.Visible = false;
+            // 
             // frmEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,5 +282,8 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtIDNumero;
+        private System.Windows.Forms.ComboBox cboCargo;
+        private System.Windows.Forms.Label lblCargo;
+        private System.Windows.Forms.TextBox txtidPK;
     }
 }
