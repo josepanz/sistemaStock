@@ -30,17 +30,18 @@
         {
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblDireccion = new System.Windows.Forms.Label();
-            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
             this.lblRazon = new System.Windows.Forms.Label();
             this.lblRuc = new System.Windows.Forms.Label();
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtRazon = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvProveedor = new System.Windows.Forms.DataGridView();
+            this.txtidPK = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,14 +64,14 @@
             this.lblDireccion.TabIndex = 1;
             this.lblDireccion.Text = "Direccion";
             // 
-            // lblTelefono
+            // lblEmail
             // 
-            this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(83, 152);
-            this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(49, 13);
-            this.lblTelefono.TabIndex = 2;
-            this.lblTelefono.Text = "Telefono";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(83, 152);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(32, 13);
+            this.lblEmail.TabIndex = 2;
+            this.lblEmail.Text = "Email";
             // 
             // lblRazon
             // 
@@ -104,12 +105,12 @@
             this.txtDireccion.Size = new System.Drawing.Size(146, 20);
             this.txtDireccion.TabIndex = 6;
             // 
-            // txtTelefono
+            // txtEmail
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(238, 152);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(146, 20);
-            this.txtTelefono.TabIndex = 7;
+            this.txtEmail.Location = new System.Drawing.Point(238, 152);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(146, 20);
+            this.txtEmail.TabIndex = 7;
             // 
             // txtRazon
             // 
@@ -157,22 +158,31 @@
             this.dgvProveedor.TabIndex = 12;
             this.dgvProveedor.Click += new System.EventHandler(this.dgvProveedor_Click);
             // 
+            // txtidPK
+            // 
+            this.txtidPK.Location = new System.Drawing.Point(335, 34);
+            this.txtidPK.Name = "txtidPK";
+            this.txtidPK.Size = new System.Drawing.Size(100, 20);
+            this.txtidPK.TabIndex = 13;
+            this.txtidPK.Visible = false;
+            // 
             // frmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(508, 450);
+            this.Controls.Add(this.txtidPK);
             this.Controls.Add(this.dgvProveedor);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtRazon);
-            this.Controls.Add(this.txtTelefono);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.txtRuc);
             this.Controls.Add(this.lblRuc);
             this.Controls.Add(this.lblRazon);
-            this.Controls.Add(this.lblTelefono);
+            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblDireccion);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmProveedor";
@@ -189,16 +199,17 @@
 
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblDireccion;
-        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblRazon;
         private System.Windows.Forms.Label lblRuc;
         private System.Windows.Forms.TextBox txtRuc;
         private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtRazon;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvProveedor;
+        private System.Windows.Forms.TextBox txtidPK;
     }
 }

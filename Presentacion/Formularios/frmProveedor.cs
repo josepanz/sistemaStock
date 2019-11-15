@@ -33,17 +33,21 @@ namespace capaPresentacion.Formularios
         {
             txtRuc.Text = "";
             txtRazon.Text = "";
-            txtTelefono.Text = "";
+            txtEmail.Text = "";
             txtDireccion.Text = "";
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Proveedor proveedor = new Proveedor();
-            proveedor.Ruc = txtRuc.Text;
+            if (!string.IsNullOrEmpty(txtidPK.Text))
+            {
+                proveedor.idPK = Convert.ToInt32(txtidPK.Text);
+            }
+            proveedor.idNumero= Convert.ToInt32(txtRuc.Text);
             proveedor.RazonSocial = txtRazon.Text;
             proveedor.Direccion = txtDireccion.Text;
-            proveedor.Telefono = txtTelefono.Text;
+            proveedor.Email = txtEmail.Text;
             Proveedor.AgregarProveedores(proveedor);
 
             ListarProveedor();
@@ -75,9 +79,9 @@ namespace capaPresentacion.Formularios
         private Proveedor ObtenerProveedor()
         {
             Proveedor pro = new Proveedor();
-            pro.Ruc = txtRuc.Text;
+            pro.idNumero = Convert.ToInt32(txtRuc.Text);
             pro.RazonSocial = txtRazon.Text;
-            pro.Telefono = txtTelefono.Text;
+            pro.Email = txtEmail.Text;
             pro.Direccion = txtDireccion.Text;
             
 
@@ -91,9 +95,9 @@ namespace capaPresentacion.Formularios
 
             if (pro != null)
             {
-                txtRuc.Text = pro.Ruc;
+                  pro.idNumero = Convert.ToInt32(txtRuc.Text);
                 txtRazon.Text = pro.RazonSocial;
-                txtTelefono.Text = pro.Telefono;
+                txtEmail.Text = pro.Email;
                 txtDireccion.Text = pro.Direccion;
             }
         }
