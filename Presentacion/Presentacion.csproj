@@ -62,6 +62,12 @@
     <Compile Include="Formularios\frmCategoria.Designer.cs">
       <DependentUpon>frmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmEntrada.Designer.cs">
+      <DependentUpon>frmEntrada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmMarca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,12 @@
     <Compile Include="Formularios\frmProveedor.Designer.cs">
       <DependentUpon>frmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmSalida.Designer.cs">
+      <DependentUpon>frmSalida.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmTipoProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\frmCategoria.resx">
       <DependentUpon>frmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmEntrada.resx">
+      <DependentUpon>frmEntrada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmMarca.resx">
       <DependentUpon>frmMarca.cs</DependentUpon>
@@ -135,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmProveedor.resx">
       <DependentUpon>frmProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmSalida.resx">
+      <DependentUpon>frmSalida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmTipoProducto.resx">
       <DependentUpon>frmTipoProducto.cs</DependentUpon>
