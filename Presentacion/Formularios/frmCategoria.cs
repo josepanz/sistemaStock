@@ -37,13 +37,20 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria();
-            categoria.codigo = Convert.ToInt32(txtCodigo.Text);
-            categoria.descripcion = txtDescripcion.Text;
-            Categoria.AgregarCategoria(categoria);
-
+            Categoria c = ObtenerCategoriaFormulario();
+            Categoria.AgregarCategoria(c);
             ListarCategoria();
             LimpiarFormulario();
+        }
+
+        private Categoria ObtenerCategoriaFormulario()
+        {
+            Categoria c = new Categoria();
+            c.descripcion = txtDescripcion.Text;
+
+
+
+            return c;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -51,7 +58,9 @@ namespace capaPresentacion.Formularios
             Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
             if (cat != null)
             {
-                Categoria.listaCategoria.Remove(cat);
+                Categoria.EliminarCategorias(cat);
+                ListarCategoria();
+                LimpiarFormulario();
             }
             ListarCategoria();
         }
@@ -63,7 +72,8 @@ namespace capaPresentacion.Formularios
             if (cat!= null)
             {
                 int index = dgvCategoria.CurrentCell.RowIndex;
-                Categoria.listaCategoria[index] = ObtenerCategoria();
+                Categoria c = ObtenerCategoriaFormulario();
+                Categoria.EditarCategorias(index, c);
                 ListarCategoria();
             }
 
@@ -72,7 +82,7 @@ namespace capaPresentacion.Formularios
         private Categoria ObtenerCategoria()
         {
             Categoria categoria = new Categoria();
-            categoria.codigo = Convert.ToInt32(txtCodigo.Text);
+            categoria.id = Convert.ToInt32(txtCodigo.Text);
             categoria.descripcion = txtDescripcion.Text;
 
 
@@ -85,7 +95,7 @@ namespace capaPresentacion.Formularios
 
                 if (cat != null)
                 {
-                    txtCodigo.Text = Convert.ToString(cat.codigo);
+                    txtCodigo.Text = Convert.ToString(cat.id);
                     txtDescripcion.Text = cat.descripcion;
                     
                 }

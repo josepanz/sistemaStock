@@ -37,13 +37,20 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Marca marca = new Marca();
-            marca.codigo = Convert.ToInt32(txtCodigo.Text);
-            marca.descripcion = txtDescripcion.Text;
-            Marca.AgregarMarca(marca);
-
+            Marca m = ObtenerMarcaFormulario();
+            Marca.AgregarMarca(m);
             ListarMarca();
             LimpiarFormulario();
+        }
+
+        private Marca ObtenerMarcaFormulario()
+        {
+            Marca marca = new Marca();
+            marca.descripcion = txtDescripcion.Text;
+            
+
+
+            return marca;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -51,7 +58,9 @@ namespace capaPresentacion.Formularios
             Marca mar = (Marca)dgvMarca.CurrentRow.DataBoundItem;
             if (mar != null)
             {
-                Marca.listaMarca.Remove(mar);
+                Marca.EliminarMarcas(mar);
+                ListarMarca();
+                LimpiarFormulario();
             }
             ListarMarca();
         }
@@ -63,15 +72,15 @@ namespace capaPresentacion.Formularios
             if (marca != null)
             {
                 int index = dgvMarca.CurrentCell.RowIndex;
-                Marca.listaMarca[index] = ObtenerMarca();
-                ListarMarca();
+                Marca m = ObtenerMarcaFormulario();
+                Marca.EditarMarca(index, m);
             }
         }
 
         private Marca ObtenerMarca()
         {
             Marca mar = new Marca();
-            mar.codigo = Convert.ToInt32(txtCodigo.Text);
+            mar.id = Convert.ToInt32(txtCodigo.Text);
             mar.descripcion = txtDescripcion.Text;
 
 
@@ -84,7 +93,7 @@ namespace capaPresentacion.Formularios
 
             if (mar != null)
             {
-                txtCodigo.Text = Convert.ToString(mar.codigo);
+                txtCodigo.Text = Convert.ToString(mar.id);
                 txtDescripcion.Text = mar.descripcion;
 
             }

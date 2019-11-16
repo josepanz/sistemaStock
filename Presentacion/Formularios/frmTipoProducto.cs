@@ -38,13 +38,19 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            TipoProducto tipo = new TipoProducto();
-            tipo.codigo = Convert.ToInt32(txtCodigo.Text);
-            tipo.descripcion = txtDescripcion.Text;
+            TipoProducto tipo = ObtenerTipoProFormulario();
             TipoProducto.AgregarProductos(tipo);
 
             ListarTipoProducto();
             LimpiarFormulario();
+        }
+
+        private TipoProducto ObtenerTipoProFormulario()
+        {
+            TipoProducto tp = new TipoProducto();
+            tp.descripcion = txtDescripcion.Text;
+
+            return tp;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -52,7 +58,9 @@ namespace capaPresentacion.Formularios
             TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
             if (tipo != null)
             {
-                TipoProducto.listaTipoProductos.Remove(tipo);
+                TipoProducto.EliminarTipoProductos(tipo);
+                ListarTipoProducto();
+                LimpiarFormulario(); ;
             }
             ListarTipoProducto();
         }
@@ -64,7 +72,8 @@ namespace capaPresentacion.Formularios
             if (tipo != null)
             {
                 int index = dgvTipoProducto.CurrentCell.RowIndex;
-                TipoProducto.listaTipoProductos[index] = ObtenerTipoProducto();
+                TipoProducto t = ObtenerTipoProFormulario();
+                TipoProducto.EditarTipoProducto(index, t);
                 ListarTipoProducto();
             }
         }
@@ -72,7 +81,7 @@ namespace capaPresentacion.Formularios
         private TipoProducto ObtenerTipoProducto()
         {
             TipoProducto tipo = new TipoProducto();
-            tipo.codigo = Convert.ToInt32(txtCodigo.Text);
+            tipo.id = Convert.ToInt32(txtCodigo.Text);
             tipo.descripcion = txtDescripcion.Text;
 
 
@@ -85,7 +94,7 @@ namespace capaPresentacion.Formularios
 
             if (tipo != null)
             {
-                txtCodigo.Text = Convert.ToString(tipo.codigo);
+                txtCodigo.Text = Convert.ToString(tipo.id);
                 txtDescripcion.Text = tipo.descripcion;
 
             }

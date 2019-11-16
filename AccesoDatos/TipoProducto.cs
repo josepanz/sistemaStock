@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,77 @@ namespace Clases
 {
     public class TipoProducto
     {
-        public int codigo { get; set; }
+        public int id { get; set; }
         public string descripcion { get; set; }
 
         public static List<TipoProducto> listaTipoProductos = new List<TipoProducto>();
 
         public static void AgregarProductos(TipoProducto TP)
         {
-            listaTipoProductos.Add(TP);
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string textoCmd = "INSERT INTO TipoProducto (descripcion)VALUES (@descripcion)";
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+                cmd = TP.ObtenerParametros(cmd);
+                cmd.ExecuteNonQuery();
+            }
         }
 
-        public static void EliminarTipoProductos(int posicion_item)
+        private SqlCommand ObtenerParametros(SqlCommand cmd, bool id = false)
         {
-            listaTipoProductos.RemoveAt(posicion_item);
+            SqlParameter p1 = new SqlParameter("@descripcion", this.descripcion);
+            p1.SqlDbType = SqlDbType.VarChar;
+            cmd.Parameters.Add(p1);
+            if (id == true)
+            {
+                cmd = ObtenerParametrosId(cmd);
+            }
+            return cmd;
         }
-     
+
+        private SqlCommand ObtenerParametrosId(SqlCommand cmd)
+        {
+            SqlParameter p2 = new SqlParameter("@id", this.id);
+            p2.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p2);
+            return cmd;
+        }
+
+        public static void EliminarTipoProductos(TipoProducto TP)
+        {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string SENTENCIA_SQL = "delete from TipoProducto where id = @Id";
+
+                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                SqlParameter p1 = new SqlParameter("@Id", TP.id);
+                p1.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(p1);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        public static void EditarTipoProducto(int index, TipoProducto TP)
+        {
+
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCMD = "UPDATE TipoProducto SET descripcion = @descripcion where id = @Id";
+
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+                cmd = TP.ObtenerParametros(cmd, true);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public static TipoProducto ObtenerTipoProducto(int id)
         {
             TipoProducto tipoProducto = null;
@@ -35,7 +92,7 @@ namespace Clases
 
             foreach (TipoProducto tp in listaTipoProductos)
             {
-                if (tp.codigo == id)
+                if (tp.id == id)
                 {
                     tipoProducto = tp;
                     break;
@@ -64,7 +121,7 @@ namespace Clases
                 while (elLectorDeDatos.Read())
                 {
                     tipo = new TipoProducto();
-                    tipo.codigo = elLectorDeDatos.GetInt32(0);
+                    tipo.id = elLectorDeDatos.GetInt32(0);
                     tipo.descripcion = elLectorDeDatos.GetString(1);
 
                     listaTipoProductos.Add(tipo);
