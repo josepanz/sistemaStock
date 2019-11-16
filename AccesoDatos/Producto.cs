@@ -43,7 +43,7 @@ namespace Clases
             SqlParameter p5 = new SqlParameter("@cantidad", this.cantidad);
             SqlParameter p6 = new SqlParameter("@cargo", this.marca.codigo);
             SqlParameter p7 = new SqlParameter("@cargo", this.tipoProducto.codigo);
-            SqlParameter p8 = new SqlParameter("@cargo", this.proveedor.Ruc);
+            SqlParameter p8 = new SqlParameter("@cargo", this.proveedor.RazonSocial);
             SqlParameter p9 = new SqlParameter("@cargo", this.unidad.codigo);
             SqlParameter p10 = new SqlParameter("@cargo", this.categoria.codigo);
 
@@ -143,20 +143,17 @@ namespace Clases
                     pro.precio = elLectorDeDatos.GetInt32(3);
                     pro.cantidad = elLectorDeDatos.GetInt32(4);
                     pro.marca = Marca.ObtenerMarca(elLectorDeDatos.GetInt32(5));
-                    pro.tipoProducto = TipoProducto.ObtenerTipoProductos
+                    pro.tipoProducto = TipoProducto.ObtenerTipoProducto(elLectorDeDatos.GetInt32(6));
+                    pro.proveedor = Proveedor.ObtenerProveedor(elLectorDeDatos.GetInt32(7));
+                    pro.unidad = UnidadMedida.ObtenerUnidad(elLectorDeDatos.GetInt32(8));
+                    pro.categoria = Categoria.ObtenerCategoria(elLectorDeDatos.GetInt32(9));
 
-                    
-                   
-                    producto.cargo = Cargo.ObtenerCargo(elLectorDeDatos.GetInt32(5));
-                  
-
-
-                    listaProductos.Add(producto);
+                    listaProductos.Add(pro);
 
                 }
             }
 
-            return listaEmpleados;
+            return listaProductos;
         }
 
         public override string ToString()
