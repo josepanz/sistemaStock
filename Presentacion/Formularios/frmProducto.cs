@@ -20,6 +20,19 @@ namespace capaPresentacion
         }
         private void frmProducto_Load(object sender, EventArgs e)
         {
+            dgvProducto.AutoGenerateColumns = true;
+            cmbMarca.DataSource = Marca.ObtenerMarcas();
+            cmbTipoProducto.DataSource = TipoProducto.ObtenerTipoProductos();
+            cmbProveedor.DataSource = Proveedor.ObtenerProveedores();
+            cmbUnidad.DataSource = UnidadMedida.ObtenerUnidades();
+            cmbCategoria.DataSource = Categoria.ObtenerCategorias();
+
+            cmbMarca.SelectedItem = null;
+            cmbTipoProducto.SelectedItem = null;
+            cmbProveedor.SelectedItem = null;
+            cmbUnidad.SelectedItem = null;
+            cmbCategoria.SelectedItem = null;
+
             ListarProducto();
         }
 
@@ -31,26 +44,34 @@ namespace capaPresentacion
 
         private void LimpiarFormulario()
         {
+            txtId.Text = "";
             txtDescripcion.Text = "";
-            cmbMarca.SelectedIndex = -1;
-            cmbCategoria.SelectedIndex = -1;
-            cmbProveedor.SelectedIndex = -1;
-            cmbTipoProducto.SelectedIndex = -1;
+            txtCodBarra.Text = "";
             nudPrecio.Value = 0;
-            dtpVencimiento.Value =DateTime.Now;
+            nudCantidad.Value = 0;
+            cmbMarca.SelectedIndex = -1;
+            cmbTipoProducto.SelectedIndex = -1;
+            cmbProveedor.SelectedIndex = -1;
+            cmbUnidad.SelectedIndex = -1;
+            cmbCategoria.SelectedIndex = -1;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Producto producto = new Producto();
             producto.descripcion = txtDescripcion.Text;
-            producto.marca =(Marca)cmbMarca.SelectedItem;
-            producto.categoria = (Categoria)cmbCategoria.SelectedItem;
+            producto.codBarra = txtCodBarra.Text;
+            producto.precio = Convert.ToInt32(nudPrecio.Value);
+            producto.cantidad = Convert.ToInt32(nudCantidad.Value);
+            producto.marca = (Marca)cmbMarca.SelectedItem;
             producto.tipoProducto = (TipoProducto)cmbTipoProducto.SelectedItem;
-            producto.proveedor =(Proveedor) cmbProveedor.SelectedItem;
-            producto.precio = (Double)nudPrecio.Value;
-            producto.fechaVencimiento = dtpVencimiento.Value;
+            producto.proveedor = (Proveedor)cmbProveedor.SelectedItem;
+            producto.unidad = (UnidadMedida)cmbUnidad.SelectedItem;
+            producto.categoria = (Categoria)cmbCategoria.SelectedItem;
+
+
             Producto.AgregarProductos(producto);
+            MessageBox.Show("Se ha agregado con éxito!!");
 
             ListarProducto();
             LimpiarFormulario();
@@ -58,12 +79,17 @@ namespace capaPresentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            /*Producto producto = (Producto)dgvProducto.CurrentRow.DataBoundItem;
+            Producto.listaProductos.Remove(producto);
+            ListarProducto();*/
+
+
             Producto pro = (Producto)dgvProducto.CurrentRow.DataBoundItem;
             if (pro != null)
             {
                 Producto.listaProductos.Remove(pro);
             }
-            ListarProducto();
+            
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -82,12 +108,14 @@ namespace capaPresentacion
         {
             Producto pro = new Producto();
             pro.descripcion = txtDescripcion.Text;
+            pro.codBarra = txtCodBarra.Text;
+            pro.precio = Convert.ToInt32(nudPrecio.Value);
+            pro.cantidad = Convert.ToInt32(nudCantidad.Value);
             pro.marca = (Marca)cmbMarca.SelectedItem;
-            pro.categoria = (Categoria)cmbCategoria.SelectedItem;
             pro.tipoProducto = (TipoProducto)cmbTipoProducto.SelectedItem;
             pro.proveedor = (Proveedor)cmbProveedor.SelectedItem;
-            pro.precio = (Double)nudPrecio.Value;
-            pro.fechaVencimiento = dtpVencimiento.Value;
+            pro.unidad = (UnidadMedida)cmbUnidad.SelectedItem;
+            pro.categoria = (Categoria)cmbCategoria.SelectedItem;
 
             return pro;
         }
@@ -100,12 +128,15 @@ namespace capaPresentacion
             if (pro != null)
             {
                 txtDescripcion.Text = pro.descripcion;
+                txtCodBarra.Text = pro.codBarra;
+                nudPrecio.Value = (Decimal)pro.precio;
+                nudCantidad.Value = (Decimal)pro.cantidad;
                 cmbMarca.SelectedItem = pro.marca;
-                cmbCategoria.SelectedItem = pro.categoria;
                 cmbTipoProducto.SelectedItem = pro.tipoProducto;
                 cmbProveedor.SelectedItem = pro.proveedor;
-                nudPrecio.Value = (Decimal)pro.precio;
-                dtpVencimiento.Value = pro.fechaVencimiento;
+                cmbUnidad.SelectedItem = pro.unidad;
+                cmbCategoria.SelectedItem = pro.categoria;
+
             }
         }
     }

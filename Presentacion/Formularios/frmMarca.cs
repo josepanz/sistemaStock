@@ -38,7 +38,7 @@ namespace capaPresentacion.Formularios
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Marca marca = new Marca();
-            marca.codigo = txtCodigo.Text;
+            marca.codigo = Convert.ToInt32(txtCodigo.Text);
             marca.descripcion = txtDescripcion.Text;
             Marca.AgregarMarca(marca);
 
@@ -71,7 +71,7 @@ namespace capaPresentacion.Formularios
         private Marca ObtenerMarca()
         {
             Marca mar = new Marca();
-            mar.codigo = txtCodigo.Text;
+            mar.codigo = Convert.ToInt32(txtCodigo.Text);
             mar.descripcion = txtDescripcion.Text;
 
 
@@ -84,7 +84,7 @@ namespace capaPresentacion.Formularios
 
             if (mar != null)
             {
-                txtCodigo.Text = mar.codigo;
+                txtCodigo.Text = Convert.ToString(mar.codigo);
                 txtDescripcion.Text = mar.descripcion;
 
             }

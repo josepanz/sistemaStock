@@ -41,17 +41,17 @@ namespace Clases
             SqlParameter p3 = new SqlParameter("@codBarra", this.codBarra);
             SqlParameter p4 = new SqlParameter("@precio", this.precio);
             SqlParameter p5 = new SqlParameter("@cantidad", this.cantidad);
-            SqlParameter p6 = new SqlParameter("@cargo", this.marca.codigo);
-            SqlParameter p7 = new SqlParameter("@cargo", this.tipoProducto.codigo);
-            SqlParameter p8 = new SqlParameter("@cargo", this.proveedor.RazonSocial);
-            SqlParameter p9 = new SqlParameter("@cargo", this.unidad.codigo);
-            SqlParameter p10 = new SqlParameter("@cargo", this.categoria.codigo);
+            SqlParameter p6 = new SqlParameter("@marca_id", this.marca.codigo);
+            SqlParameter p7 = new SqlParameter("@tipoProducto_id", this.tipoProducto.codigo);
+            SqlParameter p8 = new SqlParameter("@proveedor_id", this.proveedor.idNumero);
+            SqlParameter p9 = new SqlParameter("@unidadMedida_id", this.unidad.codigo);
+            SqlParameter p10 = new SqlParameter("@categoria_id", this.categoria.codigo);
 
 
             p1.SqlDbType = SqlDbType.Int;
             p2.SqlDbType = SqlDbType.VarChar;
             p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.DateTime;
+            p4.SqlDbType = SqlDbType.Int;
             p5.SqlDbType = SqlDbType.Int;
             p6.SqlDbType = SqlDbType.Int;
             p7.SqlDbType = SqlDbType.Int;

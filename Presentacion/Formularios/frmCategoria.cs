@@ -38,7 +38,7 @@ namespace capaPresentacion.Formularios
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Categoria categoria = new Categoria();
-            categoria.codigo = txtCodigo.Text;
+            categoria.codigo = Convert.ToInt32(txtCodigo.Text);
             categoria.descripcion = txtDescripcion.Text;
             Categoria.AgregarCategoria(categoria);
 
@@ -72,7 +72,7 @@ namespace capaPresentacion.Formularios
         private Categoria ObtenerCategoria()
         {
             Categoria categoria = new Categoria();
-            categoria.codigo = txtCodigo.Text;
+            categoria.codigo = Convert.ToInt32(txtCodigo.Text);
             categoria.descripcion = txtDescripcion.Text;
 
 
@@ -85,7 +85,7 @@ namespace capaPresentacion.Formularios
 
                 if (cat != null)
                 {
-                    txtCodigo.Text = cat.codigo ;
+                    txtCodigo.Text = Convert.ToString(cat.codigo);
                     txtDescripcion.Text = cat.descripcion;
                     
                 }

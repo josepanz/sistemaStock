@@ -39,7 +39,7 @@ namespace capaPresentacion.Formularios
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             TipoProducto tipo = new TipoProducto();
-            tipo.codigo = txtCodigo.Text;
+            tipo.codigo = Convert.ToInt32(txtCodigo.Text);
             tipo.descripcion = txtDescripcion.Text;
             TipoProducto.AgregarProductos(tipo);
 
@@ -72,7 +72,7 @@ namespace capaPresentacion.Formularios
         private TipoProducto ObtenerTipoProducto()
         {
             TipoProducto tipo = new TipoProducto();
-            tipo.codigo = txtCodigo.Text;
+            tipo.codigo = Convert.ToInt32(txtCodigo.Text);
             tipo.descripcion = txtDescripcion.Text;
 
 
@@ -85,7 +85,7 @@ namespace capaPresentacion.Formularios
 
             if (tipo != null)
             {
-                txtCodigo.Text = tipo.codigo;
+                txtCodigo.Text = Convert.ToString(tipo.codigo);
                 txtDescripcion.Text = tipo.descripcion;
 
             }

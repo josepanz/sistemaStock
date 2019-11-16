@@ -11,6 +11,7 @@ namespace Clases
     {
         public int codigo { get; set; }
         public string descripcion { get; set; }
+
         public static List<Marca> listaMarca = new List<Marca>();
 
         public static void AgregarMarca(Marca M)
