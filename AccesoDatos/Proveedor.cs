@@ -12,11 +12,13 @@ namespace Clases
     {
         public int idPK { get; set; }
 
-        public int idNumero { get; set; }
+        public int Ruc { get; set; }
 
         public string RazonSocial { get; set; }
 
         public string Email { get; set; }
+
+        public int Telefono { get; set; }
 
         public string Direccion { get; set; }
 
@@ -28,14 +30,14 @@ namespace Clases
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Proveedor (idNumero, razonsocial, email, direccion)VALUES (@idNumero, @razonSocial, @email, @direccion)";
+                string textoCmd = "INSERT INTO Proveedor (Ruc, RazonSocial, Email, Telefono, Direccion)VALUES (@Ruc, @RazonSocial, @Email, @Telefono, @Direccion)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = P.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public static void EliminarProveedores(int P)
+        public static void EliminarProveedores(Proveedor P)
         {
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
@@ -44,7 +46,7 @@ namespace Clases
                 string SENTENCIA_SQL = "delete from Proveedor where idPK = @Id";
 
                 SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@Id", P);
+                SqlParameter p1 = new SqlParameter("@Id", P.idPK);
                 p1.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(p1);
 
@@ -53,13 +55,13 @@ namespace Clases
             }
         }
 
-        public static void EditarProveedor(int index, Proveedor P)
+        public static void EditarProveedores(int index, Proveedor P)
         {
 
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Proveedor SET idNumero = @idNumero, razonSocial = @razonSocial, telefono = @telefono, direccion = @direccion where ruc = @ruc";
+                string textoCMD = "UPDATE Proveedor SET Ruc = @Ruc, RazonSocial = @RazonSocial, Email = @Email, Telefono = @Telefono, Direccion = @Direccion where idPK = @Id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = P.ObtenerParametros(cmd, true);
@@ -68,27 +70,27 @@ namespace Clases
             }
         }
 
-        private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
+        private SqlCommand ObtenerParametros(SqlCommand cmd, bool id = false)
         {
-            SqlParameter p1 = new SqlParameter("@idNumero", this.idNumero);
-            SqlParameter p2 = new SqlParameter("@nombre", this.RazonSocial);
-            SqlParameter p3 = new SqlParameter("@email", this.Email);
-            SqlParameter p4 = new SqlParameter("@fc", this.Direccion);
-            
+            SqlParameter p1 = new SqlParameter("@Ruc", this.Ruc);
+            SqlParameter p2 = new SqlParameter("@RazonSocial", this.RazonSocial);
+            SqlParameter p3 = new SqlParameter("@Email", this.Email);
+            SqlParameter p4 = new SqlParameter("@Telefono", this.Telefono);
+            SqlParameter p5 = new SqlParameter("@Direccion", this.Direccion);
 
 
             p1.SqlDbType = SqlDbType.Int;
             p2.SqlDbType = SqlDbType.VarChar;
             p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.DateTime;
-        
+            p4.SqlDbType = SqlDbType.Int;
+            p5.SqlDbType = SqlDbType.VarChar;
 
 
             cmd.Parameters.Add(p1);
             cmd.Parameters.Add(p2);
             cmd.Parameters.Add(p3);
             cmd.Parameters.Add(p4);
-            
+            cmd.Parameters.Add(p5);
 
 
             if (id == true)
@@ -96,31 +98,30 @@ namespace Clases
                 cmd = ObtenerParametrosId(cmd);
             }
             return cmd;
-
         }
 
         private SqlCommand ObtenerParametrosId(SqlCommand cmd)
         {
-            SqlParameter p5 = new SqlParameter("@id", this.idPK);
-            p5.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p5);
+            SqlParameter p6 = new SqlParameter("@id", this.idPK);
+            p6.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p6);
             return cmd;
         }
 
-        public static Proveedor ObtenerProveedor(int idNumero)
+        public static Proveedor ObtenerProveedor(int ruc)
         {
             Proveedor proveedor = null;
 
             if (listaProveedores.Count == 0)
             {
-                Empleado.ObtenerEmpleados();
+                Proveedor.ObtenerProveedores();
             }
 
-            foreach (Proveedor p  in listaProveedores)
+            foreach (Proveedor P in listaProveedores)
             {
-                if (p.idNumero == idNumero)
+                if (P.Ruc == ruc)
                 {
-                    proveedor = p;
+                    proveedor = P;
                     break;
                 }
             }
@@ -130,7 +131,7 @@ namespace Clases
 
         public static List<Proveedor> ObtenerProveedores()
         {
-            Proveedor proveedor;
+            Proveedor pro;
 
             listaProveedores.Clear();
 
@@ -144,16 +145,16 @@ namespace Clases
 
                 while (elLectorDeDatos.Read())
                 {
-                    proveedor = new Proveedor();
-                    proveedor.idPK = elLectorDeDatos.GetInt32(0);
-                    proveedor.idNumero = elLectorDeDatos.GetInt32(1);
-                    proveedor.RazonSocial = elLectorDeDatos.GetString(2);
-                    proveedor.Email = elLectorDeDatos.GetString(3);
-                    proveedor.Direccion = elLectorDeDatos.GetString(4); ;
-                    
+                    pro = new Proveedor();
+                    pro.idPK = elLectorDeDatos.GetInt32(0);
+                    pro.Ruc = elLectorDeDatos.GetInt32(1);
+                    pro.RazonSocial = elLectorDeDatos.GetString(2);
+                    pro.Email = elLectorDeDatos.GetString(3);
+                    pro.Telefono = elLectorDeDatos.GetInt32(4);
+                    pro.Direccion = elLectorDeDatos.GetString(5);
 
 
-                    listaProveedores.Add(proveedor);
+                    listaProveedores.Add(pro);
 
                 }
             }

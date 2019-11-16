@@ -40,16 +40,20 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.dgvProveedor = new System.Windows.Forms.DataGridView();
             this.txtidPK = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedor)).BeginInit();
+            this.lstProveedores = new System.Windows.Forms.ListBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.lbltTelefono = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(143, 21);
+            this.lblTitulo.Location = new System.Drawing.Point(95, 12);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(158, 33);
             this.lblTitulo.TabIndex = 0;
@@ -58,7 +62,7 @@
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(83, 191);
+            this.lblDireccion.Location = new System.Drawing.Point(35, 211);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(52, 13);
             this.lblDireccion.TabIndex = 1;
@@ -67,7 +71,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(83, 152);
+            this.lblEmail.Location = new System.Drawing.Point(35, 143);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(32, 13);
             this.lblEmail.TabIndex = 2;
@@ -76,7 +80,7 @@
             // lblRazon
             // 
             this.lblRazon.AutoSize = true;
-            this.lblRazon.Location = new System.Drawing.Point(83, 113);
+            this.lblRazon.Location = new System.Drawing.Point(35, 104);
             this.lblRazon.Name = "lblRazon";
             this.lblRazon.Size = new System.Drawing.Size(70, 13);
             this.lblRazon.TabIndex = 3;
@@ -85,7 +89,7 @@
             // lblRuc
             // 
             this.lblRuc.AutoSize = true;
-            this.lblRuc.Location = new System.Drawing.Point(83, 76);
+            this.lblRuc.Location = new System.Drawing.Point(35, 67);
             this.lblRuc.Name = "lblRuc";
             this.lblRuc.Size = new System.Drawing.Size(27, 13);
             this.lblRuc.TabIndex = 4;
@@ -93,35 +97,35 @@
             // 
             // txtRuc
             // 
-            this.txtRuc.Location = new System.Drawing.Point(238, 72);
+            this.txtRuc.Location = new System.Drawing.Point(190, 63);
             this.txtRuc.Name = "txtRuc";
             this.txtRuc.Size = new System.Drawing.Size(146, 20);
             this.txtRuc.TabIndex = 5;
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(238, 191);
+            this.txtDireccion.Location = new System.Drawing.Point(190, 211);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(146, 20);
             this.txtDireccion.TabIndex = 6;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(238, 152);
+            this.txtEmail.Location = new System.Drawing.Point(190, 143);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(146, 20);
             this.txtEmail.TabIndex = 7;
             // 
             // txtRazon
             // 
-            this.txtRazon.Location = new System.Drawing.Point(238, 110);
+            this.txtRazon.Location = new System.Drawing.Point(190, 101);
             this.txtRazon.Name = "txtRazon";
             this.txtRazon.Size = new System.Drawing.Size(146, 20);
             this.txtRazon.TabIndex = 8;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 415);
+            this.btnAgregar.Location = new System.Drawing.Point(392, 426);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 9;
@@ -131,7 +135,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(396, 415);
+            this.btnEditar.Location = new System.Drawing.Point(563, 426);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 10;
@@ -141,7 +145,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(192, 415);
+            this.btnEliminar.Location = new System.Drawing.Point(482, 426);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 11;
@@ -149,30 +153,81 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // dgvProveedor
-            // 
-            this.dgvProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProveedor.Location = new System.Drawing.Point(12, 236);
-            this.dgvProveedor.Name = "dgvProveedor";
-            this.dgvProveedor.Size = new System.Drawing.Size(458, 137);
-            this.dgvProveedor.TabIndex = 12;
-            this.dgvProveedor.Click += new System.EventHandler(this.dgvProveedor_Click);
-            // 
             // txtidPK
             // 
-            this.txtidPK.Location = new System.Drawing.Point(335, 34);
+            this.txtidPK.Location = new System.Drawing.Point(287, 25);
             this.txtidPK.Name = "txtidPK";
             this.txtidPK.Size = new System.Drawing.Size(100, 20);
             this.txtidPK.TabIndex = 13;
             this.txtidPK.Visible = false;
             // 
+            // lstProveedores
+            // 
+            this.lstProveedores.FormattingEnabled = true;
+            this.lstProveedores.Location = new System.Drawing.Point(401, 2);
+            this.lstProveedores.Name = "lstProveedores";
+            this.lstProveedores.Size = new System.Drawing.Size(237, 407);
+            this.lstProveedores.TabIndex = 20;
+            this.lstProveedores.Click += new System.EventHandler(this.lstProveedores_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(147, 247);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 25;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(38, 247);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 24;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(254, 247);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 23;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Location = new System.Drawing.Point(190, 179);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(146, 20);
+            this.txtTelefono.TabIndex = 27;
+            // 
+            // lbltTelefono
+            // 
+            this.lbltTelefono.AutoSize = true;
+            this.lbltTelefono.Location = new System.Drawing.Point(35, 179);
+            this.lbltTelefono.Name = "lbltTelefono";
+            this.lbltTelefono.Size = new System.Drawing.Size(49, 13);
+            this.lbltTelefono.TabIndex = 26;
+            this.lbltTelefono.Text = "Telefono";
+            // 
             // frmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 450);
+            this.ClientSize = new System.Drawing.Size(672, 486);
+            this.Controls.Add(this.txtTelefono);
+            this.Controls.Add(this.lbltTelefono);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.lstProveedores);
             this.Controls.Add(this.txtidPK);
-            this.Controls.Add(this.dgvProveedor);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
@@ -189,7 +244,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.FormProveedor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,7 +263,12 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.DataGridView dgvProveedor;
         private System.Windows.Forms.TextBox txtidPK;
+        private System.Windows.Forms.ListBox lstProveedores;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.Label lbltTelefono;
     }
 }
