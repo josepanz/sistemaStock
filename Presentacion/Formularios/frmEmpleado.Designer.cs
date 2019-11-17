@@ -35,6 +35,7 @@
             this.dgvEmpleado = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtidPK = new System.Windows.Forms.TextBox();
             this.lblCargo = new System.Windows.Forms.Label();
             this.cboCargo = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtIDNumero = new System.Windows.Forms.TextBox();
-            this.txtidPK = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleado)).BeginInit();
             this.panel3.SuspendLayout();
@@ -132,6 +132,15 @@
             this.panel3.Size = new System.Drawing.Size(272, 388);
             this.panel3.TabIndex = 3;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel3_Paint);
+            // 
+            // txtidPK
+            // 
+            this.txtidPK.Enabled = false;
+            this.txtidPK.Location = new System.Drawing.Point(35, 9);
+            this.txtidPK.Name = "txtidPK";
+            this.txtidPK.Size = new System.Drawing.Size(100, 20);
+            this.txtidPK.TabIndex = 12;
+            this.txtidPK.Visible = false;
             // 
             // lblCargo
             // 
@@ -234,14 +243,6 @@
             this.txtIDNumero.Name = "txtIDNumero";
             this.txtIDNumero.Size = new System.Drawing.Size(172, 20);
             this.txtIDNumero.TabIndex = 0;
-            // 
-            // txtidPK
-            // 
-            this.txtidPK.Location = new System.Drawing.Point(35, 9);
-            this.txtidPK.Name = "txtidPK";
-            this.txtidPK.Size = new System.Drawing.Size(100, 20);
-            this.txtidPK.TabIndex = 12;
-            this.txtidPK.Visible = false;
             // 
             // frmEmpleado
             // 

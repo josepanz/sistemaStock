@@ -1,6 +1,6 @@
-﻿namespace capaPresentacion.Formularios
+﻿namespace capaPresentacion
 {
-    partial class frmTipoProducto
+    partial class frmCargo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvTipoProducto = new System.Windows.Forms.DataGridView();
+            this.dgvCargo = new System.Windows.Forms.DataGridView();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -37,21 +37,21 @@
             this.lbl = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTipoProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCargo)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvTipoProducto
+            // dgvCargo
             // 
-            this.dgvTipoProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTipoProducto.Location = new System.Drawing.Point(26, 228);
-            this.dgvTipoProducto.Name = "dgvTipoProducto";
-            this.dgvTipoProducto.Size = new System.Drawing.Size(458, 137);
-            this.dgvTipoProducto.TabIndex = 30;
-            this.dgvTipoProducto.Click += new System.EventHandler(this.dgvTipoProducto_Click);
+            this.dgvCargo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCargo.Location = new System.Drawing.Point(32, 195);
+            this.dgvCargo.Name = "dgvCargo";
+            this.dgvCargo.Size = new System.Drawing.Size(458, 137);
+            this.dgvCargo.TabIndex = 30;
+            this.dgvCargo.Click += new System.EventHandler(this.dgvCargo_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(206, 407);
+            this.btnEliminar.Location = new System.Drawing.Point(199, 402);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 29;
@@ -61,7 +61,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(410, 407);
+            this.btnEditar.Location = new System.Drawing.Point(403, 402);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 28;
@@ -71,7 +71,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(26, 407);
+            this.btnAgregar.Location = new System.Drawing.Point(19, 402);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 27;
@@ -81,7 +81,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(252, 157);
+            this.txtDescripcion.Location = new System.Drawing.Point(264, 138);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(146, 20);
             this.txtDescripcion.TabIndex = 26;
@@ -89,7 +89,7 @@
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(252, 87);
+            this.txtCodigo.Location = new System.Drawing.Point(264, 68);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(146, 20);
             this.txtCodigo.TabIndex = 25;
@@ -97,7 +97,7 @@
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(97, 87);
+            this.lbl.Location = new System.Drawing.Point(109, 72);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(40, 13);
             this.lbl.TabIndex = 24;
@@ -106,7 +106,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(97, 160);
+            this.lblDescripcion.Location = new System.Drawing.Point(109, 141);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 23;
@@ -116,18 +116,18 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(130, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(180, 8);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(209, 33);
+            this.lblTitulo.Size = new System.Drawing.Size(99, 33);
             this.lblTitulo.TabIndex = 22;
-            this.lblTitulo.Text = "Tipo Producto";
+            this.lblTitulo.Text = "Cargo";
             // 
-            // frmTipoProducto
+            // frmCargo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 450);
-            this.Controls.Add(this.dgvTipoProducto);
+            this.ClientSize = new System.Drawing.Size(520, 440);
+            this.Controls.Add(this.dgvCargo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
@@ -136,11 +136,10 @@
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
-            this.Name = "frmTipoProducto";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tipo Producto";
-            this.Load += new System.EventHandler(this.frmTipoProducto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTipoProducto)).EndInit();
+            this.Name = "frmCargo";
+            this.Text = "Cargo";
+            this.Load += new System.EventHandler(this.Cargo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCargo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,7 +147,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvTipoProducto;
+        private System.Windows.Forms.DataGridView dgvCargo;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;

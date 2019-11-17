@@ -75,5 +75,11 @@ namespace capaPresentacion.Formularios
             frmSalida form = new frmSalida();
             form.Show();
         }
+
+        private void CargoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCargo form = new frmCargo();
+            form.Show();
+        }
     }
 }

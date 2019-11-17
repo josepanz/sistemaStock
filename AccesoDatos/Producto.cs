@@ -41,11 +41,11 @@ namespace Clases
             SqlParameter p3 = new SqlParameter("@codBarra", this.codBarra);
             SqlParameter p4 = new SqlParameter("@precio", this.precio);
             SqlParameter p5 = new SqlParameter("@cantidad", this.cantidad);
-            SqlParameter p6 = new SqlParameter("@marca_id", this.marca.codigo);
-            SqlParameter p7 = new SqlParameter("@tipoProducto_id", this.tipoProducto.codigo);
-            SqlParameter p8 = new SqlParameter("@proveedor_id", this.proveedor.idNumero);
+            SqlParameter p6 = new SqlParameter("@marca_id", this.marca.id);
+            SqlParameter p7 = new SqlParameter("@tipoProducto_id", this.tipoProducto.id);
+            SqlParameter p8 = new SqlParameter("@proveedor_id", this.proveedor.idPK);
             SqlParameter p9 = new SqlParameter("@unidadMedida_id", this.unidad.codigo);
-            SqlParameter p10 = new SqlParameter("@categoria_id", this.categoria.codigo);
+            SqlParameter p10 = new SqlParameter("@categoria_id", this.categoria.id);
 
 
             p1.SqlDbType = SqlDbType.Int;

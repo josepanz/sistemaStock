@@ -25,7 +25,7 @@ namespace capaPresentacion.Formularios
         private void ListarMarca()
         {
             dgvMarca.DataSource = null;
-            dgvMarca.DataSource = Marca.listaMarca;
+            dgvMarca.DataSource = Marca.ObtenerMarcas();
         }
 
         private void LimpiarFormulario()
@@ -46,10 +46,8 @@ namespace capaPresentacion.Formularios
         private Marca ObtenerMarcaFormulario()
         {
             Marca marca = new Marca();
-            marca.descripcion = txtDescripcion.Text;
-            
-
-
+            marca.descripcion = txtDescripcion.Text.Trim();
+            marca.id = Convert.ToInt32(txtCodigo.Text.Trim());
             return marca;
         }
 
@@ -74,6 +72,8 @@ namespace capaPresentacion.Formularios
                 int index = dgvMarca.CurrentCell.RowIndex;
                 Marca m = ObtenerMarcaFormulario();
                 Marca.EditarMarca(index, m);
+                ListarMarca();
+                LimpiarFormulario();
             }
         }
 
@@ -81,7 +81,7 @@ namespace capaPresentacion.Formularios
         {
             Marca mar = new Marca();
             mar.id = Convert.ToInt32(txtCodigo.Text);
-            mar.descripcion = txtDescripcion.Text;
+            mar.descripcion = txtDescripcion.Text.Trim();
 
 
             return mar;

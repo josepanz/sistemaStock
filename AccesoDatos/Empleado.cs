@@ -122,7 +122,7 @@ namespace Clases
             SqlParameter p2 = new SqlParameter("@nombre", this.nombre);
             SqlParameter p3 = new SqlParameter("@email", this.email);
             SqlParameter p4 = new SqlParameter("@fc", this.nacimiento);
-            SqlParameter p5 = new SqlParameter("@cargo", this.cargo.codCargo);
+            SqlParameter p5 = new SqlParameter("@cargo", this.cargo.id);
             
 
             p1.SqlDbType = SqlDbType.Int;

@@ -155,6 +155,7 @@
             // 
             // txtidPK
             // 
+            this.txtidPK.Enabled = false;
             this.txtidPK.Location = new System.Drawing.Point(287, 25);
             this.txtidPK.Name = "txtidPK";
             this.txtidPK.Size = new System.Drawing.Size(100, 20);

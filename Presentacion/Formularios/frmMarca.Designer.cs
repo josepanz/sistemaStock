@@ -34,7 +34,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.lbl = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMarca)).BeginInit();
@@ -81,26 +81,27 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(254, 171);
+            this.txtDescripcion.Location = new System.Drawing.Point(199, 168);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(146, 20);
             this.txtDescripcion.TabIndex = 26;
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(254, 86);
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(199, 83);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(146, 20);
             this.txtCodigo.TabIndex = 25;
             // 
-            // lbl
+            // lblId
             // 
-            this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(99, 90);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(40, 13);
-            this.lbl.TabIndex = 24;
-            this.lbl.Text = "Codigo";
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(99, 90);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(16, 13);
+            this.lblId.TabIndex = 24;
+            this.lblId.Text = "Id";
             // 
             // lblDescripcion
             // 
@@ -132,7 +133,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.lbl);
+            this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmMarca";
@@ -153,7 +154,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblTitulo;
     }

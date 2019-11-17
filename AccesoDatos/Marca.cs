@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Clases
 {
@@ -72,11 +73,11 @@ namespace Clases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Marca SET descripcion = @descripcion where id = @Id";
+                string textoCMD = "UPDATE Marca SET descripcion = @descripcion where id = @id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = C.ObtenerParametros(cmd, true);
-
+                
                 cmd.ExecuteNonQuery();
             }
         }
@@ -119,10 +120,10 @@ namespace Clases
 
                 while (elLectorDeDatos.Read())
                 {
+                    
                     marca = new Marca();
                     marca.id = elLectorDeDatos.GetInt32(0);
                     marca.descripcion = elLectorDeDatos.GetString(1);
-
                     listaMarca.Add(marca);
                 }
 
