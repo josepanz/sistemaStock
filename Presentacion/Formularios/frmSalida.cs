@@ -53,7 +53,9 @@ namespace capaPresentacion.Formularios
         {
             txtCantidad.Text = "0";
             cmbProducto.SelectedItem = null;
-
+            txtDestinatario.Text = "";
+            txtDireccion.Text = "";
+            txtNumeroDoc.Text = "";
 
         }
 
@@ -79,7 +81,12 @@ namespace capaPresentacion.Formularios
         {
             salida.fecharemision = dtpFechaRemision.Value.Date;
             salida.motivo = (Motivo)cmbMotivo.SelectedItem;
-
+            salida.direccion = txtDireccion.Text;
+            salida.destinatario = txtDireccion.Text;
+            try
+            {
+                salida.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
+            } catch (FormatException f) { }
             SalidaProducto.Agregar(salida);
             Limpiar();
             dtgDetalleSalidaProducto.DataSource = null;

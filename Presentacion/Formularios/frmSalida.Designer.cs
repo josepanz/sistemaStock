@@ -41,6 +41,12 @@
             this.dtpFechaRemision = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbMotivo = new System.Windows.Forms.ComboBox();
+            this.txtDestinatario = new System.Windows.Forms.TextBox();
+            this.lblDestinatario = new System.Windows.Forms.Label();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.lblNroDoc = new System.Windows.Forms.Label();
+            this.txtNumeroDoc = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleSalidaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +93,7 @@
             // lblProducto
             // 
             this.lblProducto.AutoSize = true;
-            this.lblProducto.Location = new System.Drawing.Point(147, 86);
+            this.lblProducto.Location = new System.Drawing.Point(14, 43);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(50, 13);
             this.lblProducto.TabIndex = 35;
@@ -96,15 +102,15 @@
             // cmbProducto
             // 
             this.cmbProducto.FormattingEnabled = true;
-            this.cmbProducto.Location = new System.Drawing.Point(203, 82);
+            this.cmbProducto.Location = new System.Drawing.Point(70, 39);
             this.cmbProducto.Name = "cmbProducto";
-            this.cmbProducto.Size = new System.Drawing.Size(121, 21);
+            this.cmbProducto.Size = new System.Drawing.Size(195, 21);
             this.cmbProducto.TabIndex = 30;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 86);
+            this.label3.Location = new System.Drawing.Point(11, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 34;
@@ -112,7 +118,7 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(117, 82);
+            this.txtCantidad.Location = new System.Drawing.Point(95, 79);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(24, 20);
             this.txtCantidad.TabIndex = 31;
@@ -128,7 +134,7 @@
             // lblFechaRemision
             // 
             this.lblFechaRemision.AutoSize = true;
-            this.lblFechaRemision.Location = new System.Drawing.Point(33, 22);
+            this.lblFechaRemision.Location = new System.Drawing.Point(11, 19);
             this.lblFechaRemision.Name = "lblFechaRemision";
             this.lblFechaRemision.Size = new System.Drawing.Size(83, 13);
             this.lblFechaRemision.TabIndex = 32;
@@ -137,7 +143,7 @@
             // dtpFechaRemision
             // 
             this.dtpFechaRemision.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaRemision.Location = new System.Drawing.Point(122, 16);
+            this.dtpFechaRemision.Location = new System.Drawing.Point(100, 13);
             this.dtpFechaRemision.Name = "dtpFechaRemision";
             this.dtpFechaRemision.Size = new System.Drawing.Size(89, 20);
             this.dtpFechaRemision.TabIndex = 27;
@@ -145,7 +151,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 50);
+            this.label1.Location = new System.Drawing.Point(128, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 28;
@@ -154,16 +160,70 @@
             // cmbMotivo
             // 
             this.cmbMotivo.FormattingEnabled = true;
-            this.cmbMotivo.Location = new System.Drawing.Point(122, 42);
+            this.cmbMotivo.Location = new System.Drawing.Point(173, 78);
             this.cmbMotivo.Name = "cmbMotivo";
-            this.cmbMotivo.Size = new System.Drawing.Size(203, 21);
+            this.cmbMotivo.Size = new System.Drawing.Size(92, 21);
             this.cmbMotivo.TabIndex = 29;
+            // 
+            // txtDestinatario
+            // 
+            this.txtDestinatario.Location = new System.Drawing.Point(349, 17);
+            this.txtDestinatario.Name = "txtDestinatario";
+            this.txtDestinatario.Size = new System.Drawing.Size(124, 20);
+            this.txtDestinatario.TabIndex = 40;
+            // 
+            // lblDestinatario
+            // 
+            this.lblDestinatario.AutoSize = true;
+            this.lblDestinatario.Location = new System.Drawing.Point(280, 20);
+            this.lblDestinatario.Name = "lblDestinatario";
+            this.lblDestinatario.Size = new System.Drawing.Size(63, 13);
+            this.lblDestinatario.TabIndex = 41;
+            this.lblDestinatario.Text = "Destinatario";
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(280, 46);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(52, 13);
+            this.lblDireccion.TabIndex = 43;
+            this.lblDireccion.Text = "Direccion";
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(349, 43);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(124, 20);
+            this.txtDireccion.TabIndex = 42;
+            // 
+            // lblNroDoc
+            // 
+            this.lblNroDoc.AutoSize = true;
+            this.lblNroDoc.Location = new System.Drawing.Point(280, 79);
+            this.lblNroDoc.Name = "lblNroDoc";
+            this.lblNroDoc.Size = new System.Drawing.Size(47, 13);
+            this.lblNroDoc.TabIndex = 45;
+            this.lblNroDoc.Text = "Nro Doc";
+            // 
+            // txtNumeroDoc
+            // 
+            this.txtNumeroDoc.Location = new System.Drawing.Point(349, 76);
+            this.txtNumeroDoc.Name = "txtNumeroDoc";
+            this.txtNumeroDoc.Size = new System.Drawing.Size(124, 20);
+            this.txtNumeroDoc.TabIndex = 44;
             // 
             // frmSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 450);
+            this.Controls.Add(this.lblNroDoc);
+            this.Controls.Add(this.txtNumeroDoc);
+            this.Controls.Add(this.lblDireccion);
+            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.lblDestinatario);
+            this.Controls.Add(this.txtDestinatario);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnEliminar);
@@ -202,5 +262,11 @@
         private System.Windows.Forms.DateTimePicker dtpFechaRemision;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbMotivo;
+        private System.Windows.Forms.TextBox txtDestinatario;
+        private System.Windows.Forms.Label lblDestinatario;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label lblNroDoc;
+        private System.Windows.Forms.TextBox txtNumeroDoc;
     }
 }
