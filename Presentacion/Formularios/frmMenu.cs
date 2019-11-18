@@ -95,5 +95,10 @@ namespace capaPresentacion.Formularios
             form.Show();
 
         }
+
+        private void FrmMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

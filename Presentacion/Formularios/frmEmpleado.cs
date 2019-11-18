@@ -66,28 +66,27 @@ namespace Presentacion.Formularios
             if (modo == "I")
             {
                 empl = ObtenerEmpleadoFormulario();
-                Empleado.AgregarEmpleado(empl);
+                if (empl.cargo != null)
+                {
+                    Empleado.AgregarEmpleado(empl);
+                    ListarEmpleado();
+                    limpiar();
+                    panel3.Enabled = false;
+                }
             }
             else if (modo == "E")
             {
 
-                if (dgvEmpleado.SelectedCells.Count > 0)
-                {                    
-                    int index = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
-                    empl = ObtenerEmpleadoFormulario();
-                    Empleado.EditarEmpleado(index, empl);                    
+                int index = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
+                empl = ObtenerEmpleadoFormulario();
 
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione una fila");
-                }
-                
-            }
+                Empleado.EditarEmpleado(index, empl);
+                ListarEmpleado();
+                limpiar();
+                panel3.Enabled = false;
 
-            ListarEmpleado();
-            limpiar();
-            panel3.Enabled = false;
+
+            }           
 
 
         }
@@ -98,17 +97,60 @@ namespace Presentacion.Formularios
             if (!string.IsNullOrEmpty(txtidPK.Text))
             {
                 empl.idPK = Convert.ToInt32(txtidPK.Text);
+
             }
 
-            empl.idNumero = Convert.ToInt32(txtIDNumero.Text);
-            empl.nombre = txtNombre.Text;
-            empl.email = txtEmail.Text;
+            if (txtIDNumero.Text != "")
+            {
+                empl.idNumero = Convert.ToInt32(txtIDNumero.Text);
+            }
+            else
+            {
+                MessageBox.Show("El número de identificación es obligatorio");
+                txtIDNumero.Focus();
+            }
+
+            if (txtNombre.Text != "")
+            {
+                empl.nombre = txtNombre.Text;
+            }
+            else
+            {
+                MessageBox.Show("El nombre es obligatorio");
+                txtIDNumero.Focus();
+            }
+
+            if (txtEmail.Text != "")
+            {
+                empl.email = txtEmail.Text;
+            }
+            else
+            {
+                MessageBox.Show("El email es obligatorio");
+                txtIDNumero.Focus();
+            }
+
+            if (cboCargo.SelectedItem != null)
+            {
+                empl.cargo = (Cargo)cboCargo.SelectedItem;
+            }
+            else
+            {
+                MessageBox.Show("El cargo es obligatorio");
+                txtIDNumero.Focus();
+            }
+
+
+
+
             empl.nacimiento = txtFechaNac.Value.Date;
-            empl.cargo = (Cargo)cboCargo.SelectedItem;
+
+
             return empl;
         }
         private void limpiar()
         {
+            
             panel3.Enabled = false;
             txtEmail.Clear();
             txtIDNumero.Clear();
@@ -126,6 +168,7 @@ namespace Presentacion.Formularios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
+            modo = "E";
             Empleado empleado = new Empleado();
             if(dgvEmpleado.SelectedCells.Count > 0)
             {
@@ -137,8 +180,8 @@ namespace Presentacion.Formularios
                 txtNombre.Text = empleado.nombre;
                 txtEmail.Text = empleado.email;
                 txtFechaNac.Value = empleado.nacimiento;
-                cboCargo.SelectedItem = empleado.cargo;
-                modo = "E";
+                cboCargo.SelectedIndex = empleado.cargo.id - 1;
+
 
 
             }
@@ -188,7 +231,13 @@ namespace Presentacion.Formularios
                 txtFechaNac.Value = emp.nacimiento;
                 cboCargo.SelectedItem = emp.cargo;
 
-            }
+        }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            panel3.Enabled = false;
         }
     }
 }

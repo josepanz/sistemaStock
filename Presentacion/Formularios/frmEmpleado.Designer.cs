@@ -100,6 +100,7 @@
             this.dgvEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpleado.Location = new System.Drawing.Point(29, 76);
             this.dgvEmpleado.Name = "dgvEmpleado";
+            this.dgvEmpleado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpleado.Size = new System.Drawing.Size(441, 244);
             this.dgvEmpleado.TabIndex = 2;
             this.dgvEmpleado.Click += new System.EventHandler(this.DgvEmpleado_Click);
@@ -110,6 +111,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(441, 20);
             this.txtBuscar.TabIndex = 1;
+            this.txtBuscar.Visible = false;
             this.txtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // panel3
@@ -169,6 +171,7 @@
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnGuardar
             // 
