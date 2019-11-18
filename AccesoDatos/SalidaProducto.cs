@@ -38,6 +38,9 @@ namespace Clases
 
                 p1.SqlDbType = System.Data.SqlDbType.DateTime;
                 p2.SqlDbType = System.Data.SqlDbType.Int;
+                p3.SqlDbType = System.Data.SqlDbType.VarChar;
+                p4.SqlDbType = System.Data.SqlDbType.VarChar;
+                p5.SqlDbType = System.Data.SqlDbType.Int;
                 cmd.Parameters.Add(p1);
                 cmd.Parameters.Add(p2);
                 cmd.Parameters.Add(p3);
@@ -61,6 +64,9 @@ namespace Clases
                     SqlParameter p7 = new SqlParameter("@cantidadRemitida", dp.cantidad);
                     SqlParameter p8 = new SqlParameter("@remision_id", id_remision);
                     ActualizarStock(dp.producto.id, dp.cantidad);
+                    p6.SqlDbType = System.Data.SqlDbType.Int;
+                    p7.SqlDbType = System.Data.SqlDbType.Int;
+                    p8.SqlDbType = System.Data.SqlDbType.Int;
                     cmd2.Parameters.Add(p6);
                     cmd2.Parameters.Add(p7);
                     cmd2.Parameters.Add(p8);

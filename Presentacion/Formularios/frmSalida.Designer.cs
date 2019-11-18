@@ -53,6 +53,7 @@
             this.btnGuardar.TabIndex = 39;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label4
             // 
@@ -71,6 +72,7 @@
             this.btnEliminar.TabIndex = 37;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnAgregar
             // 
@@ -80,6 +82,7 @@
             this.btnAgregar.TabIndex = 36;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // lblProducto
             // 
@@ -177,6 +180,7 @@
             this.Name = "frmSalida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Salida de Productos";
+            this.Load += new System.EventHandler(this.frmSalidaProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleSalidaProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
