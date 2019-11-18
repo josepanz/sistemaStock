@@ -81,5 +81,19 @@ namespace capaPresentacion.Formularios
             frmCargo form = new frmCargo();
             form.Show();
         }
+
+        private void UnidadDeMedidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUnidadMedida form = new frmUnidadMedida();
+            form.Show();
+
+        }
+
+        private void MotivosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMotivo form = new frmMotivo();
+            form.Show();
+
+        }
     }
 }

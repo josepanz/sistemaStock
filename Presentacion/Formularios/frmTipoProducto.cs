@@ -26,7 +26,7 @@ namespace capaPresentacion.Formularios
         private void ListarTipoProducto()
         {
             dgvTipoProducto.DataSource = null;
-            dgvTipoProducto.DataSource = TipoProducto.listaTipoProductos;
+            dgvTipoProducto.DataSource = TipoProducto.ObtenerTipoProductos();
         }
 
         private void LimpiarFormulario()
@@ -49,6 +49,13 @@ namespace capaPresentacion.Formularios
         {
             TipoProducto tp = new TipoProducto();
             tp.descripcion = txtDescripcion.Text;
+            try
+            {
+                tp.id = Convert.ToInt32(txtCodigo.Text);
+            }
+            catch (FormatException f)
+            {
+            }
 
             return tp;
         }

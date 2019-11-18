@@ -25,6 +25,7 @@ namespace Clases
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = TP.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
 
@@ -78,6 +79,7 @@ namespace Clases
                 cmd = TP.ObtenerParametros(cmd, true);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
 
@@ -126,6 +128,7 @@ namespace Clases
 
                     listaTipoProductos.Add(tipo);
                 }
+                con.Close();
 
                 return listaTipoProductos;
 

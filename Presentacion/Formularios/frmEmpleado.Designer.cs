@@ -102,6 +102,7 @@
             this.dgvEmpleado.Name = "dgvEmpleado";
             this.dgvEmpleado.Size = new System.Drawing.Size(441, 244);
             this.dgvEmpleado.TabIndex = 2;
+            this.dgvEmpleado.Click += new System.EventHandler(this.DgvEmpleado_Click);
             // 
             // txtBuscar
             // 

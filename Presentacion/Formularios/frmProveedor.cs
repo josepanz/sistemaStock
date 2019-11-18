@@ -100,9 +100,9 @@ namespace capaPresentacion.Formularios
         private Proveedor ObtenerProveedor()
         {
             Proveedor pro = new Proveedor();
-            pro.Ruc = Convert.ToInt32(txtRuc.Text);
+            pro.Ruc = txtRuc.Text;
             pro.RazonSocial = txtRazon.Text;
-            pro.Telefono = Convert.ToInt32(txtTelefono.Text);
+            pro.Telefono = txtTelefono.Text;
             pro.Direccion = txtEmail.Text;
 
 
@@ -143,10 +143,10 @@ namespace capaPresentacion.Formularios
             txtEmail.Enabled = false;
             txtTelefono.Enabled = false;
             txtDireccion.Enabled = false;
-            pro.Ruc = Convert.ToInt32(txtRuc.Text);
+            pro.Ruc = txtRuc.Text;
             pro.RazonSocial = txtRazon.Text;
             pro.Email = txtEmail.Text;
-            pro.Telefono = Convert.ToInt32(txtTelefono.Text);
+            pro.Telefono = txtTelefono.Text;
             pro.Direccion = txtDireccion.Text;
 
             return pro;
@@ -166,10 +166,10 @@ namespace capaPresentacion.Formularios
         {
             Proveedor proveedor = (Proveedor)lstProveedores.SelectedItem;
             txtidPK.Text = Convert.ToString(proveedor.idPK);
-            txtRuc.Text = Convert.ToString(proveedor.Ruc);
+            txtRuc.Text = proveedor.Ruc;
             txtRazon.Text = proveedor.RazonSocial;
             txtEmail.Text = proveedor.Email;
-            txtTelefono.Text = Convert.ToString(proveedor.Telefono);
+            txtTelefono.Text = proveedor.Telefono;
             txtDireccion.Text = proveedor.Direccion;
         }
     }

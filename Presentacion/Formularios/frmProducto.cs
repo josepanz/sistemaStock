@@ -39,7 +39,7 @@ namespace capaPresentacion
         private void ListarProducto()
         {
             dgvProducto.DataSource = null;
-            dgvProducto.DataSource = Producto.listaProductos;
+            dgvProducto.DataSource = Producto.ObtenerProductos();
         }
 
         private void LimpiarFormulario()
@@ -71,7 +71,6 @@ namespace capaPresentacion
 
 
             Producto.AgregarProductos(producto);
-            MessageBox.Show("Se ha agregado con éxito!!");
 
             ListarProducto();
             LimpiarFormulario();
@@ -79,29 +78,53 @@ namespace capaPresentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            /*Producto producto = (Producto)dgvProducto.CurrentRow.DataBoundItem;
-            Producto.listaProductos.Remove(producto);
-            ListarProducto();*/
-
 
             Producto pro = (Producto)dgvProducto.CurrentRow.DataBoundItem;
             if (pro != null)
             {
-                Producto.listaProductos.Remove(pro);
+                Producto.EliminarProductos(pro);
+                ListarProducto();
+                LimpiarFormulario();
             }
-            
+            ListarProducto();
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+
             Producto pro = (Producto)dgvProducto.CurrentRow.DataBoundItem;
 
             if (pro != null)
             {
                 int index = dgvProducto.CurrentCell.RowIndex;
-                Producto.listaProductos[index] = ObtenerProductos();
+                Producto p = ObtenerProductoFormulario();
+                Producto.EditarProducto(index, p);
                 ListarProducto();
             }
+        }
+
+        private Producto ObtenerProductoFormulario()
+        {
+            Producto p = new Producto();
+            p.descripcion = txtDescripcion.Text;
+            p.codBarra = txtCodBarra.Text;
+            p.cantidad = (int) nudCantidad.Value;
+            p.categoria =(Categoria) cmbCategoria.SelectedItem;
+            p.marca = (Marca)cmbMarca.SelectedItem;
+            p.precio = (int) nudPrecio.Value;
+            p.proveedor = (Proveedor)cmbProveedor.SelectedItem;
+            p.unidad = (UnidadMedida)cmbUnidad.SelectedItem;
+            p.tipoProducto = (TipoProducto)cmbTipoProducto.SelectedItem;
+            try
+            {
+                p.id = Convert.ToInt32(txtId.Text);
+            }
+            catch (FormatException f)
+            {
+            }
+
+            return p;
         }
 
         private Producto ObtenerProductos()
@@ -127,10 +150,11 @@ namespace capaPresentacion
 
             if (pro != null)
             {
+                txtId.Text = Convert.ToString(pro.id);
                 txtDescripcion.Text = pro.descripcion;
                 txtCodBarra.Text = pro.codBarra;
-                nudPrecio.Value = (Decimal)pro.precio;
-                nudCantidad.Value = (Decimal)pro.cantidad;
+                nudPrecio.Value = (int)pro.precio;
+                nudCantidad.Value = (int)pro.cantidad;
                 cmbMarca.SelectedItem = pro.marca;
                 cmbTipoProducto.SelectedItem = pro.tipoProducto;
                 cmbProveedor.SelectedItem = pro.proveedor;

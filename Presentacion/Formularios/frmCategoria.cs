@@ -25,7 +25,7 @@ namespace capaPresentacion.Formularios
         private void ListarCategoria()
         {
             dgvCategoria.DataSource = null;
-            dgvCategoria.DataSource = Categoria.listaCategoria;
+            dgvCategoria.DataSource = Categoria.ObtenerCategorias();
         }
 
         private void LimpiarFormulario()
@@ -47,9 +47,11 @@ namespace capaPresentacion.Formularios
         {
             Categoria c = new Categoria();
             c.descripcion = txtDescripcion.Text;
-
-
-
+            try
+            {
+                c.id = Convert.ToInt32(txtCodigo.Text);
+            } catch (FormatException f) {
+            }
             return c;
         }
 

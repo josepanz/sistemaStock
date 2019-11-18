@@ -12,13 +12,13 @@ namespace Clases
     {
         public int idPK { get; set; }
 
-        public int Ruc { get; set; }
+        public string Ruc { get; set; }
 
         public string RazonSocial { get; set; }
 
         public string Email { get; set; }
 
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
 
         public string Direccion { get; set; }
 
@@ -43,10 +43,10 @@ namespace Clases
 
             {
                 con.Open();
-                string SENTENCIA_SQL = "delete from Proveedor where idPK = @Id";
+                string SENTENCIA_SQL = "delete from Proveedor where id = @id";
 
                 SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@Id", P.idPK);
+                SqlParameter p1 = new SqlParameter("@id", P.idPK);
                 p1.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(p1);
 
@@ -61,7 +61,7 @@ namespace Clases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Proveedor SET Ruc = @Ruc, RazonSocial = @RazonSocial, Email = @Email, Telefono = @Telefono, Direccion = @Direccion where idPK = @Id";
+                string textoCMD = "UPDATE Proveedor SET Ruc = @Ruc, RazonSocial = @RazonSocial, Email = @Email, Telefono = @Telefono, Direccion = @Direccion where id = @id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = P.ObtenerParametros(cmd, true);
@@ -79,10 +79,10 @@ namespace Clases
             SqlParameter p5 = new SqlParameter("@Direccion", this.Direccion);
 
 
-            p1.SqlDbType = SqlDbType.Int;
+            p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.VarChar;
             p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.Int;
+            p4.SqlDbType = SqlDbType.VarChar;
             p5.SqlDbType = SqlDbType.VarChar;
 
 
@@ -108,7 +108,7 @@ namespace Clases
             return cmd;
         }
 
-        public static Proveedor ObtenerProveedor(int ruc)
+        public static Proveedor ObtenerProveedor(int id)
         {
             Proveedor proveedor = null;
 
@@ -119,7 +119,7 @@ namespace Clases
 
             foreach (Proveedor P in listaProveedores)
             {
-                if (P.Ruc == ruc)
+                if (P.idPK == id)
                 {
                     proveedor = P;
                     break;
@@ -147,10 +147,10 @@ namespace Clases
                 {
                     pro = new Proveedor();
                     pro.idPK = elLectorDeDatos.GetInt32(0);
-                    pro.Ruc = elLectorDeDatos.GetInt32(1);
+                    pro.Ruc = elLectorDeDatos.GetString(1);
                     pro.RazonSocial = elLectorDeDatos.GetString(2);
                     pro.Email = elLectorDeDatos.GetString(3);
-                    pro.Telefono = elLectorDeDatos.GetInt32(4);
+                    pro.Telefono = elLectorDeDatos.GetString(4);
                     pro.Direccion = elLectorDeDatos.GetString(5);
 
 

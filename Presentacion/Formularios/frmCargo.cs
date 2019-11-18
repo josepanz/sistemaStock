@@ -26,7 +26,7 @@ namespace capaPresentacion
         private void ListarCargo()
         {
             dgvCargo.DataSource = null;
-            dgvCargo.DataSource = Cargo.listaCargos;
+            dgvCargo.DataSource = Cargo.ObtenerCargos();
         }
 
         private void LimpiarFormulario()
@@ -48,6 +48,12 @@ namespace capaPresentacion
         {
             Cargo c = new Cargo();
             c.descripcion = txtDescripcion.Text;
+            try
+            {
+                c.id = Convert.ToInt32(txtCodigo.Text);
+            } catch (FormatException f) {
+            }
+
             return c;
         }
 

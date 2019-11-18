@@ -74,6 +74,12 @@
     <Compile Include="Formularios\frmMarca.Designer.cs">
       <DependentUpon>frmMarca.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmMotivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmMotivo.Designer.cs">
+      <DependentUpon>frmMotivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,12 @@
     <Compile Include="Formularios\frmCargo.Designer.cs">
       <DependentUpon>frmCargo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmUnidadMedida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmUnidadMedida.Designer.cs">
+      <DependentUpon>frmUnidadMedida.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\frmCategoria.resx">
@@ -138,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmMarca.resx">
       <DependentUpon>frmMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmMotivo.resx">
+      <DependentUpon>frmMotivo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmProducto.resx">
       <DependentUpon>frmProducto.cs</DependentUpon>
@@ -165,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmCargo.resx">
       <DependentUpon>frmCargo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmUnidadMedida.resx">
+      <DependentUpon>frmUnidadMedida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

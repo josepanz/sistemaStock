@@ -46,9 +46,12 @@
   <ItemGroup>
     <Compile Include="Cargo.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="DetalleEntradaProducto.cs" />
+    <Compile Include="DetalleSalidaProducto.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EntradaProducto.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="Motivo.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Proveedor.cs" />
     <Compile Include="SalidaProducto.cs" />

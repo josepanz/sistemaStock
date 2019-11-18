@@ -36,6 +36,7 @@ namespace Clases
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = empl.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
         public static void EliminarEmpleado(int empl)
@@ -44,10 +45,10 @@ namespace Clases
 
             {
                 con.Open();
-                string SENTENCIA_SQL = "delete from Empleado where idPK = @Id";
+                string SENTENCIA_SQL = "delete from Empleado where idPK = @id";
 
                 SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@Id", empl);
+                SqlParameter p1 = new SqlParameter("@id", empl);
                 p1.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(p1);
 
@@ -63,12 +64,13 @@ namespace Clases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Empleado SET idNumero = @idNumero, nombre = @nombre, email = @email, fechaNacimiento = @fc, cargo = @cargo where idPK = @Id";
+                string textoCMD = "UPDATE Empleado SET idNumero = @idNumero, nombre = @nombre, email = @email, fechaNacimiento = @fc, codCargo = @cargo where idPK = @id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = empl.ObtenerParametros(cmd, true);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
 
@@ -101,6 +103,7 @@ namespace Clases
                     listaEmpleados.Add(empleado);
 
                 }
+                con.Close();
             }
 
             return listaEmpleados;

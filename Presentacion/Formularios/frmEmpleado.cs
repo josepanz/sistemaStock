@@ -51,7 +51,13 @@ namespace Presentacion.Formularios
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            dgvEmpleado.DataSource = Empleado.ObtenerEmpleado(Convert.ToInt32((txtBuscar.Text)));
+            try
+            {
+                dgvEmpleado.DataSource = Empleado.ObtenerEmpleado(Convert.ToInt32((txtBuscar.Text)));
+            } catch (FormatException f) {
+                MessageBox.Show("La busqueda debe realizarse por codigo y en valores numericos");
+            }
+
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -65,7 +71,7 @@ namespace Presentacion.Formularios
             else if (modo == "E")
             {
 
-                if (dgvEmpleado.SelectedRows.Count > 0)
+                if (dgvEmpleado.SelectedCells.Count > 0)
                 {                    
                     int index = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
                     empl = ObtenerEmpleadoFormulario();
@@ -99,7 +105,6 @@ namespace Presentacion.Formularios
             empl.email = txtEmail.Text;
             empl.nacimiento = txtFechaNac.Value.Date;
             empl.cargo = (Cargo)cboCargo.SelectedItem;
-            
             return empl;
         }
         private void limpiar()
@@ -122,7 +127,7 @@ namespace Presentacion.Formularios
         private void BtnEditar_Click(object sender, EventArgs e)
         {
             Empleado empleado = new Empleado();
-            if(dgvEmpleado.SelectedRows.Count > 0)
+            if(dgvEmpleado.SelectedCells.Count > 0)
             {
                 panel3.Enabled = true;
                 empleado = (Empleado)dgvEmpleado.CurrentRow.DataBoundItem;
@@ -132,9 +137,9 @@ namespace Presentacion.Formularios
                 txtNombre.Text = empleado.nombre;
                 txtEmail.Text = empleado.email;
                 txtFechaNac.Value = empleado.nacimiento;
-                cboCargo.SelectedIndex = empleado.cargo.id-1;
-                
-                
+                cboCargo.SelectedItem = empleado.cargo;
+                modo = "E";
+
 
             }
             else
@@ -148,7 +153,7 @@ namespace Presentacion.Formularios
         {
             int idPK;
            
-             if (dgvEmpleado.SelectedRows.Count > 0)
+             if (dgvEmpleado.SelectedCells.Count > 0)
              {
                  
                  idPK = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
@@ -168,6 +173,22 @@ namespace Presentacion.Formularios
         private void Panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void DgvEmpleado_Click(object sender, EventArgs e)
+        {
+            Empleado emp = (Empleado)dgvEmpleado.CurrentRow.DataBoundItem;
+
+            if (emp != null)
+            {
+                txtidPK.Text = Convert.ToString(emp.idPK);
+                txtIDNumero.Text = Convert.ToString(emp.idNumero);
+                txtNombre.Text = emp.nombre;
+                txtEmail.Text = emp.email;
+                txtFechaNac.Value = emp.nacimiento;
+                cboCargo.SelectedItem = emp.cargo;
+
+            }
         }
     }
 }

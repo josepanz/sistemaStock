@@ -27,28 +27,27 @@ namespace Clases
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Producto (id, descripcion, codBarra, precio, cantidad, marca, tipoProducto, proveedor, unidad, categoria)VALUES (@id, @descripcion, @codBarra, @precio, @cantidad, @marca, @tipoProducto, @proveedor, @unidad, @categoria)";
+                string textoCmd = "INSERT INTO Producto ( descripcion, codBarra, precio, cantidad, marca_id, tipoProducto_id, proveedor_id, unidadMedida_id, categoria_id)VALUES ( @descripcion, @codBarra, @precio, @cantidad, @marca, @tipoProducto, @proveedor, @unidad, @categoria)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = P.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
 
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
         {
-            SqlParameter p1 = new SqlParameter("@id", this.id);
             SqlParameter p2 = new SqlParameter("@descripcion", this.descripcion);
             SqlParameter p3 = new SqlParameter("@codBarra", this.codBarra);
             SqlParameter p4 = new SqlParameter("@precio", this.precio);
             SqlParameter p5 = new SqlParameter("@cantidad", this.cantidad);
-            SqlParameter p6 = new SqlParameter("@marca_id", this.marca.id);
-            SqlParameter p7 = new SqlParameter("@tipoProducto_id", this.tipoProducto.id);
-            SqlParameter p8 = new SqlParameter("@proveedor_id", this.proveedor.idPK);
-            SqlParameter p9 = new SqlParameter("@unidadMedida_id", this.unidad.codigo);
-            SqlParameter p10 = new SqlParameter("@categoria_id", this.categoria.id);
+            SqlParameter p6 = new SqlParameter("@marca", this.marca.id);
+            SqlParameter p7 = new SqlParameter("@tipoProducto", this.tipoProducto.id);
+            SqlParameter p8 = new SqlParameter("@proveedor", this.proveedor.idPK);
+            SqlParameter p9 = new SqlParameter("@unidad", this.unidad.id);
+            SqlParameter p10 = new SqlParameter("@categoria", this.categoria.id);
 
 
-            p1.SqlDbType = SqlDbType.Int;
             p2.SqlDbType = SqlDbType.VarChar;
             p3.SqlDbType = SqlDbType.VarChar;
             p4.SqlDbType = SqlDbType.Int;
@@ -60,7 +59,6 @@ namespace Clases
             p10.SqlDbType = SqlDbType.Int;
 
 
-            cmd.Parameters.Add(p1);
             cmd.Parameters.Add(p2);
             cmd.Parameters.Add(p3);
             cmd.Parameters.Add(p4);
@@ -93,10 +91,10 @@ namespace Clases
 
             {
                 con.Open();
-                string SENTENCIA_SQL = "delete from Empleado where id = @Id";
+                string SENTENCIA_SQL = "delete from producto where id = @id";
 
                 SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@Id", P);
+                SqlParameter p1 = new SqlParameter("@id", P.id);
                 p1.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(p1);
 
@@ -111,7 +109,7 @@ namespace Clases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Producto SET descripcion = @descripcion, codBarra = @codBarra, precio = @precio, cantidad = @cantidad, marca = @marca, tipoProducto = @tipoProducto, proveedor = @proveedor, unidadMedida = @unidadMedida, categoria = @categoria where id = @Id";
+                string textoCMD = "UPDATE Producto SET descripcion = @descripcion, codBarra = @codBarra, precio = @precio, cantidad = @cantidad, marca_id = @marca, tipoProducto_id = @tipoProducto, proveedor_id = @proveedor, unidadMedida_id = @unidad, categoria_id = @categoria where id = @id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = P.ObtenerParametros(cmd, true);
@@ -154,6 +152,27 @@ namespace Clases
             }
 
             return listaProductos;
+        }
+
+        public static Producto ObtenerProducto(int id)
+        {
+            Producto producto = null;
+
+            if (listaProductos.Count == 0)
+            {
+                Producto.ObtenerProductos();
+            }
+
+            foreach (Producto p in listaProductos)
+            {
+                if (p.id == id)
+                {
+                    producto = p;
+                    break;
+                }
+            }
+
+            return producto;
         }
 
         public override string ToString()
