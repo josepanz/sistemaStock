@@ -180,7 +180,7 @@ namespace Presentacion.Formularios
                 txtNombre.Text = empleado.nombre;
                 txtEmail.Text = empleado.email;
                 txtFechaNac.Value = empleado.nacimiento;
-                cboCargo.SelectedIndex = empleado.cargo.id - 1;
+                cboCargo.SelectedItem = empleado.cargo.id;
 
 
 
