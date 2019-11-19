@@ -29,6 +29,8 @@ namespace Clases
                 //cabecera
                 string textoCMD = "INSERT INTO remision (fecharemision, nrodocumento, destinatario, direccion, motivoremision_id) output INSERTED.id VALUES (@fecharemision, @nrodocumento, @destinatario, @direccion, @motivoremision_id)";
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
+                SqlTransaction transaction = con.BeginTransaction("SampleTransaction");
+                cmd.Transaction = transaction;
                 //parametros
                 SqlParameter p1 = new SqlParameter("@fecharemision", p.fecharemision);
                 SqlParameter p2 = new SqlParameter("@nrodocumento", p.nrodocumento);
@@ -48,7 +50,7 @@ namespace Clases
                 cmd.Parameters.Add(p5);
 
                 int id_remision = (int)cmd.ExecuteScalar();
-
+                
 
                 //DETALLE
                 foreach (DetalleSalidaProducto dp in p.detalle)
@@ -57,31 +59,37 @@ namespace Clases
                     //insert para el detalle
                     string textoCMD2 = "INSERT INTO DetalleRemision(producto_id, cantidadRemitida, remision_id) VALUES (@producto_id, @cantidadRemitida, @remision_id)";
                     SqlCommand cmd2 = new SqlCommand(textoCMD2, con);
-
                     //Pasamos los parametros
 
                     SqlParameter p6 = new SqlParameter("@producto_id", dp.producto.id);
                     SqlParameter p7 = new SqlParameter("@cantidadRemitida", dp.cantidad);
                     SqlParameter p8 = new SqlParameter("@remision_id", id_remision);
-                    ActualizarStock(dp.producto.id, dp.cantidad);
-                    p6.SqlDbType = System.Data.SqlDbType.Int;
-                    p7.SqlDbType = System.Data.SqlDbType.Int;
-                    p8.SqlDbType = System.Data.SqlDbType.Int;
-                    cmd2.Parameters.Add(p6);
-                    cmd2.Parameters.Add(p7);
-                    cmd2.Parameters.Add(p8);
-
-                    cmd2.ExecuteNonQuery();
-
+                    if (ActualizarStock(dp.producto.id, dp.cantidad) == 1)
+                    {
+                        p6.SqlDbType = System.Data.SqlDbType.Int;
+                        p7.SqlDbType = System.Data.SqlDbType.Int;
+                        p8.SqlDbType = System.Data.SqlDbType.Int;
+                        cmd2.Parameters.Add(p6);
+                        cmd2.Parameters.Add(p7);
+                        cmd2.Parameters.Add(p8);
+                        cmd2.Transaction = transaction;
+                        cmd2.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    else {
+                        transaction.Rollback();
+                        break;
+                    }
                 }
                 con.Close();
             }
         }
 
-        public static void ActualizarStock(int product_id, int cantidad)
+        public static int ActualizarStock(int product_id, int cantidad)
         {
+            int ban = 0;
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-            {
+            { 
                 con.Open();
                 //cabecera
                 Producto pro = new Producto();
@@ -90,12 +98,16 @@ namespace Clases
                 {
                     string textoCMD = "update producto set cantidad = @cantidad  where id = @id";
                     SqlCommand cmd = new SqlCommand(textoCMD, con);
+                    SqlTransaction transaction = con.BeginTransaction("SampleTransaction");
+                    cmd.Transaction = transaction;
+
                     //parametros
                     if (pro.cantidad >= cantidad)
                     {
-                        pro.cantidad = pro.cantidad - cantidad;
+                        ban = 1;
+                        int actual = pro.cantidad - cantidad;
 
-                        SqlParameter p1 = new SqlParameter("@cantidad", cantidad);
+                        SqlParameter p1 = new SqlParameter("@cantidad", actual);
                         SqlParameter p2 = new SqlParameter("@id", product_id);
 
                         p1.SqlDbType = System.Data.SqlDbType.Int;
@@ -104,15 +116,21 @@ namespace Clases
                         cmd.Parameters.Add(p2);
 
                         cmd.ExecuteNonQuery();
+                        transaction.Commit();
+                        MessageBox.Show("Actualizado con exito!");
+
                     }
                     else
                     {
+                        ban = 0;
+                        transaction.Rollback();
                         MessageBox.Show("La cantidad a enviar excede a la cantidad actual");
                     }
                     con.Close();
                 }
 
             }
+            return ban;
         }
 
         public static void Eliminar(SalidaProducto p)
