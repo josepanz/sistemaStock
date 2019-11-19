@@ -180,7 +180,8 @@ namespace Presentacion.Formularios
                 txtNombre.Text = empleado.nombre;
                 txtEmail.Text = empleado.email;
                 txtFechaNac.Value = empleado.nacimiento;
-                cboCargo.SelectedItem = empleado.cargo.id;
+                //cboCargo.SelectedItem = empleado.cargo.id;
+                cboCargo.SelectedItem = Cargo.ObtenerCargo(empleado.cargo.id);
 
 
 
@@ -229,9 +230,10 @@ namespace Presentacion.Formularios
                 txtNombre.Text = emp.nombre;
                 txtEmail.Text = emp.email;
                 txtFechaNac.Value = emp.nacimiento;
-                cboCargo.SelectedItem = emp.cargo;
+                //cboCargo.SelectedItem = emp.cargo;
+                cboCargo.SelectedItem = Cargo.ObtenerCargo(emp.cargo.id);
 
-        }
+            }
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
