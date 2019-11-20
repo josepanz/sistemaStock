@@ -31,23 +31,25 @@ namespace Presentacion.Formularios
             cboCargo.SelectedItem = null;
             dgvEmpleado.AllowUserToResizeColumns = false;
             dgvEmpleado.AllowUserToResizeRows = false;
+            txtBuscar.Focus();
 
         }
 
         private void ListarEmpleado()
         {
             try
-            {
+            {                
                 dgvEmpleado.DataSource = null;
                 dgvEmpleado.DataSource = Empleado.ObtenerEmpleados();
                 //this.dgvEmpleado.Columns["idPK"].Visible = false;
                 dgvEmpleado.Columns[0].HeaderText = "Código interno";
                 dgvEmpleado.Columns[1].HeaderText = "Cédula de identidad";
                 dgvEmpleado.Columns[2].HeaderText = "Nombre";
-                dgvEmpleado.Columns[3].HeaderText = "Domicilio";
+                dgvEmpleado.Columns[3].HeaderText = "E-mail";
                 dgvEmpleado.Columns[4].HeaderText = "Fecha de nacimiento";
-                dgvEmpleado.Columns[5].HeaderText = "Contraseña";
+                //dgvEmpleado.Columns[5].HeaderText = "Contraseña";
                 dgvEmpleado.Columns[6].HeaderText = "Cargo";
+                this.dgvEmpleado.Columns[5].Visible = false;
             }
             catch(Exception ex)
             {
@@ -57,18 +59,14 @@ namespace Presentacion.Formularios
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dgvEmpleado.DataSource = Empleado.ObtenerEmpleado(Convert.ToInt32((txtBuscar.Text)));
+            //(dgvEmpleado.DataSource as DataTable).DefaultView.RowFilter = "Cédula de identidad" + " LIKE '" + txtBuscar.Text + "%'";
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                dgvEmpleado.DataSource = Empleado.ObtenerEmpleado(Convert.ToInt32((txtBuscar.Text)));
-            } catch (FormatException f) {
-                MessageBox.Show("La busqueda debe realizarse por codigo y en valores numericos");
-            }
-
+            var result = Empleado.ObtenerEmpleados().Where(x =>
+                x.idNumero.ToString().Contains(txtBuscar.Text)).ToList();
+                dgvEmpleado.DataSource = result;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -82,6 +80,7 @@ namespace Presentacion.Formularios
                     if (empl != null)
                     {
                         Empleado.AgregarEmpleado(empl);
+                        MessageBox.Show("Registro insertado correctamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ListarEmpleado();
                         limpiar();
                         panel3.Enabled = false;
@@ -96,11 +95,13 @@ namespace Presentacion.Formularios
                     if (empl != null)
                     {
                         Empleado.EditarEmpleado(index, empl);
+                        MessageBox.Show("Registro editado correctamente", "Modificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ListarEmpleado();
                         limpiar();
                         panel3.Enabled = false;
                     }
 
+                    txtBuscar.Focus();
                 }
             }
             catch (Exception ex)
@@ -117,7 +118,7 @@ namespace Presentacion.Formularios
                     txtIDNumero.Focus();
                 }
             }
-              
+            
 
 
         }
@@ -144,7 +145,7 @@ namespace Presentacion.Formularios
 
             if (txtNombre.Text != "")
             {
-                empl.nombre = txtNombre.Text;
+                empl.nombre = txtNombre.Text.ToUpper();
             }
             else
             {
@@ -175,6 +176,8 @@ namespace Presentacion.Formularios
                 return null;
             }
 
+            empl.pass = txtPass.Text;
+
 
 
 
@@ -191,6 +194,7 @@ namespace Presentacion.Formularios
             txtIDNumero.Clear();
             txtNombre.Clear();
             cboCargo.SelectedItem = null;
+            txtPass.Clear();
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -237,9 +241,15 @@ namespace Presentacion.Formularios
                  
                  idPK = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
 
-                Empleado.EliminarEmpleado(idPK);
-                 
-                 ListarEmpleado();
+                if (MessageBox.Show("¿Está seguro de eliminar el registro?", "Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Empleado.EliminarEmpleado(idPK);
+
+                    ListarEmpleado();
+                    MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                
 
              }
              else
@@ -283,6 +293,11 @@ namespace Presentacion.Formularios
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label6_Click(object sender, EventArgs e)
         {
 
         }

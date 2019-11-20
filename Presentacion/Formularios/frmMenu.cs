@@ -100,6 +100,7 @@ namespace capaPresentacion.Formularios
         private void FrmMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+
         }
 
         private void abrirFormPanel<Miform>() where Miform : Form, new()
@@ -124,44 +125,5 @@ namespace capaPresentacion.Formularios
                 Formulario.BringToFront();
             }
         }
-
-        /*private void cerrarFormulario(object sender, FormClosedEventArgs e)
-        {
-            //'CONDICION SI FORM ESTA ABIERTO
-            if ((Application.OpenForms("frmProductos") == null))
-            {
-                btnProducto.BackColor = Color.FromArgb(4, 41, 68);
-            }
-
-            if ((Application.OpenForms("frmEmpleados") == null))
-            {
-                btnEmpleado.BackColor = Color.FromArgb(4, 41, 68);
-            }
-
-            if ((Application.OpenForms("frmProveedores") == null))
-            {
-                btnProveedor.BackColor = Color.FromArgb(4, 41, 68);
-            }
-
-            if ((Application.OpenForms("frmClientes") == null))
-            {
-                btnCliente.BackColor = Color.FromArgb(4, 41, 68);
-            }
-
-            if ((Application.OpenForms("frmMovil") == null))
-            {
-                btnMovil.BackColor = Color.FromArgb(4, 41, 68);
-            }
-
-            if ((Application.OpenForms("frmVentas") == null))
-            {
-                btnVenta.BackColor = Color.FromArgb(4, 41, 68);
-            }
-
-            if ((Application.OpenForms("frmCpmpras") == null))
-            {
-                btnCompra.BackColor = Color.FromArgb(4, 41, 68);
-            }
-        }*/
     }
 }
