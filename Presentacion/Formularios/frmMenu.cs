@@ -20,8 +20,9 @@ namespace capaPresentacion.Formularios
 
         private void empleadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmEmpleado frmEmpl = new frmEmpleado();
-            frmEmpl.Show();
+            
+            abrirFormPanel<frmEmpleado>();
+
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -100,5 +101,67 @@ namespace capaPresentacion.Formularios
         {
             Application.Exit();
         }
+
+        private void abrirFormPanel<Miform>() where Miform : Form, new()
+        {
+            Form Formulario;
+            Formulario = pnlForms.Controls.OfType<Miform>().FirstOrDefault(); //Busca el formulario en la coleccion
+                                                                              //Si form no fue encontrado/ no existe
+            if (Formulario == null)
+            {
+                Formulario = new Miform();
+                Formulario.TopLevel = false;
+                pnlForms.Controls.Add(Formulario);
+                pnlForms.Tag = Formulario;
+                //Formulario.FormClosed = new EventHandler(this.cerrarFormulario);
+                //Formulario.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                Formulario.Dock = DockStyle.Fill;
+                Formulario.Show();
+                Formulario.BringToFront();
+            }
+            else
+            {
+                Formulario.BringToFront();
+            }
+        }
+
+        /*private void cerrarFormulario(object sender, FormClosedEventArgs e)
+        {
+            //'CONDICION SI FORM ESTA ABIERTO
+            if ((Application.OpenForms("frmProductos") == null))
+            {
+                btnProducto.BackColor = Color.FromArgb(4, 41, 68);
+            }
+
+            if ((Application.OpenForms("frmEmpleados") == null))
+            {
+                btnEmpleado.BackColor = Color.FromArgb(4, 41, 68);
+            }
+
+            if ((Application.OpenForms("frmProveedores") == null))
+            {
+                btnProveedor.BackColor = Color.FromArgb(4, 41, 68);
+            }
+
+            if ((Application.OpenForms("frmClientes") == null))
+            {
+                btnCliente.BackColor = Color.FromArgb(4, 41, 68);
+            }
+
+            if ((Application.OpenForms("frmMovil") == null))
+            {
+                btnMovil.BackColor = Color.FromArgb(4, 41, 68);
+            }
+
+            if ((Application.OpenForms("frmVentas") == null))
+            {
+                btnVenta.BackColor = Color.FromArgb(4, 41, 68);
+            }
+
+            if ((Application.OpenForms("frmCpmpras") == null))
+            {
+                btnCompra.BackColor = Color.FromArgb(4, 41, 68);
+            }
+        }*/
     }
 }

@@ -28,50 +28,64 @@ namespace Clases
 
         public static void AgregarEmpleado(Empleado empl)
         {
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
+            if (empl != null)
             {
-                con.Open();
-                string textoCmd = "INSERT INTO Empleado (idNumero, nombre, email, fechaNacimiento, codCargo)VALUES (@idNumero, @nombre, @email, @fc, @cargo)";
-                SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd = empl.ObtenerParametros(cmd);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+                {
+                    con.Open();
+                    string textoCmd = "INSERT INTO Empleado (idNumero, nombre, email, fechaNacimiento, codCargo)VALUES (@idNumero, @nombre, @email, @fc, @cargo)";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd = empl.ObtenerParametros(cmd);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
             }
+            
         }
         public static void EliminarEmpleado(int empl)
         {
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
             {
-                con.Open();
-                string SENTENCIA_SQL = "delete from Empleado where idPK = @id";
+                
+                    con.Open();
+                    string SENTENCIA_SQL = "delete from Empleado where idPK = @id";
 
-                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@id", empl);
-                p1.SqlDbType = SqlDbType.Int;
-                cmd.Parameters.Add(p1);
+                    SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                    SqlParameter p1 = new SqlParameter("@id", empl);
+                    p1.SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.Add(p1);
 
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                
+                
+                
+                
             }
         }
 
 
         public static void EditarEmpleado(int index, Empleado empl)
         {
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            if (empl != null)
             {
-                con.Open();
-                string textoCMD = "UPDATE Empleado SET idNumero = @idNumero, nombre = @nombre, email = @email, fechaNacimiento = @fc, codCargo = @cargo where idPK = @id";
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+                {
+                    con.Open();
+                    string textoCMD = "UPDATE Empleado SET idNumero = @idNumero, nombre = @nombre, email = @email, fechaNacimiento = @fc, codCargo = @cargo where idPK = @id";
 
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-                cmd = empl.ObtenerParametros(cmd, true);
+                    SqlCommand cmd = new SqlCommand(textoCMD, con);
+                    cmd = empl.ObtenerParametros(cmd, true);
 
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
             }
+
+            
         }
 
 

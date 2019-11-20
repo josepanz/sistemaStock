@@ -29,6 +29,9 @@ namespace Presentacion.Formularios
             ListarEmpleado();
             cboCargo.DataSource = Cargo.ObtenerCargos();
             cboCargo.SelectedItem = null;
+            dgvEmpleado.AllowUserToResizeColumns = false;
+            dgvEmpleado.AllowUserToResizeRows = false;
+
         }
 
         private void ListarEmpleado()
@@ -37,6 +40,14 @@ namespace Presentacion.Formularios
             {
                 dgvEmpleado.DataSource = null;
                 dgvEmpleado.DataSource = Empleado.ObtenerEmpleados();
+                //this.dgvEmpleado.Columns["idPK"].Visible = false;
+                dgvEmpleado.Columns[0].HeaderText = "Código interno";
+                dgvEmpleado.Columns[1].HeaderText = "Cédula de identidad";
+                dgvEmpleado.Columns[2].HeaderText = "Nombre";
+                dgvEmpleado.Columns[3].HeaderText = "Domicilio";
+                dgvEmpleado.Columns[4].HeaderText = "Fecha de nacimiento";
+                dgvEmpleado.Columns[5].HeaderText = "Contraseña";
+                dgvEmpleado.Columns[6].HeaderText = "Cargo";
             }
             catch(Exception ex)
             {
@@ -62,31 +73,51 @@ namespace Presentacion.Formularios
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            Empleado empl = null;
-            if (modo == "I")
+            try
             {
-                empl = ObtenerEmpleadoFormulario();
-                if (empl.cargo != null)
+                Empleado empl = null;
+                if (modo == "I")
                 {
-                    Empleado.AgregarEmpleado(empl);
-                    ListarEmpleado();
-                    limpiar();
-                    panel3.Enabled = false;
+                    empl = ObtenerEmpleadoFormulario();
+                    if (empl != null)
+                    {
+                        Empleado.AgregarEmpleado(empl);
+                        ListarEmpleado();
+                        limpiar();
+                        panel3.Enabled = false;
+                    }
+                }
+                else if (modo == "E")
+                {
+
+                    int index = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
+
+                    empl = ObtenerEmpleadoFormulario();
+                    if (empl != null)
+                    {
+                        Empleado.EditarEmpleado(index, empl);
+                        ListarEmpleado();
+                        limpiar();
+                        panel3.Enabled = false;
+                    }
+
                 }
             }
-            else if (modo == "E")
+            catch (Exception ex)
             {
-
-                int index = Convert.ToInt32(dgvEmpleado.CurrentRow.Cells[0].Value);
-                empl = ObtenerEmpleadoFormulario();
-
-                Empleado.EditarEmpleado(index, empl);
-                ListarEmpleado();
-                limpiar();
-                panel3.Enabled = false;
-
-
-            }           
+                System.Data.SqlClient.SqlException sqlEx = ex as System.Data.SqlClient.SqlException;
+                if (sqlEx != null && sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("No se pude insertar el registro. Registro duplicado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtIDNumero.Focus();
+                }
+                else
+                {
+                    MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtIDNumero.Focus();
+                }
+            }
+              
 
 
         }
@@ -108,6 +139,7 @@ namespace Presentacion.Formularios
             {
                 MessageBox.Show("El número de identificación es obligatorio");
                 txtIDNumero.Focus();
+                return null;
             }
 
             if (txtNombre.Text != "")
@@ -117,7 +149,8 @@ namespace Presentacion.Formularios
             else
             {
                 MessageBox.Show("El nombre es obligatorio");
-                txtIDNumero.Focus();
+                txtNombre.Focus();
+                return null;
             }
 
             if (txtEmail.Text != "")
@@ -127,7 +160,8 @@ namespace Presentacion.Formularios
             else
             {
                 MessageBox.Show("El email es obligatorio");
-                txtIDNumero.Focus();
+                txtEmail.Focus();
+                return null;
             }
 
             if (cboCargo.SelectedItem != null)
@@ -137,7 +171,8 @@ namespace Presentacion.Formularios
             else
             {
                 MessageBox.Show("El cargo es obligatorio");
-                txtIDNumero.Focus();
+                cboCargo.Focus();
+                return null;
             }
 
 
@@ -240,6 +275,16 @@ namespace Presentacion.Formularios
         {
             limpiar();
             panel3.Enabled = false;
+        }
+
+        private void Label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
