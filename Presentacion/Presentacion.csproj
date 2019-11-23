@@ -207,12 +207,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\Clases.csproj">
       <Project>{e71f9aba-3922-4eac-98b3-8be4544fd863}</Project>
       <Name>Clases</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Librerias\Microsoft.VisualBasic.PowerPacks.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
