@@ -96,6 +96,7 @@ namespace Presentacion
             {
                 frmMenu frmMenu = new frmMenu();
                 frmMenu.Show();
+                //this.Close();
                 this.Hide();
             }
             else {
@@ -108,6 +109,11 @@ namespace Presentacion
             frmConfiguration formConfiguration = new frmConfiguration();
             formConfiguration.Show();
             this.Hide();
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }

@@ -111,7 +111,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(281, 442);
+            this.btnEliminar.Location = new System.Drawing.Point(286, 442);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 3;
@@ -121,6 +121,7 @@
             // 
             // dgvEmpleado
             // 
+            this.dgvEmpleado.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvEmpleado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -204,7 +205,6 @@
             this.label6.Size = new System.Drawing.Size(219, 33);
             this.label6.TabIndex = 15;
             this.label6.Text = "Mantenimiento";
-            
             // 
             // label5
             // 
@@ -215,7 +215,6 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Contraseña";
             this.label5.Visible = false;
-
             // 
             // txtPass
             // 
@@ -225,7 +224,6 @@
             this.txtPass.Size = new System.Drawing.Size(160, 20);
             this.txtPass.TabIndex = 13;
             this.txtPass.Visible = false;
-            
             // 
             // txtidPK
             // 

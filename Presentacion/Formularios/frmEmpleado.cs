@@ -49,9 +49,7 @@ namespace Presentacion.Formularios
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());               
-                
-                this.Close();
+                MessageBox.Show(ex.ToString());
             }            
         }
 
@@ -234,22 +232,30 @@ namespace Presentacion.Formularios
 
         private void DgvEmpleado_Click(object sender, EventArgs e)
         {
-            Empleado emp = (Empleado)dgvEmpleado.CurrentRow.DataBoundItem;
-
-            if (emp != null)
+            try
             {
-                txtidPK.Text = Convert.ToString(emp.idPK);
-                txtIDNumero.Text = Convert.ToString(emp.idNumero);
-                txtNombre.Text = emp.nombre;
-                txtEmail.Text = emp.email;
-                txtFechaNac.Value = emp.nacimiento;                
-                cboCargo.SelectedItem = Cargo.ObtenerCargo(emp.cargo.id);
+                if (dgvEmpleado.RowCount > 0)
+                {
+                    Empleado emp = (Empleado)dgvEmpleado.CurrentRow.DataBoundItem;
+                    if (emp != null)
+                    {
+                        txtidPK.Text = Convert.ToString(emp.idPK);
+                        txtIDNumero.Text = Convert.ToString(emp.idNumero);
+                        txtNombre.Text = emp.nombre;
+                        txtEmail.Text = emp.email;
+                        txtFechaNac.Value = emp.nacimiento;
+                        cboCargo.SelectedItem = Cargo.ObtenerCargo(emp.cargo.id);
+                    }                    
+                }
+                else
+                {
+                    MessageBox.Show("No hay registros para seleccionar");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
-
-        
-
-
-
     }
 }

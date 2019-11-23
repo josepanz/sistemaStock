@@ -80,7 +80,9 @@ namespace capaPresentacion.Formularios
         private void CargoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCargo form = new frmCargo();
-            form.Show();
+            //form.Show();
+            form.ShowDialog(this);
+            
         }
 
         private void UnidadDeMedidaToolStripMenuItem_Click(object sender, EventArgs e)
