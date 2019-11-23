@@ -18,84 +18,156 @@ namespace capaPresentacion.Formularios
             InitializeComponent();
         }
 
-        private void frmMarca_Load(object sender, EventArgs e)
-        {
-            ListarMarca();
-        }
         private void ListarMarca()
         {
             dgvMarca.DataSource = null;
             dgvMarca.DataSource = Marca.ObtenerMarcas();
+            dgvMarca.ClearSelection();
+            dgvMarca.Columns[0].HeaderText = "Código interno";
+            dgvMarca.Columns[1].HeaderText = "Descripción";
         }
 
         private void LimpiarFormulario()
         {
             txtCodigo.Text = "";
             txtDescripcion.Text = "";
-
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void frmMarca_Load(object sender, EventArgs e)
         {
-            Marca m = ObtenerMarcaFormulario();
-            Marca.AgregarMarca(m);
-            ListarMarca();
-            LimpiarFormulario();
+            try
+            {
+                ListarMarca();
+                txtDescripcion.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private Marca ObtenerMarcaFormulario()
         {
             Marca marca = new Marca();
-            marca.descripcion = txtDescripcion.Text.Trim();
-            marca.id = Convert.ToInt32(txtCodigo.Text.Trim());
+            if (!string.IsNullOrEmpty(txtCodigo.Text))
+            {
+                marca.id = Convert.ToInt32(txtCodigo.Text.Trim());
+            }
+            if (txtDescripcion.Text != "")
+            {
+                marca.descripcion = txtDescripcion.Text;
+            }
+            else
+            {
+                MessageBox.Show("La descripción es obligatoria");
+                txtDescripcion.Focus();
+                return null;
+            }
             return marca;
         }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ObtenerMarcaFormulario() != null)
+                {
+                    Marca m = ObtenerMarcaFormulario();
+                    Marca.AgregarMarca(m);
+                    MessageBox.Show("Registro insertado correctamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ListarMarca();
+                    LimpiarFormulario();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }       
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Marca mar = (Marca)dgvMarca.CurrentRow.DataBoundItem;
-            if (mar != null)
+            try
             {
-                Marca.EliminarMarcas(mar);
-                ListarMarca();
-                LimpiarFormulario();
+                if (dgvMarca.SelectedCells.Count > 0)
+                {
+                    Marca mar = (Marca)dgvMarca.CurrentRow.DataBoundItem;
+                    if (mar != null)
+                    {
+                        Marca.EliminarMarcas(mar);                       
+                        ListarMarca();
+                        MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarFormulario();
+                    }
+                }            
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
             }
-            ListarMarca();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Marca marca = (Marca)dgvMarca.CurrentRow.DataBoundItem;
-
-            if (marca != null)
+            try
             {
-                int index = dgvMarca.CurrentCell.RowIndex;
-                Marca m = ObtenerMarcaFormulario();
-                Marca.EditarMarca(index, m);
-                ListarMarca();
-                LimpiarFormulario();
+                if (dgvMarca.SelectedCells.Count > 0)
+                {
+                    Marca marca = (Marca)dgvMarca.CurrentRow.DataBoundItem;
+
+                    if (marca != null)
+                    {
+                        int index = dgvMarca.CurrentCell.RowIndex;
+                        if (ObtenerMarcaFormulario() != null)
+                        {
+                            Marca m = ObtenerMarcaFormulario();
+                            Marca.EditarMarca(index, m);
+                            ListarMarca();
+                            MessageBox.Show("Registro editado correctamente", "Modificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LimpiarFormulario();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
         }
 
-        private Marca ObtenerMarca()
-        {
-            Marca mar = new Marca();
-            mar.id = Convert.ToInt32(txtCodigo.Text);
-            mar.descripcion = txtDescripcion.Text.Trim();
-
-
-            return mar;
-        }
 
         private void dgvMarca_Click(object sender, EventArgs e)
         {
-            Marca mar = (Marca)dgvMarca.CurrentRow.DataBoundItem;
-
-            if (mar != null)
+            try
             {
-                txtCodigo.Text = Convert.ToString(mar.id);
-                txtDescripcion.Text = mar.descripcion;
+                if (dgvMarca.RowCount > 0)
+                {
+                    Marca mar = (Marca)dgvMarca.CurrentRow.DataBoundItem;
 
+                    if (mar != null)
+                    {
+                        txtCodigo.Text = Convert.ToString(mar.id);
+                        txtDescripcion.Text = mar.descripcion;
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay registros para seleccionar");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
     }

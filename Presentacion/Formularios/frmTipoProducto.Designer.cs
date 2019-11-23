@@ -42,16 +42,23 @@
             // 
             // dgvTipoProducto
             // 
+            this.dgvTipoProducto.AllowUserToResizeColumns = false;
+            this.dgvTipoProducto.AllowUserToResizeRows = false;
+            this.dgvTipoProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTipoProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTipoProducto.Location = new System.Drawing.Point(26, 228);
+            this.dgvTipoProducto.Location = new System.Drawing.Point(27, 149);
+            this.dgvTipoProducto.MultiSelect = false;
             this.dgvTipoProducto.Name = "dgvTipoProducto";
-            this.dgvTipoProducto.Size = new System.Drawing.Size(458, 137);
+            this.dgvTipoProducto.ReadOnly = true;
+            this.dgvTipoProducto.RowHeadersVisible = false;
+            this.dgvTipoProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTipoProducto.Size = new System.Drawing.Size(458, 187);
             this.dgvTipoProducto.TabIndex = 30;
             this.dgvTipoProducto.Click += new System.EventHandler(this.dgvTipoProducto_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(206, 407);
+            this.btnEliminar.Location = new System.Drawing.Point(220, 378);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 29;
@@ -61,7 +68,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(410, 407);
+            this.btnEditar.Location = new System.Drawing.Point(313, 378);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 28;
@@ -71,7 +78,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(26, 407);
+            this.btnAgregar.Location = new System.Drawing.Point(400, 378);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 27;
@@ -81,32 +88,35 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(252, 157);
+            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescripcion.Location = new System.Drawing.Point(109, 100);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(146, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(376, 20);
             this.txtDescripcion.TabIndex = 26;
             // 
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(252, 87);
+            this.txtCodigo.Location = new System.Drawing.Point(242, 60);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(146, 20);
             this.txtCodigo.TabIndex = 25;
+            this.txtCodigo.Visible = false;
             // 
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(97, 87);
+            this.lbl.Location = new System.Drawing.Point(87, 60);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(40, 13);
             this.lbl.TabIndex = 24;
             this.lbl.Text = "Codigo";
+            this.lbl.Visible = false;
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(97, 160);
+            this.lblDescripcion.Location = new System.Drawing.Point(24, 103);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 23;
@@ -116,7 +126,7 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(130, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(154, 24);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(209, 33);
             this.lblTitulo.TabIndex = 22;
@@ -126,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 450);
+            this.ClientSize = new System.Drawing.Size(529, 419);
             this.Controls.Add(this.dgvTipoProducto);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
@@ -136,6 +146,9 @@
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmTipoProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tipo Producto";

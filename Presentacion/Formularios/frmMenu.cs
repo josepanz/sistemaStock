@@ -20,8 +20,9 @@ namespace capaPresentacion.Formularios
 
         private void empleadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             abrirFormPanel<frmEmpleado>();
+            
 
         }
 
@@ -50,19 +51,19 @@ namespace capaPresentacion.Formularios
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmMarca frmMarca = new frmMarca();
-            frmMarca.Show();
+            frmMarca.ShowDialog(this);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            frmCategoria frmCategoria = new frmCategoria();
-            frmCategoria.Show();
+            frmCategoria frmCategoria = new frmCategoria();            
+            frmCategoria.ShowDialog(this);
         }
 
         private void tipoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTipoProducto frmTipoProducto = new frmTipoProducto();
-            frmTipoProducto.Show();
+            frmTipoProducto frmTipoProducto = new frmTipoProducto();     
+            frmTipoProducto.ShowDialog(this);
         }
 
         private void EntradaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,9 +87,10 @@ namespace capaPresentacion.Formularios
         }
 
         private void UnidadDeMedidaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {   
             frmUnidadMedida form = new frmUnidadMedida();
-            form.Show();
+            //form.Show();
+            form.ShowDialog(this);
 
         }
 

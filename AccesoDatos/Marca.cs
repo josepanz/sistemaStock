@@ -13,72 +13,31 @@ namespace Clases
     {
         public int id { get; set; }
         public string descripcion { get; set; }
-
         public static List<Marca> listaMarca = new List<Marca>();
 
-        public static void AgregarMarca(Marca M)
+        public static List<Marca> ObtenerMarcas()
         {
+            Marca marca;
+            listaMarca.Clear();
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Marca (descripcion)VALUES (@descripcion)";
-                SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd = M.ObtenerParametros(cmd);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        private SqlCommand ObtenerParametros(SqlCommand cmd, bool id = false)
-        {
-            SqlParameter p1 = new SqlParameter("@descripcion", this.descripcion);
-            p1.SqlDbType = SqlDbType.VarChar;
-            cmd.Parameters.Add(p1);
-            if (id == true)
-            {
-                cmd = ObtenerParametrosId(cmd);
-            }
-            return cmd;
-        }
-
-        private SqlCommand ObtenerParametrosId(SqlCommand cmd)
-        {
-            SqlParameter p2 = new SqlParameter("@id", this.id);
-            p2.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p2);
-            return cmd;
-        }
-
-        public static void EliminarMarcas(Marca M)
-        {
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
-            {
-                con.Open();
-                string SENTENCIA_SQL = "delete from Marca where id = @Id";
-
-                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@Id", M.id);
-                p1.SqlDbType = SqlDbType.Int;
-                cmd.Parameters.Add(p1);
-
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-        }
-
-        public static void EditarMarca(int index, Marca C)
-        {
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-            {
-                con.Open();
-                string textoCMD = "UPDATE Marca SET descripcion = @descripcion where id = @id";
+                string textoCMD = "Select * from Marca";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
-                cmd = C.ObtenerParametros(cmd, true);
-                
-                cmd.ExecuteNonQuery();
+
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+
+                while (elLectorDeDatos.Read())
+                {
+
+                    marca = new Marca();
+                    marca.id = elLectorDeDatos.GetInt32(0);
+                    marca.descripcion = elLectorDeDatos.GetString(1);
+                    listaMarca.Add(marca);
+                }
+                return listaMarca;
             }
         }
 
@@ -103,32 +62,74 @@ namespace Clases
             return marca;
         }
 
+        private SqlCommand ObtenerParametros(SqlCommand cmd, bool id = false)
+        {
+            SqlParameter p1 = new SqlParameter("@descripcion", this.descripcion);
+            p1.SqlDbType = SqlDbType.VarChar;
+            cmd.Parameters.Add(p1);
+            if (id == true)
+            {
+                cmd = ObtenerParametrosId(cmd);
+            }
+            return cmd;
+        }
+
+        private SqlCommand ObtenerParametrosId(SqlCommand cmd)
+        {
+            SqlParameter p2 = new SqlParameter("@id", this.id);
+            p2.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p2);
+            return cmd;
+        }
+        public static void AgregarMarca(Marca M)
+        {
+            if (M != null)
+            {
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+                {
+                    con.Open();
+                    string textoCmd = "INSERT INTO Marca (descripcion)VALUES (@descripcion)";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd = M.ObtenerParametros(cmd);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         
 
-            public static List<Marca> ObtenerMarcas(){
-            Marca marca;
-            listaMarca.Clear();
+        public static void EliminarMarcas(Marca M)
+        {
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
             {
                 con.Open();
-                string textoCMD = "Select * from Marca";
+                string SENTENCIA_SQL = "delete from Marca where id = @Id";
 
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
+                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                SqlParameter p1 = new SqlParameter("@Id", M.id);
+                p1.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(p1);
 
-                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
 
-                while (elLectorDeDatos.Read())
+        public static void EditarMarca(int index, Marca C)
+        {
+            if (C != null)
+            {            
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
                 {
-                    
-                    marca = new Marca();
-                    marca.id = elLectorDeDatos.GetInt32(0);
-                    marca.descripcion = elLectorDeDatos.GetString(1);
-                    listaMarca.Add(marca);
+                    con.Open();
+                    string textoCMD = "UPDATE Marca SET descripcion = @descripcion where id = @id";
+
+                    SqlCommand cmd = new SqlCommand(textoCMD, con);
+                    cmd = C.ObtenerParametros(cmd, true);
+                
+                    cmd.ExecuteNonQuery();
                 }
-
-                return listaMarca;
-
             }
         }
 

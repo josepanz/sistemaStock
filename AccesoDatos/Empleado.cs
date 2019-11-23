@@ -34,8 +34,9 @@ namespace Clases
                     empleado.idNumero = elLectorDeDatos.GetInt32(1);
                     empleado.nombre = elLectorDeDatos.GetString(2);
                     empleado.email = elLectorDeDatos.GetString(3);
-                    empleado.nacimiento = elLectorDeDatos.GetDateTime(4);
-                    empleado.cargo = Cargo.ObtenerCargo(elLectorDeDatos.GetInt32(5));
+                    empleado.nacimiento = elLectorDeDatos.GetDateTime(4);                    
+                    empleado.cargo = Cargo.ObtenerCargo(elLectorDeDatos.GetInt32(5));                    
+                    
                     listaEmpleados.Add(empleado);
                 }
                 con.Close();

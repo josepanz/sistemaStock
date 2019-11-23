@@ -12,20 +12,47 @@ namespace Clases
     {
         public int id { get; set; }
         public string descripcion { get; set; }
-
         public static List<Categoria> listaCategoria = new List<Categoria>();
 
-        public static void AgregarCategoria(Categoria C)
+        public static List<Categoria> ObtenerCategorias()
         {
+            Categoria categoria;
+            listaCategoria.Clear();
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
 
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Categoria (descripcion)VALUES (@descripcion)";
-                SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd = C.ObtenerParametros(cmd);
-                cmd.ExecuteNonQuery();
+                string textoCMD = "Select * from Categoria";
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+                while (elLectorDeDatos.Read())
+                {
+                    categoria = new Categoria();
+                    categoria.id = elLectorDeDatos.GetInt32(0);
+                    categoria.descripcion = elLectorDeDatos.GetString(1);
+                    listaCategoria.Add(categoria);
+                }
+                return listaCategoria;
             }
+        }
+
+        public static Categoria ObtenerCategoria(int id)
+        {
+            Categoria categoria = null;
+            if (listaCategoria.Count == 0)
+            {
+                Categoria.ObtenerCategorias();
+            }
+
+            foreach (Categoria c in listaCategoria)
+            {
+                if (c.id == id)
+                {
+                    categoria = c;
+                    break;
+                }
+            }
+            return categoria;
         }
 
         private SqlCommand ObtenerParametros(SqlCommand cmd, bool id = false)
@@ -48,10 +75,26 @@ namespace Clases
             return cmd;
         }
 
+        public static void AgregarCategoria(Categoria C)
+        {
+            if (C != null)
+            {
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+                {
+                    con.Open();
+                    string textoCmd = "INSERT INTO Categoria (descripcion)VALUES (@descripcion)";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd = C.ObtenerParametros(cmd);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        
+
         public static void EliminarCategorias(Categoria C)
         {
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
             {
                 con.Open();
                 string SENTENCIA_SQL = "delete from Categoria where id = @Id";
@@ -60,7 +103,6 @@ namespace Clases
                 SqlParameter p1 = new SqlParameter("@Id", C.id);
                 p1.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(p1);
-
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
@@ -68,67 +110,16 @@ namespace Clases
 
         public static void EditarCategorias(int index, Categoria C)
         {
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            if (C != null)
             {
-                con.Open();
-                string textoCMD = "UPDATE Categoria SET descripcion = @descripcion where id = @Id";
-
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-                cmd = C.ObtenerParametros(cmd, true);
-
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public static Categoria ObtenerCategoria(int id)
-        {
-            Categoria categoria = null;
-
-            if (listaCategoria.Count == 0)
-            {
-                Categoria.ObtenerCategorias();
-            }
-
-            foreach (Categoria c in listaCategoria)
-            {
-                if (c.id == id)
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
                 {
-                    categoria = c;
-                    break;
+                    con.Open();
+                    string textoCMD = "UPDATE Categoria SET descripcion = @descripcion where id = @Id";
+                    SqlCommand cmd = new SqlCommand(textoCMD, con);
+                    cmd = C.ObtenerParametros(cmd, true);
+                    cmd.ExecuteNonQuery();
                 }
-            }
-
-            return categoria;
-        }
-
-
-
-        public static List<Categoria> ObtenerCategorias()
-        {
-            Categoria categoria;
-            listaCategoria.Clear();
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
-            {
-                con.Open();
-                string textoCMD = "Select * from Categoria";
-
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-
-                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
-
-                while (elLectorDeDatos.Read())
-                {
-                    categoria = new Categoria ();
-                    categoria.id = elLectorDeDatos.GetInt32(0);
-                    categoria.descripcion = elLectorDeDatos.GetString(1);
-
-                    listaCategoria.Add(categoria);
-                }
-
-                return listaCategoria;
-
             }
         }
 

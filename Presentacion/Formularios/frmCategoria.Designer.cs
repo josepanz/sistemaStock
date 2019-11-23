@@ -42,16 +42,23 @@
             // 
             // dgvCategoria
             // 
+            this.dgvCategoria.AllowUserToResizeColumns = false;
+            this.dgvCategoria.AllowUserToResizeRows = false;
+            this.dgvCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategoria.Location = new System.Drawing.Point(40, 196);
+            this.dgvCategoria.Location = new System.Drawing.Point(40, 151);
+            this.dgvCategoria.MultiSelect = false;
             this.dgvCategoria.Name = "dgvCategoria";
-            this.dgvCategoria.Size = new System.Drawing.Size(458, 137);
+            this.dgvCategoria.ReadOnly = true;
+            this.dgvCategoria.RowHeadersVisible = false;
+            this.dgvCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCategoria.Size = new System.Drawing.Size(458, 182);
             this.dgvCategoria.TabIndex = 21;
             this.dgvCategoria.Click += new System.EventHandler(this.dgvCategoria_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(207, 403);
+            this.btnEliminar.Location = new System.Drawing.Point(240, 361);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 20;
@@ -61,7 +68,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(411, 403);
+            this.btnEditar.Location = new System.Drawing.Point(332, 361);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 19;
@@ -71,7 +78,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(27, 403);
+            this.btnAgregar.Location = new System.Drawing.Point(423, 361);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 18;
@@ -81,32 +88,35 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(272, 139);
+            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescripcion.Location = new System.Drawing.Point(121, 107);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(146, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(377, 20);
             this.txtDescripcion.TabIndex = 17;
             // 
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(272, 69);
+            this.txtCodigo.Location = new System.Drawing.Point(261, 48);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(146, 20);
             this.txtCodigo.TabIndex = 16;
+            this.txtCodigo.Visible = false;
             // 
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(117, 73);
+            this.lbl.Location = new System.Drawing.Point(106, 48);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(40, 13);
             this.lbl.TabIndex = 15;
             this.lbl.Text = "Codigo";
+            this.lbl.Visible = false;
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(117, 142);
+            this.lblDescripcion.Location = new System.Drawing.Point(39, 110);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 14;
@@ -126,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 450);
+            this.ClientSize = new System.Drawing.Size(548, 404);
             this.Controls.Add(this.dgvCategoria);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
@@ -136,6 +146,9 @@
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categoria";

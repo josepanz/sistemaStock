@@ -23,6 +23,8 @@ namespace capaPresentacion
             dgvCargo.DataSource = null;            
             dgvCargo.DataSource = Cargo.ObtenerCargos();            
             dgvCargo.ClearSelection();
+            dgvCargo.Columns[0].HeaderText = "Código interno";
+            dgvCargo.Columns[1].HeaderText = "Descripción";
         }
 
         private void Cargo_Load(object sender, EventArgs e)
@@ -63,23 +65,19 @@ namespace capaPresentacion
             txtDescripcion.Text = "";
         }
 
-        private Cargo ObtenerCargo()
-        {
-            Cargo cargo = new Cargo();
-            cargo.id = Convert.ToInt32(txtCodigo.Text);
-            cargo.descripcion = txtDescripcion.Text;
-            return cargo;
-        }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-                Cargo c = ObtenerCargoFormulario();
-                Cargo.AgregarCargo(c);
-                ListarCargo();
-                LimpiarFormulario();                
-            }
+                if (ObtenerCargoFormulario() != null)
+                {
+                    Cargo c = ObtenerCargoFormulario();
+                    Cargo.AgregarCargo(c);
+                    MessageBox.Show("Registro insertado correctamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ListarCargo();
+                    LimpiarFormulario();
+                }
+             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
@@ -95,10 +93,13 @@ namespace capaPresentacion
                     Cargo cat = (Cargo)dgvCargo.CurrentRow.DataBoundItem;
                     if (cat != null)
                     {
-                        Cargo.EliminarCargo(cat);
-                        ListarCargo();
-                        LimpiarFormulario();
-                        ListarCargo();
+                        if (MessageBox.Show("¿Está seguro de eliminar el registro?", "Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            Cargo.EliminarCargo(cat);                            
+                            MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LimpiarFormulario();
+                            ListarCargo();
+                        }                     
                     }
                 }
                 else
@@ -121,10 +122,14 @@ namespace capaPresentacion
 
                     if (cat != null)
                     {
-                        int index = dgvCargo.CurrentCell.RowIndex;
-                        Cargo c = ObtenerCargoFormulario();
-                        Cargo.EditarCargo(index, c);
-                        ListarCargo();
+                        if (ObtenerCargoFormulario() != null)
+                        {
+                            int index = dgvCargo.CurrentCell.RowIndex;
+                            Cargo c = ObtenerCargoFormulario();
+                            Cargo.EditarCargo(index, c);
+                            MessageBox.Show("Registro editado correctamente", "Modificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ListarCargo();
+                        }
                     }
                 }
                 else

@@ -91,9 +91,10 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(112, 99);
+            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescripcion.Location = new System.Drawing.Point(98, 103);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(349, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(392, 20);
             this.txtDescripcion.TabIndex = 26;
             // 
             // txtCodigo

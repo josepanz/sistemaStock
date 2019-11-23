@@ -42,16 +42,23 @@
             // 
             // dgvMarca
             // 
+            this.dgvMarca.AllowUserToResizeColumns = false;
+            this.dgvMarca.AllowUserToResizeRows = false;
+            this.dgvMarca.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMarca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMarca.Location = new System.Drawing.Point(28, 231);
+            this.dgvMarca.Location = new System.Drawing.Point(28, 170);
+            this.dgvMarca.MultiSelect = false;
             this.dgvMarca.Name = "dgvMarca";
-            this.dgvMarca.Size = new System.Drawing.Size(458, 137);
+            this.dgvMarca.ReadOnly = true;
+            this.dgvMarca.RowHeadersVisible = false;
+            this.dgvMarca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMarca.Size = new System.Drawing.Size(458, 198);
             this.dgvMarca.TabIndex = 30;
             this.dgvMarca.Click += new System.EventHandler(this.dgvMarca_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(208, 410);
+            this.btnEliminar.Location = new System.Drawing.Point(223, 400);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 29;
@@ -61,7 +68,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(412, 410);
+            this.btnEditar.Location = new System.Drawing.Point(319, 400);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 28;
@@ -71,7 +78,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(28, 410);
+            this.btnAgregar.Location = new System.Drawing.Point(411, 400);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 27;
@@ -81,32 +88,35 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(199, 168);
+            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescripcion.Location = new System.Drawing.Point(102, 127);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(146, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(384, 20);
             this.txtDescripcion.TabIndex = 26;
             // 
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(199, 83);
+            this.txtCodigo.Location = new System.Drawing.Point(199, 54);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(146, 20);
             this.txtCodigo.TabIndex = 25;
+            this.txtCodigo.Visible = false;
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(99, 90);
+            this.lblId.Location = new System.Drawing.Point(99, 61);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(16, 13);
             this.lblId.TabIndex = 24;
             this.lblId.Text = "Id";
+            this.lblId.Visible = false;
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(99, 174);
+            this.lblDescripcion.Location = new System.Drawing.Point(25, 130);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 23;
@@ -116,7 +126,7 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(182, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(217, 18);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(101, 33);
             this.lblTitulo.TabIndex = 22;
@@ -136,6 +146,9 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTitulo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMarca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Marca";

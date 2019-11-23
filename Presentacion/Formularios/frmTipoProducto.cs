@@ -18,16 +18,50 @@ namespace capaPresentacion.Formularios
             InitializeComponent();
         }
 
-        private void frmTipoProducto_Load(object sender, EventArgs e)
-        {
-            ListarTipoProducto();
-        }
-
         private void ListarTipoProducto()
         {
             dgvTipoProducto.DataSource = null;
             dgvTipoProducto.DataSource = TipoProducto.ObtenerTipoProductos();
+            dgvTipoProducto.ClearSelection();
+            dgvTipoProducto.Columns[0].HeaderText = "Código interno";
+            dgvTipoProducto.Columns[1].HeaderText = "Descripción";
         }
+
+        private TipoProducto ObtenerTipoProFormulario()
+        {
+            TipoProducto tp = new TipoProducto();
+            if (!string.IsNullOrEmpty(txtCodigo.Text))
+            {
+                tp.id = Convert.ToInt32(txtCodigo.Text.Trim());
+            }
+            if (txtDescripcion.Text != "")
+            {
+                tp.descripcion = txtDescripcion.Text;
+            }
+            else
+            {
+                MessageBox.Show("La descripción es obligatoria");
+                txtDescripcion.Focus();
+                return null;
+            }
+
+            return tp;
+        }
+
+        private void frmTipoProducto_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ListarTipoProducto();
+                txtDescripcion.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        
 
         private void LimpiarFormulario()
         {
@@ -38,71 +72,108 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            TipoProducto tipo = ObtenerTipoProFormulario();
-            TipoProducto.AgregarProductos(tipo);
-
-            ListarTipoProducto();
-            LimpiarFormulario();
-        }
-
-        private TipoProducto ObtenerTipoProFormulario()
-        {
-            TipoProducto tp = new TipoProducto();
-            tp.descripcion = txtDescripcion.Text;
             try
             {
-                tp.id = Convert.ToInt32(txtCodigo.Text);
+                if (ObtenerTipoProFormulario() != null)
+                {
+                    TipoProducto tipo = ObtenerTipoProFormulario();
+                    TipoProducto.AgregarProductos(tipo);
+                    MessageBox.Show("Registro insertado correctamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ListarTipoProducto();
+                    LimpiarFormulario();
+                }
             }
-            catch (FormatException f)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message.ToString());
             }
-
-            return tp;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
-            if (tipo != null)
+            try
             {
-                TipoProducto.EliminarTipoProductos(tipo);
-                ListarTipoProducto();
-                LimpiarFormulario(); ;
+                if (dgvTipoProducto.SelectedCells.Count > 0)
+                {
+                    TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
+                    if (tipo != null)
+                    {
+                        if (MessageBox.Show("¿Está seguro de eliminar el registro?", "Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            TipoProducto.EliminarTipoProductos(tipo);                            
+                            ListarTipoProducto();
+                            MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LimpiarFormulario(); 
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
             }
-            ListarTipoProducto();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
-
-            if (tipo != null)
+            catch (Exception ex)
             {
-                int index = dgvTipoProducto.CurrentCell.RowIndex;
-                TipoProducto t = ObtenerTipoProFormulario();
-                TipoProducto.EditarTipoProducto(index, t);
-                ListarTipoProducto();
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
-        private TipoProducto ObtenerTipoProducto()
+    private void btnEditar_Click(object sender, EventArgs e)
         {
-            TipoProducto tipo = new TipoProducto();
-            tipo.id = Convert.ToInt32(txtCodigo.Text);
-            tipo.descripcion = txtDescripcion.Text;
+            try
+            {
+                if (dgvTipoProducto.SelectedCells.Count > 0)
+                {
+                    TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
 
-
-            return tipo;
+                    if (tipo != null)
+                    {
+                        int index = dgvTipoProducto.CurrentCell.RowIndex;
+                        if (ObtenerTipoProFormulario() != null)
+                        {
+                            TipoProducto t = ObtenerTipoProFormulario();
+                            TipoProducto.EditarTipoProducto(index, t);
+                            MessageBox.Show("Registro editado correctamente", "Modificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ListarTipoProducto();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
+        
         private void dgvTipoProducto_Click(object sender, EventArgs e)
         {
-            TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
-
-            if (tipo != null)
+            try
             {
-                txtCodigo.Text = Convert.ToString(tipo.id);
-                txtDescripcion.Text = tipo.descripcion;
+                if (dgvTipoProducto.RowCount > 0)
+                {
+                    TipoProducto tipo = (TipoProducto)dgvTipoProducto.CurrentRow.DataBoundItem;
+
+                    if (tipo != null)
+                    {
+                        txtCodigo.Text = Convert.ToString(tipo.id);
+                        txtDescripcion.Text = tipo.descripcion;
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay registros para seleccionar");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
 
             }
         }

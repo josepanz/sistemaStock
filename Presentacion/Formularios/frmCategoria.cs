@@ -17,16 +17,47 @@ namespace capaPresentacion.Formularios
         {
             InitializeComponent();
         }
-        private void Categoria_Load(object sender, EventArgs e)
-        {
-            ListarCategoria();
-        }
 
         private void ListarCategoria()
         {
             dgvCategoria.DataSource = null;
             dgvCategoria.DataSource = Categoria.ObtenerCategorias();
+            dgvCategoria.ClearSelection();
+            dgvCategoria.Columns[0].HeaderText = "Código interno";
+            dgvCategoria.Columns[1].HeaderText = "Descripción";
         }
+        private void Categoria_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ListarCategoria();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private Categoria ObtenerCategoriaFormulario()
+        {
+            Categoria c = new Categoria();
+            if (!string.IsNullOrEmpty(txtCodigo.Text))
+            {
+                c.id = Convert.ToInt32(txtCodigo.Text);
+            }
+            if (txtDescripcion.Text != "")
+            {
+                c.descripcion = txtDescripcion.Text;
+            }
+            else
+            {
+                MessageBox.Show("La descripción es obligatoria");
+                txtDescripcion.Focus();
+                return null;
+            }
+            return c;
+        }
+
 
         private void LimpiarFormulario()
         {
@@ -37,71 +68,114 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Categoria c = ObtenerCategoriaFormulario();
-            Categoria.AgregarCategoria(c);
-            ListarCategoria();
-            LimpiarFormulario();
-        }
-
-        private Categoria ObtenerCategoriaFormulario()
-        {
-            Categoria c = new Categoria();
-            c.descripcion = txtDescripcion.Text;
             try
             {
-                c.id = Convert.ToInt32(txtCodigo.Text);
-            } catch (FormatException f) {
+                if (ObtenerCategoriaFormulario() != null)
+                {
+                    Categoria c = ObtenerCategoriaFormulario();
+                    Categoria.AgregarCategoria(c);
+                    ListarCategoria();
+                    LimpiarFormulario();
+                }
             }
-            return c;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+
+        
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
-            if (cat != null)
+            try
             {
-                Categoria.EliminarCategorias(cat);
-                ListarCategoria();
-                LimpiarFormulario();
+                if (dgvCategoria.SelectedCells.Count > 0)
+                {
+                    Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
+                    if (cat != null)
+                    {
+                        if (MessageBox.Show("¿Está seguro de eliminar el registro?", "Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            Categoria.EliminarCategorias(cat);
+                            MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ListarCategoria();
+                            LimpiarFormulario();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
             }
-            ListarCategoria();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+            
+        
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
-
-            if (cat!= null)
+            try
             {
-                int index = dgvCategoria.CurrentCell.RowIndex;
-                Categoria c = ObtenerCategoriaFormulario();
-                Categoria.EditarCategorias(index, c);
-                ListarCategoria();
+                if (dgvCategoria.SelectedCells.Count > 0)
+                {
+                    Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
+
+                    if (cat != null)
+                    {
+                        if (ObtenerCategoriaFormulario() != null)
+                        {
+                            int index = dgvCategoria.CurrentCell.RowIndex;
+                            Categoria c = ObtenerCategoriaFormulario();
+                            Categoria.EditarCategorias(index, c);
+                            MessageBox.Show("Registro editado correctamente", "Modificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ListarCategoria();
+                            LimpiarFormulario();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila");
+                }
             }
-
-            
-        }
-        private Categoria ObtenerCategoria()
-        {
-            Categoria categoria = new Categoria();
-            categoria.id = Convert.ToInt32(txtCodigo.Text);
-            categoria.descripcion = txtDescripcion.Text;
-
-
-            return categoria;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
+      
         private void dgvCategoria_Click(object sender, EventArgs e)
         {
-                Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
-
-                if (cat != null)
+            try
+            {
+                if (dgvCategoria.RowCount > 0)
                 {
-                    txtCodigo.Text = Convert.ToString(cat.id);
-                    txtDescripcion.Text = cat.descripcion;
+                    Categoria cat = (Categoria)dgvCategoria.CurrentRow.DataBoundItem;
+
+                    if (cat != null)
+                    {
+                        txtCodigo.Text = Convert.ToString(cat.id);
+                        txtDescripcion.Text = cat.descripcion;
                     
+                    }
                 }
-            
+                else
+                {
+                    MessageBox.Show("No hay registros para seleccionar");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+        
     }
 }

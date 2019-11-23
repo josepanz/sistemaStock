@@ -25,15 +25,17 @@ namespace Presentacion.Formularios
         {         
              dgvEmpleado.DataSource = null;
              dgvEmpleado.DataSource = Empleado.ObtenerEmpleados();
-             //this.dgvEmpleado.Columns["idPK"].Visible = false;
-             dgvEmpleado.Columns[0].HeaderText = "Código interno";
+            dgvEmpleado.ClearSelection();
+            //this.dgvEmpleado.Columns["idPK"].Visible = false;
+            dgvEmpleado.Columns[0].HeaderText = "Código interno";
              dgvEmpleado.Columns[1].HeaderText = "Cédula de identidad";
              dgvEmpleado.Columns[2].HeaderText = "Nombre";
              dgvEmpleado.Columns[3].HeaderText = "E-mail";
              dgvEmpleado.Columns[4].HeaderText = "Fecha de nacimiento";
              //dgvEmpleado.Columns[5].HeaderText = "Contraseña";
              dgvEmpleado.Columns[6].HeaderText = "Cargo";
-             dgvEmpleado.Columns[5].Visible = false;            
+             dgvEmpleado.Columns[5].Visible = false;
+            
         }
 
         private void FormEmpleado_Load(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace Presentacion.Formularios
                 cboCargo.DataSource = Cargo.ObtenerCargos();
                 cboCargo.SelectedItem = null;
                 dgvEmpleado.AllowUserToResizeColumns = false;
-                dgvEmpleado.AllowUserToResizeRows = false;
+                dgvEmpleado.AllowUserToResizeRows = false;                
                 txtBuscar.Focus();
             }
             catch (Exception ex)
@@ -140,7 +142,11 @@ namespace Presentacion.Formularios
                 txtEmail.Text = empleado.email;
                 txtFechaNac.Value = empleado.nacimiento;
                 //cboCargo.SelectedItem = empleado.cargo.id;
-                cboCargo.SelectedItem = Cargo.ObtenerCargo(empleado.cargo.id);
+                if (empleado.cargo != null)
+                {
+                    cboCargo.SelectedItem = Cargo.ObtenerCargo(empleado.cargo.id);
+                }
+                      
             }
             else
             {
@@ -159,6 +165,7 @@ namespace Presentacion.Formularios
                     Empleado.EliminarEmpleado(idPK);
                     ListarEmpleado();
                     MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpiar();
                 }
             }
             else
