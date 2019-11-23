@@ -45,8 +45,9 @@ namespace capaPresentacion.Formularios
 
         private void ProductoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmProducto frmPro = new frmProducto();
-            frmPro.Show();
+            /*frmProducto frmPro = new frmProducto();
+            frmPro.Show();*/
+            abrirFormPanel<frmProducto>();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)

@@ -23,15 +23,18 @@ namespace Clases
 
         public static void AgregarProductos(Producto P)
         {
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
+            if (P != null)
             {
-                con.Open();
-                string textoCmd = "INSERT INTO Producto ( descripcion, codBarra, precio, cantidad, marca_id, tipoProducto_id, proveedor_id, unidadMedida_id, categoria_id)VALUES ( @descripcion, @codBarra, @precio, @cantidad, @marca, @tipoProducto, @proveedor, @unidad, @categoria)";
-                SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd = P.ObtenerParametros(cmd);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+                {
+                    con.Open();
+                    string textoCmd = "INSERT INTO Producto ( descripcion, codBarra, precio, cantidad, marca_id, tipoProducto_id, proveedor_id, unidadMedida_id, categoria_id)VALUES ( @descripcion, @codBarra, @precio, @cantidad, @marca, @tipoProducto, @proveedor, @unidad, @categoria)";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd = P.ObtenerParametros(cmd);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
             }
         }
 
@@ -105,16 +108,18 @@ namespace Clases
 
         public static void EditarProducto(int index, Producto P)
         {
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            if (P != null)
             {
-                con.Open();
-                string textoCMD = "UPDATE Producto SET descripcion = @descripcion, codBarra = @codBarra, precio = @precio, cantidad = @cantidad, marca_id = @marca, tipoProducto_id = @tipoProducto, proveedor_id = @proveedor, unidadMedida_id = @unidad, categoria_id = @categoria where id = @id";
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+                {
+                    con.Open();
+                    string textoCMD = "UPDATE Producto SET descripcion = @descripcion, codBarra = @codBarra, precio = @precio, cantidad = @cantidad, marca_id = @marca, tipoProducto_id = @tipoProducto, proveedor_id = @proveedor, unidadMedida_id = @unidad, categoria_id = @categoria where id = @id";
 
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-                cmd = P.ObtenerParametros(cmd, true);
+                    SqlCommand cmd = new SqlCommand(textoCMD, con);
+                    cmd = P.ObtenerParametros(cmd, true);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
