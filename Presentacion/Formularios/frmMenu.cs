@@ -38,8 +38,9 @@ namespace capaPresentacion.Formularios
 
         private void ProveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmProveedor frmProv = new frmProveedor();
-            frmProv.Show();
+            /*frmProveedor frmProv = new frmProveedor();
+            frmProv.Show();*/
+            abrirFormPanel<frmProveedor>();
         }
 
         private void ProductoToolStripMenuItem_Click(object sender, EventArgs e)

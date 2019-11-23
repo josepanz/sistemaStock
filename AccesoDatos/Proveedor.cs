@@ -24,50 +24,52 @@ namespace Clases
 
         public static List<Proveedor> listaProveedores = new List<Proveedor>();
 
-        public static void AgregarProveedores(Proveedor P)
+        public static List<Proveedor> ObtenerProveedores()
         {
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            Proveedor pro;
 
+            listaProveedores.Clear();
+
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCmd = "INSERT INTO Proveedor (Ruc, RazonSocial, Email, Telefono, Direccion)VALUES (@Ruc, @RazonSocial, @Email, @Telefono, @Direccion)";
-                SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd = P.ObtenerParametros(cmd);
-                cmd.ExecuteNonQuery();
+                string tectoCMD = "select * from Proveedor";
+                SqlCommand cmd = new SqlCommand(tectoCMD, con);
+
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+
+                while (elLectorDeDatos.Read())
+                {
+                    pro = new Proveedor();
+                    pro.idPK = elLectorDeDatos.GetInt32(0);
+                    pro.Ruc = elLectorDeDatos.GetString(1);
+                    pro.RazonSocial = elLectorDeDatos.GetString(2);
+                    pro.Email = elLectorDeDatos.GetString(3);
+                    pro.Telefono = elLectorDeDatos.GetString(4);
+                    pro.Direccion = elLectorDeDatos.GetString(5);
+                    listaProveedores.Add(pro);
+                }
             }
+
+            return listaProveedores;
         }
 
-        public static void EliminarProveedores(Proveedor P)
+        public static Proveedor ObtenerProveedor(int id)
         {
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
+            Proveedor proveedor = null;
+            if (listaProveedores.Count == 0)
             {
-                con.Open();
-                string SENTENCIA_SQL = "delete from Proveedor where id = @id";
-
-                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
-                SqlParameter p1 = new SqlParameter("@id", P.idPK);
-                p1.SqlDbType = SqlDbType.Int;
-                cmd.Parameters.Add(p1);
-
-                cmd.ExecuteNonQuery();
-                con.Close();
+                Proveedor.ObtenerProveedores();
             }
-        }
-
-        public static void EditarProveedores(int index, Proveedor P)
-        {
-
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            foreach (Proveedor P in listaProveedores)
             {
-                con.Open();
-                string textoCMD = "UPDATE Proveedor SET Ruc = @Ruc, RazonSocial = @RazonSocial, Email = @Email, Telefono = @Telefono, Direccion = @Direccion where id = @id";
-
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-                cmd = P.ObtenerParametros(cmd, true);
-
-                cmd.ExecuteNonQuery();
+                if (P.idPK == id)
+                {
+                    proveedor = P;
+                    break;
+                }
             }
+            return proveedor;
         }
 
         private SqlCommand ObtenerParametros(SqlCommand cmd, bool id = false)
@@ -108,58 +110,52 @@ namespace Clases
             return cmd;
         }
 
-        public static Proveedor ObtenerProveedor(int id)
+        public static void AgregarProveedores(Proveedor P)
         {
-            Proveedor proveedor = null;
 
-            if (listaProveedores.Count == 0)
+            if (P != null)
             {
-                Proveedor.ObtenerProveedores();
-            }
-
-            foreach (Proveedor P in listaProveedores)
-            {
-                if (P.idPK == id)
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
                 {
-                    proveedor = P;
-                    break;
+                    con.Open();
+                    string textoCmd = "INSERT INTO Proveedor (Ruc, RazonSocial, Email, Telefono, Direccion)VALUES (@Ruc, @RazonSocial, @Email, @Telefono, @Direccion)";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd = P.ObtenerParametros(cmd);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
                 }
-            }
-
-            return proveedor;
+            }            
         }
 
-        public static List<Proveedor> ObtenerProveedores()
+        public static void EliminarProveedores(int P)
         {
-            Proveedor pro;
-
-            listaProveedores.Clear();
-
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string tectoCMD = "select * from Proveedor";
-                SqlCommand cmd = new SqlCommand(tectoCMD, con);
-
-                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
-
-                while (elLectorDeDatos.Read())
-                {
-                    pro = new Proveedor();
-                    pro.idPK = elLectorDeDatos.GetInt32(0);
-                    pro.Ruc = elLectorDeDatos.GetString(1);
-                    pro.RazonSocial = elLectorDeDatos.GetString(2);
-                    pro.Email = elLectorDeDatos.GetString(3);
-                    pro.Telefono = elLectorDeDatos.GetString(4);
-                    pro.Direccion = elLectorDeDatos.GetString(5);
-
-
-                    listaProveedores.Add(pro);
-
-                }
+                string SENTENCIA_SQL = "delete from Proveedor where id = @id";
+                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                SqlParameter p1 = new SqlParameter("@id", P);
+                p1.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(p1);
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
+        }
 
-            return listaProveedores;
+        public static void EditarProveedores(int index, Proveedor P)
+        {
+            if (P != null)
+            {
+                using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+                {
+                    con.Open();
+                    string textoCMD = "UPDATE Proveedor SET Ruc = @Ruc, RazonSocial = @RazonSocial, Email = @Email, Telefono = @Telefono, Direccion = @Direccion where id = @id";
+                    SqlCommand cmd = new SqlCommand(textoCMD, con);
+                    cmd = P.ObtenerParametros(cmd, true);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }            
         }
 
         public override string ToString()

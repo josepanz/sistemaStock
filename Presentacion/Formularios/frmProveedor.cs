@@ -26,18 +26,21 @@ namespace capaPresentacion.Formularios
         }
 
         private void BloquearFormulario()
-        {
-            txtRuc.Enabled = false;
-            txtRazon.Enabled = false;
-            txtEmail.Enabled = false;
-            txtTelefono.Enabled = false;
-            txtDireccion.Enabled = false;
+        {            
+            panel2.Enabled = false;
         }
 
         private void ListarProveedor()
         {
-            lstProveedores.DataSource = null;
-            lstProveedores.DataSource = Proveedor.ObtenerProveedores();
+            dgvProveedor.DataSource = null;
+            dgvProveedor.DataSource = Proveedor.ObtenerProveedores();
+            dgvProveedor.ClearSelection();
+            dgvProveedor.Columns[0].HeaderText = "Código interno";
+            dgvProveedor.Columns[1].HeaderText = "RUC";
+            dgvProveedor.Columns[2].HeaderText = "Razón social";
+            dgvProveedor.Columns[3].HeaderText = "E-mail";
+            dgvProveedor.Columns[4].HeaderText = "Teléfono";
+            dgvProveedor.Columns[5].HeaderText = "Dirección";
         }
 
         private void LimpiarFormulario()
@@ -49,89 +52,12 @@ namespace capaPresentacion.Formularios
             txtTelefono.Text = "";
             txtDireccion.Text = "";
         }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            modo = "I";
-            LimpiarFormulario();
-            DesbloquearFormulario();
-
-        }
+        
 
         private void DesbloquearFormulario()
-        {
-            txtRuc.Enabled = true;
-            txtRazon.Enabled = true;
-            txtEmail.Enabled = true;
-            txtTelefono.Enabled = true;
-            txtDireccion.Enabled = true;
+        {            
+            panel2.Enabled = true;
         }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-            Proveedor proveedor = (Proveedor)lstProveedores.SelectedItem;
-            if (proveedor != null)
-            {
-                Proveedor.EliminarProveedores(proveedor);
-                ListarProveedor();
-                LimpiarFormulario();
-            }
-            else
-            {
-                MessageBox.Show("Favor seleccionar una fila de la lista");
-            }
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            Proveedor proveedor = (Proveedor)lstProveedores.SelectedItem;
-            if (proveedor != null)
-            {
-                modo = "E";
-                DesbloquearFormulario();
-            }
-            else
-            {
-                MessageBox.Show("Ojo, Selecciona un Item");
-            }
-        }
-
-        private Proveedor ObtenerProveedor()
-        {
-            Proveedor pro = new Proveedor();
-            pro.Ruc = txtRuc.Text;
-            pro.RazonSocial = txtRazon.Text;
-            pro.Telefono = txtTelefono.Text;
-            pro.Direccion = txtEmail.Text;
-
-
-            return pro;
-        }
-
-
-
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            if (modo == "I")
-            {
-                Proveedor pro = ObtenerProveedorFormulario();
-                Proveedor.AgregarProveedores(pro);
-            }
-            else if (modo == "E")
-            {
-                int index = lstProveedores.SelectedIndex;
-                Proveedor pro = ObtenerProveedorFormulario();
-                Proveedor.EditarProveedores(index, pro);
-            }
-
-            ListarProveedor();
-            LimpiarFormulario();
-            BloquearFormulario();
-        }
-
-
 
         private Proveedor ObtenerProveedorFormulario()
         {
@@ -140,37 +66,207 @@ namespace capaPresentacion.Formularios
             {
                 pro.idPK = Convert.ToInt32(txtidPK.Text);
             }
-            txtEmail.Enabled = false;
-            txtTelefono.Enabled = false;
-            txtDireccion.Enabled = false;
-            pro.Ruc = txtRuc.Text;
-            pro.RazonSocial = txtRazon.Text;
-            pro.Email = txtEmail.Text;
-            pro.Telefono = txtTelefono.Text;
-            pro.Direccion = txtDireccion.Text;
+            
+            if (txtRuc.Text != "")
+            {
+                pro.Ruc = txtRuc.Text.ToUpper();
+            }
+            else
+            {
+                MessageBox.Show("El RUC es obligatorio");
+                txtRuc.Focus();
+                return null;
+            }
+            if (txtRazon.Text != "")
+            {
+                pro.RazonSocial = txtRazon.Text;
+            }
+            else
+            {
+                MessageBox.Show("La razón social es obligatoria");
+                txtRazon.Focus();
+                return null;
+            }
+            if (txtEmail.Text != "")
+            {
+                pro.Email = txtEmail.Text;
+            }
+            else
+            {
+                MessageBox.Show("El email es obligatorio");
+                txtEmail.Focus();
+                return null;
+            }
+
+            if (txtDireccion.Text != "")
+            {
+                pro.Telefono = txtTelefono.Text;
+            }
+            else
+            {
+                MessageBox.Show("El teléfono es obligatorio");
+                txtTelefono.Focus();
+                return null;
+            }
+            if (txtDireccion.Text != "")
+            {
+                pro.Direccion = txtDireccion.Text;
+            }
+            else
+            {
+                MessageBox.Show("La dirección es obligatoria");
+                txtDireccion.Focus();
+                return null;
+            }           
 
             return pro;
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            modo = "I";
+            LimpiarFormulario();
+            DesbloquearFormulario();
+            panel3.Enabled = false;
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+
+            modo = "E";
+            Proveedor proveedor = new Proveedor();
+            if (dgvProveedor.SelectedCells.Count > 0)
+            {
+                panel2.Enabled = true;
+                panel3.Enabled = false;
+                proveedor = (Proveedor)dgvProveedor.CurrentRow.DataBoundItem;
+                txtidPK.Text = Convert.ToString(proveedor.idPK);
+                txtRuc.Text = proveedor.Ruc;
+                txtRazon.Text = proveedor.RazonSocial;
+                txtEmail.Text = proveedor.Email;
+                txtTelefono.Text = proveedor.Telefono;
+                txtDireccion.Text = proveedor.Direccion;             
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila");
+            }            
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            int idPK;
+            if (dgvProveedor.SelectedCells.Count > 0)
+            {
+                idPK = Convert.ToInt32(dgvProveedor.CurrentRow.Cells[0].Value);
+                if (MessageBox.Show("¿Está seguro de eliminar el registro?", "Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Proveedor.EliminarProveedores(idPK);
+                    ListarProveedor();
+                    MessageBox.Show("Registro eliminado", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarFormulario();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila");
+            }
+        }     
+
+        private void DgvProveedor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvProveedor.RowCount > 0)
+                {
+                    Proveedor proveedor = (Proveedor)dgvProveedor.CurrentRow.DataBoundItem;
+                    if (proveedor != null)
+                    {
+                        txtidPK.Text = Convert.ToString(proveedor.idPK);
+                        txtRuc.Text = proveedor.Ruc;
+                        txtRazon.Text = proveedor.RazonSocial;
+                        txtEmail.Text = proveedor.Email;
+                        txtTelefono.Text = proveedor.Telefono;
+                        txtDireccion.Text = proveedor.Direccion;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay registros para seleccionar");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Proveedor prov = null;
+                if (modo == "I")
+                {
+                    prov = ObtenerProveedorFormulario();
+                    if (prov != null)
+                    {
+                        Proveedor.AgregarProveedores(prov);
+                        MessageBox.Show("Registro insertado correctamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ListarProveedor();
+                        LimpiarFormulario();
+                        panel3.Enabled = true;
+                        panel2.Enabled = false;
+                    }
+                }
+                else if (modo == "E")
+                {
+                    int index = Convert.ToInt32(dgvProveedor.CurrentRow.Cells[0].Value);
+                    prov = ObtenerProveedorFormulario();
+                    if (prov != null)
+                    {
+                        Proveedor.EditarProveedores(index, prov);
+                        MessageBox.Show("Registro editado correctamente", "Modificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ListarProveedor();
+                        LimpiarFormulario();
+                        panel3.Enabled = true;
+                        panel2.Enabled = false;
+                    }
+                    txtBuscar.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Data.SqlClient.SqlException sqlEx = ex as System.Data.SqlClient.SqlException;
+                if (sqlEx != null && sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("No se pude insertar el registro. Registro duplicado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRuc.Focus();
+                }
+                else
+                {
+                    MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRuc.Focus();
+                }
+            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            BloquearFormulario();
+            panel3.Enabled = true;
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void lstProveedores_Click(object sender, EventArgs e)
-        {
-            Proveedor proveedor = (Proveedor)lstProveedores.SelectedItem;
-            txtidPK.Text = Convert.ToString(proveedor.idPK);
-            txtRuc.Text = proveedor.Ruc;
-            txtRazon.Text = proveedor.RazonSocial;
-            txtEmail.Text = proveedor.Email;
-            txtTelefono.Text = proveedor.Telefono;
-            txtDireccion.Text = proveedor.Direccion;
+            var result = Proveedor.ObtenerProveedores().Where(x => x.Ruc.ToString().Contains(txtBuscar.Text)).ToList();
+            dgvProveedor.DataSource = result;
         }
     }
 
