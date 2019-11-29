@@ -32,9 +32,9 @@ namespace Presentacion.Formularios
              dgvEmpleado.Columns[2].HeaderText = "Nombre";
              dgvEmpleado.Columns[3].HeaderText = "E-mail";
              dgvEmpleado.Columns[4].HeaderText = "Fecha de nacimiento";
-             //dgvEmpleado.Columns[5].HeaderText = "Contraseña";
+             dgvEmpleado.Columns[5].HeaderText = "Contraseña";
              dgvEmpleado.Columns[6].HeaderText = "Cargo";
-             dgvEmpleado.Columns[5].Visible = false;
+             //dgvEmpleado.Columns[5].Visible = false;
             
         }
 
@@ -252,6 +252,7 @@ namespace Presentacion.Formularios
                         txtEmail.Text = emp.email;
                         txtFechaNac.Value = emp.nacimiento;
                         cboCargo.SelectedItem = Cargo.ObtenerCargo(emp.cargo.id);
+                        txtPass.Text = emp.pass;
                     }                    
                 }
                 else

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using capaPresentacion.Formularios;
+using Clases;
+using System.Media;
 
 namespace Presentacion
 {
@@ -92,16 +94,62 @@ namespace Presentacion
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "admin" && txtPass.Text == "admin")
+
+            if (txtUsuario.Text != "Usuario" && txtUsuario.TextLength > 2)
             {
-                frmMenu frmMenu = new frmMenu();
-                frmMenu.Show();
-                //this.Close();
-                this.Hide();
+                if (txtPass.Text != "Contraseña")
+                {
+                    Empleado empleado = new Empleado();
+                    var validLogin = empleado.obtenerCredenciales(txtUsuario.Text, txtPass.Text);
+                    if (validLogin == true)
+                    {
+                        frmMenu frmMenu = new frmMenu();
+                        frmMenu.Show();
+                        //this.Close();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        try
+                        {
+                            SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\error.wav");
+                            playError.Play();
+                        }
+                        catch (Exception ex) {
+                            Console.WriteLine("no hay audio");
+                        }
+                        //MessageBox.Show("Incorrect username or password entered. \n   Please try again.");
+                        MessageBox.Show("Usuario o Contraseña incorrecta. \n   Por favor Intenta de Nuevo");
+                        txtPass.Text = "Contraseña";
+                        txtUsuario.Text = "Usuario";
+                        //SoundPlayer playError = new SoundPlayer(@"\sound\error.mp3");
+
+                        txtPass.UseSystemPasswordChar = false;
+                        txtUsuario.Focus();
+                    }
+                }
+                else MessageBox.Show("Por Favor ingresa el Usuario");
             }
-            else {
-                MessageBox.Show("Credenciales de Acceso Incorrecta");
+            else MessageBox.Show("Por Favor ingresa la Contraseña");
+        }
+
+
+
+    
+
+    public bool validarVacios(string user, string pass)
+        {
+            bool bandera = false;
+            if (user != null || user != "usuario")
+            {
+                bandera = true;
             }
+            else { bandera = false; }
+            if (pass != null || pass != "contraseña") {
+                bandera = true;
+            } else { bandera = false; }
+
+            return bandera;
         }
 
         private void LinkServer_Click(object sender, EventArgs e)

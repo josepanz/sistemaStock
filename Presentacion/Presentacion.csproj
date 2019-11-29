@@ -140,6 +140,12 @@
     <Compile Include="Formularios\frmUnidadMedida.Designer.cs">
       <DependentUpon>frmUnidadMedida.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\reporteEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\reporteEntrada.Designer.cs">
+      <DependentUpon>reporteEntrada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\frmCategoria.resx">
@@ -215,6 +221,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Librerias\Microsoft.VisualBasic.PowerPacks.dll" />
+    <None Include="Resources\logoBarjonazo1.jpg" />
+    <None Include="Resources\logoBarjonazo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
