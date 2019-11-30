@@ -34,7 +34,7 @@ namespace Presentacion.Formularios
              dgvEmpleado.Columns[4].HeaderText = "Fecha de nacimiento";
              dgvEmpleado.Columns[5].HeaderText = "Contraseña";
              dgvEmpleado.Columns[6].HeaderText = "Cargo";
-             //dgvEmpleado.Columns[5].Visible = false;
+             dgvEmpleado.Columns[5].Visible = false;
             
         }
 

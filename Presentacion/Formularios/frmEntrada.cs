@@ -24,6 +24,8 @@ namespace capaPresentacion.Formularios
             dtgDetalleEntradaProducto.AutoGenerateColumns = true;
             cmbProducto.DataSource = Producto.ObtenerProductos();
             cmbProducto.SelectedItem = null;
+            txtReceptor.DataSource = Empleado.ObtenerEmpleados();
+            txtReceptor.SelectedItem = null;
             entrada = new EntradaProducto();
 
         }
@@ -31,7 +33,7 @@ namespace capaPresentacion.Formularios
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             DetalleEntradaProducto pd = new DetalleEntradaProducto();
-            pd.cantidad = Convert.ToInt32(txtCantidad.Text);
+            pd.cantidad = Convert.ToInt32(txtCantidad.Value);
             pd.producto = (Producto)cmbProducto.SelectedItem;
             entrada.detalle.Add(pd);
             ActualizarDataGrid();
@@ -48,9 +50,9 @@ namespace capaPresentacion.Formularios
 
         private void Limpiar()
         {
-            txtCantidad.Text = "0";
+            txtCantidad.Value = 0;
             cmbProducto.SelectedItem = null;
-            txtReceptor.Text = "";
+            txtReceptor.SelectedItem =null;
             txtDireccion.Text = "";
             txtNumeroDoc.Text = "";
 
@@ -78,7 +80,8 @@ namespace capaPresentacion.Formularios
         {
             entrada.fecharecepcion = dtpFechaRemision.Value.Date;
             entrada.direccion = txtDireccion.Text;
-            entrada.receptor = txtDireccion.Text;
+            entrada.empleado = (Empleado)txtReceptor.SelectedItem;
+            
             try
             {
                 entrada.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);

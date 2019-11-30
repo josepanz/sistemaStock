@@ -35,7 +35,6 @@
             this.lblProducto = new System.Windows.Forms.Label();
             this.cmbProducto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.dtgDetalleEntradaProducto = new System.Windows.Forms.DataGridView();
             this.lblFechaRemision = new System.Windows.Forms.Label();
             this.dtpFechaRemision = new System.Windows.Forms.DateTimePicker();
@@ -44,8 +43,10 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.lblReceptor = new System.Windows.Forms.Label();
-            this.txtReceptor = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.NumericUpDown();
+            this.txtReceptor = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEntradaProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -117,13 +118,6 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "Cantidad";
             // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(108, 82);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(24, 20);
-            this.txtCantidad.TabIndex = 18;
-            // 
             // dtgDetalleEntradaProducto
             // 
             this.dtgDetalleEntradaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -186,28 +180,37 @@
             this.lblReceptor.AutoSize = true;
             this.lblReceptor.Location = new System.Drawing.Point(285, 16);
             this.lblReceptor.Name = "lblReceptor";
-            this.lblReceptor.Size = new System.Drawing.Size(51, 13);
+            this.lblReceptor.Size = new System.Drawing.Size(54, 13);
             this.lblReceptor.TabIndex = 47;
-            this.lblReceptor.Text = "Receptor";
+            this.lblReceptor.Text = "Empleado";
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(82, 79);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(120, 20);
+            this.txtCantidad.TabIndex = 52;
             // 
             // txtReceptor
             // 
-            this.txtReceptor.Location = new System.Drawing.Point(354, 13);
+            this.txtReceptor.FormattingEnabled = true;
+            this.txtReceptor.Location = new System.Drawing.Point(354, 8);
             this.txtReceptor.Name = "txtReceptor";
-            this.txtReceptor.Size = new System.Drawing.Size(124, 20);
-            this.txtReceptor.TabIndex = 46;
+            this.txtReceptor.Size = new System.Drawing.Size(121, 21);
+            this.txtReceptor.TabIndex = 53;
             // 
             // frmEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 460);
+            this.Controls.Add(this.txtReceptor);
+            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.lblNroDoc);
             this.Controls.Add(this.txtNumeroDoc);
             this.Controls.Add(this.lblDireccion);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.lblReceptor);
-            this.Controls.Add(this.txtReceptor);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnEliminar);
@@ -215,7 +218,6 @@
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.cmbProducto);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.dtgDetalleEntradaProducto);
             this.Controls.Add(this.lblFechaRemision);
             this.Controls.Add(this.dtpFechaRemision);
@@ -224,6 +226,7 @@
             this.Text = "Entrada de Productos";
             this.Load += new System.EventHandler(this.frmEntradaProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEntradaProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,7 +241,6 @@
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.ComboBox cmbProducto;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.DataGridView dtgDetalleEntradaProducto;
         private System.Windows.Forms.Label lblFechaRemision;
         private System.Windows.Forms.DateTimePicker dtpFechaRemision;
@@ -247,6 +249,7 @@
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label lblReceptor;
-        private System.Windows.Forms.TextBox txtReceptor;
+        private System.Windows.Forms.NumericUpDown txtCantidad;
+        private System.Windows.Forms.ComboBox txtReceptor;
     }
 }
