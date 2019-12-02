@@ -34,7 +34,7 @@ namespace capaPresentacion.Formularios
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             DetalleSalidaProducto pd = new DetalleSalidaProducto();
-            pd.cantidad = Convert.ToInt32(txtCantidad.Text);
+            pd.cantidad = Convert.ToInt32(txtCantidad.Value);
             pd.producto = (Producto)cmbProducto.SelectedItem;
             salida.detalle.Add(pd);
             ActualizarDataGrid();
@@ -51,7 +51,7 @@ namespace capaPresentacion.Formularios
 
         private void Limpiar()
         {
-            txtCantidad.Text = "0";
+            txtCantidad.Value = 0;
             cmbProducto.SelectedItem = null;
             txtDestinatario.Text = "";
             txtDireccion.Text = "";

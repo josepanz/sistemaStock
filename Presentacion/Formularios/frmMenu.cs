@@ -1,4 +1,5 @@
-﻿using Presentacion.Formularios;
+﻿using Clases;
+using Presentacion.Formularios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -130,6 +131,13 @@ namespace capaPresentacion.Formularios
             {
                 Formulario.BringToFront();
             }
+        }
+
+        private void SistemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmException form = new frmException();
+            form.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\acercaDelSistema.jpg");
+            form.Show();
         }
     }
 }

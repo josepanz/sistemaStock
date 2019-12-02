@@ -80,8 +80,13 @@ namespace capaPresentacion.Formularios
         {
             entrada.fecharecepcion = dtpFechaRemision.Value.Date;
             entrada.direccion = txtDireccion.Text;
-            entrada.empleado = (Empleado)txtReceptor.SelectedItem;
-            
+            if (txtReceptor.SelectedItem !=null) {
+                entrada.empleado = (Empleado)txtReceptor.SelectedItem;
+            } else {
+                frmException excepcion = new frmException();
+                excepcion.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+                excepcion.Show();
+            }
             try
             {
                 entrada.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);

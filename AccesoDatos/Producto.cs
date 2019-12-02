@@ -154,6 +154,7 @@ namespace Clases
                     listaProductos.Add(pro);
 
                 }
+                con.Close();
             }
 
             return listaProductos;

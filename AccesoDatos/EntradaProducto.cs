@@ -19,6 +19,7 @@ namespace Clases
         public List<DetalleEntradaProducto> detalle = new List<DetalleEntradaProducto>();
 
         public static List<EntradaProducto> listaEntrada = new List<EntradaProducto>();
+        
 
         public static void Agregar(EntradaProducto p)
         {
@@ -31,55 +32,62 @@ namespace Clases
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 SqlTransaction transaction = con.BeginTransaction("SampleTransaction");
                 cmd.Transaction = transaction;
-                //parametros
-                SqlParameter p1 = new SqlParameter("@fecharecepcion", p.fecharecepcion);
-                SqlParameter p2 = new SqlParameter("@nrodocumento", p.nrodocumento);
-                SqlParameter p3 = new SqlParameter("@receptor", p.empleado.idPK);
-                SqlParameter p4 = new SqlParameter("@direccion", p.direccion);
-
-                p1.SqlDbType = System.Data.SqlDbType.DateTime;
-                p2.SqlDbType = System.Data.SqlDbType.Int;
-                p3.SqlDbType = System.Data.SqlDbType.Int;
-                p4.SqlDbType = System.Data.SqlDbType.VarChar;
-                cmd.Parameters.Add(p1);
-                cmd.Parameters.Add(p2);
-                cmd.Parameters.Add(p3);
-                cmd.Parameters.Add(p4);
-
-                int id_recepcion = (int)cmd.ExecuteScalar();
-
-
-                //DETALLE
-                foreach (DetalleEntradaProducto dp in p.detalle)
+                try
                 {
+                    //parametros
+                    SqlParameter p1 = new SqlParameter("@fecharecepcion", p.fecharecepcion);
+                    SqlParameter p2 = new SqlParameter("@nrodocumento", p.nrodocumento);
+                    SqlParameter p3 = new SqlParameter("@receptor", p.empleado.idPK);
+                    SqlParameter p4 = new SqlParameter("@direccion", p.direccion);
 
-                    //insert para el detalle
-                    string textoCMD2 = "INSERT INTO DetalleRecepcion(producto_id, cantidadRecibida, recepcion_id) VALUES (@producto_id, @cantidadRecibida, @recepcion_id)";
-                    SqlCommand cmd2 = new SqlCommand(textoCMD2, con);
-                    //Pasamos los parametros
+                    p1.SqlDbType = System.Data.SqlDbType.DateTime;
+                    p2.SqlDbType = System.Data.SqlDbType.Int;
+                    p3.SqlDbType = System.Data.SqlDbType.Int;
+                    p4.SqlDbType = System.Data.SqlDbType.VarChar;
+                    cmd.Parameters.Add(p1);
+                    cmd.Parameters.Add(p2);
+                    cmd.Parameters.Add(p3);
+                    cmd.Parameters.Add(p4);
 
-                    SqlParameter p5 = new SqlParameter("@producto_id", dp.producto.id);
-                    SqlParameter p6 = new SqlParameter("@cantidadRecibida", dp.cantidad);
-                    SqlParameter p7 = new SqlParameter("@recepcion_id", id_recepcion);
-                    if (ActualizarStock(dp.producto.id, dp.cantidad) == 1)
+                    int id_recepcion = (int)cmd.ExecuteScalar();
+
+
+                    //DETALLE
+                    foreach (DetalleEntradaProducto dp in p.detalle)
                     {
-                        p5.SqlDbType = System.Data.SqlDbType.Int;
-                        p6.SqlDbType = System.Data.SqlDbType.Int;
-                        p7.SqlDbType = System.Data.SqlDbType.Int;
-                        cmd2.Parameters.Add(p5);
-                        cmd2.Parameters.Add(p6);
-                        cmd2.Parameters.Add(p7);
-                        cmd2.Transaction = transaction;
-                        cmd2.ExecuteNonQuery();
-                        transaction.Commit();
+
+                        //insert para el detalle
+                        string textoCMD2 = "INSERT INTO DetalleRecepcion(producto_id, cantidadRecibida, recepcion_id) VALUES (@producto_id, @cantidadRecibida, @recepcion_id)";
+                        SqlCommand cmd2 = new SqlCommand(textoCMD2, con);
+                        //Pasamos los parametros
+
+                        SqlParameter p5 = new SqlParameter("@producto_id", dp.producto.id);
+                        SqlParameter p6 = new SqlParameter("@cantidadRecibida", dp.cantidad);
+                        SqlParameter p7 = new SqlParameter("@recepcion_id", id_recepcion);
+                        if (ActualizarStock(dp.producto.id, dp.cantidad) == 1)
+                        {
+                            p5.SqlDbType = System.Data.SqlDbType.Int;
+                            p6.SqlDbType = System.Data.SqlDbType.Int;
+                            p7.SqlDbType = System.Data.SqlDbType.Int;
+                            cmd2.Parameters.Add(p5);
+                            cmd2.Parameters.Add(p6);
+                            cmd2.Parameters.Add(p7);
+                            cmd2.Transaction = transaction;
+                            cmd2.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            transaction.Rollback();
+                            break;
+                        }
                     }
-                    else
-                    {
-                        transaction.Rollback();
-                        break;
-                    }
+                    con.Close();
+                } catch (Exception ex) {
+                    con.Close();
+
+                    //MessageBox.Show("Lo Siento ocurrio un error inesperado", "Advetencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                con.Close();
             }
         }
 

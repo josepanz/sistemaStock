@@ -47,6 +47,8 @@
             this.mayorSalidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlForms = new System.Windows.Forms.Panel();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +58,7 @@
             this.mantenimientoToolStripMenuItem,
             this.registrosToolStripMenuItem,
             this.reporteToolStripMenuItem,
+            this.acercaDeToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -155,21 +158,21 @@
             // EntradaToolStripMenuItem
             // 
             this.EntradaToolStripMenuItem.Name = "EntradaToolStripMenuItem";
-            this.EntradaToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.EntradaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.EntradaToolStripMenuItem.Text = "Entrada";
             this.EntradaToolStripMenuItem.Click += new System.EventHandler(this.EntradaToolStripMenuItem_Click);
             // 
             // salidaToolStripMenuItem
             // 
             this.salidaToolStripMenuItem.Name = "salidaToolStripMenuItem";
-            this.salidaToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.salidaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salidaToolStripMenuItem.Text = "Salida";
             this.salidaToolStripMenuItem.Click += new System.EventHandler(this.SalidaToolStripMenuItem_Click);
             // 
             // motivosToolStripMenuItem
             // 
             this.motivosToolStripMenuItem.Name = "motivosToolStripMenuItem";
-            this.motivosToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.motivosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.motivosToolStripMenuItem.Text = "Motivos";
             this.motivosToolStripMenuItem.Click += new System.EventHandler(this.MotivosToolStripMenuItem_Click);
             // 
@@ -184,7 +187,7 @@
             // mayorSalidaToolStripMenuItem
             // 
             this.mayorSalidaToolStripMenuItem.Name = "mayorSalidaToolStripMenuItem";
-            this.mayorSalidaToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.mayorSalidaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mayorSalidaToolStripMenuItem.Text = "Mayor Salida";
             // 
             // salirToolStripMenuItem
@@ -202,6 +205,21 @@
             this.pnlForms.Name = "pnlForms";
             this.pnlForms.Size = new System.Drawing.Size(980, 534);
             this.pnlForms.TabIndex = 2;
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            this.acercaDeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sistemaToolStripMenuItem});
+            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.acercaDeToolStripMenuItem.Text = "Acerca de";
+            // 
+            // sistemaToolStripMenuItem
+            // 
+            this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sistemaToolStripMenuItem.Text = "Sistema";
+            this.sistemaToolStripMenuItem.Click += new System.EventHandler(this.SistemaToolStripMenuItem_Click);
             // 
             // frmMenu
             // 
@@ -248,5 +266,7 @@
         private System.Windows.Forms.ToolStripMenuItem unidadDeMedidaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem motivosToolStripMenuItem;
         private System.Windows.Forms.Panel pnlForms;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
     }
 }

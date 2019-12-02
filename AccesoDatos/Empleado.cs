@@ -21,7 +21,7 @@ namespace Clases
 
         public bool obtenerCredenciales(string user, string pass)
         {
-            Empleado empleado;
+
             listaCredenciales.Clear();
             bool ingresa = false;
             try
@@ -63,13 +63,11 @@ namespace Clases
 
             Empleado empleado;
             listaEmpleados.Clear();
-            try
-            {
+ 
                 using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
                 {
                     con.Open();
-                    //string tectoCMD = "select *, coalesce(pass,'-') from Empleado";
-                    string tectoCMD = "select idPK, idNumero, nombre, email, fechaNacimiento, codCargo, coalesce(password, '-') as password from Empleado";
+                    string tectoCMD = "select * from Empleado";
                     SqlCommand cmd = new SqlCommand(tectoCMD, con);
                     SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
                     while (elLectorDeDatos.Read())
@@ -87,11 +85,8 @@ namespace Clases
                     }
                     con.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Se ha detectado un error de: " + ex);
-            }
+
+
             return listaEmpleados;
 
 

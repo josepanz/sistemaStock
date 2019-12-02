@@ -68,6 +68,12 @@
     <Compile Include="Formularios\frmEntrada.Designer.cs">
       <DependentUpon>frmEntrada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmException.Designer.cs">
+      <DependentUpon>frmException.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmMarca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmEntrada.resx">
       <DependentUpon>frmEntrada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmException.resx">
+      <DependentUpon>frmException.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmMarca.resx">
       <DependentUpon>frmMarca.cs</DependentUpon>

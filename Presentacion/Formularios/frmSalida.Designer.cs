@@ -35,7 +35,6 @@
             this.lblProducto = new System.Windows.Forms.Label();
             this.cmbProducto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.dtgDetalleSalidaProducto = new System.Windows.Forms.DataGridView();
             this.lblFechaRemision = new System.Windows.Forms.Label();
             this.dtpFechaRemision = new System.Windows.Forms.DateTimePicker();
@@ -47,7 +46,9 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.lblNroDoc = new System.Windows.Forms.Label();
             this.txtNumeroDoc = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleSalidaProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -115,13 +116,6 @@
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 34;
             this.label3.Text = "Cantidad";
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(95, 79);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(24, 20);
-            this.txtCantidad.TabIndex = 31;
             // 
             // dtgDetalleSalidaProducto
             // 
@@ -213,11 +207,19 @@
             this.txtNumeroDoc.Size = new System.Drawing.Size(124, 20);
             this.txtNumeroDoc.TabIndex = 44;
             // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(70, 79);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(52, 20);
+            this.txtCantidad.TabIndex = 53;
+            // 
             // frmSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 450);
+            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.lblNroDoc);
             this.Controls.Add(this.txtNumeroDoc);
             this.Controls.Add(this.lblDireccion);
@@ -231,7 +233,6 @@
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.cmbProducto);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.dtgDetalleSalidaProducto);
             this.Controls.Add(this.lblFechaRemision);
             this.Controls.Add(this.dtpFechaRemision);
@@ -242,6 +243,7 @@
             this.Text = "Salida de Productos";
             this.Load += new System.EventHandler(this.frmSalidaProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleSalidaProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +258,6 @@
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.ComboBox cmbProducto;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.DataGridView dtgDetalleSalidaProducto;
         private System.Windows.Forms.Label lblFechaRemision;
         private System.Windows.Forms.DateTimePicker dtpFechaRemision;
@@ -268,5 +269,6 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label lblNroDoc;
         private System.Windows.Forms.TextBox txtNumeroDoc;
+        private System.Windows.Forms.NumericUpDown txtCantidad;
     }
 }

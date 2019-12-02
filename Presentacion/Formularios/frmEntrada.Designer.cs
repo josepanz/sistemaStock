@@ -101,9 +101,6 @@
             // cmbProducto
             // 
             this.cmbProducto.FormattingEnabled = true;
-            this.cmbProducto.Items.AddRange(new object[] {
-            "Vacuna",
-            "Porcina"});
             this.cmbProducto.Location = new System.Drawing.Point(81, 42);
             this.cmbProducto.Name = "cmbProducto";
             this.cmbProducto.Size = new System.Drawing.Size(121, 21);
