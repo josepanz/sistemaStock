@@ -75,6 +75,9 @@
     <Compile Include="Formularios\frmEntrada.Designer.cs">
       <DependentUpon>frmEntrada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmReporteEntradaProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\frmException.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +161,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteEntadaProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteEntadaProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReporteProductos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmEntrada.resx">
       <DependentUpon>frmEntrada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmReporteEntradaProductos.resx">
+      <DependentUpon>frmReporteEntradaProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmException.resx">
       <DependentUpon>frmException.cs</DependentUpon>
@@ -222,6 +234,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReporteEntadaProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteEntadaProductos.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteProductos.cs</LastGenOutput>

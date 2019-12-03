@@ -139,5 +139,18 @@ namespace capaPresentacion.Formularios
             form.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\acercaDelSistema.jpg");
             form.Show();
         }
+
+        private void reporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteProducto form = new frmReporteProducto();
+            form.Show();
+        }
+
+        private void mayorSalidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteEntradaProductos form = new frmReporteEntradaProductos();
+            form.Show();
+        }
+
     }
 }
