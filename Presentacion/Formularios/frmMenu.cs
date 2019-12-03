@@ -152,5 +152,10 @@ namespace capaPresentacion.Formularios
             form.Show();
         }
 
+        private void salidaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmReporteSalidaProductos form = new frmReporteSalidaProductos();
+            form.Show();
+        }
     }
 }

@@ -135,6 +135,9 @@
     <Compile Include="Formularios\frmReporteProducto.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\frmReporteSalidaProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\frmSalida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +174,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReporteSalidaProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteSalidaProductos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Formularios\frmCategoria.resx">
@@ -212,6 +221,9 @@
     <EmbeddedResource Include="Formularios\frmReporteProducto.resx">
       <DependentUpon>frmReporteProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmReporteSalidaProductos.resx">
+      <DependentUpon>frmReporteSalidaProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmSalida.resx">
       <DependentUpon>frmSalida.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +253,10 @@
     <EmbeddedResource Include="ReporteProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteProductos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteSalidaProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteSalidaProductos.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

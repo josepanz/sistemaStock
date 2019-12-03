@@ -50,6 +50,7 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlForms = new System.Windows.Forms.Panel();
             this.productosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.salidaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,7 +182,8 @@
             // 
             this.reporteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mayorSalidaToolStripMenuItem,
-            this.productosToolStripMenuItem1});
+            this.productosToolStripMenuItem1,
+            this.salidaToolStripMenuItem1});
             this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
             this.reporteToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.reporteToolStripMenuItem.Text = "Reporte";
@@ -231,6 +233,13 @@
             this.productosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.productosToolStripMenuItem1.Text = "Productos";
             // 
+            // salidaToolStripMenuItem1
+            // 
+            this.salidaToolStripMenuItem1.Name = "salidaToolStripMenuItem1";
+            this.salidaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.salidaToolStripMenuItem1.Text = "Salida";
+            this.salidaToolStripMenuItem1.Click += new System.EventHandler(this.salidaToolStripMenuItem1_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,5 +288,6 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem salidaToolStripMenuItem1;
     }
 }
