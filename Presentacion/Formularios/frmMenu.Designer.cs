@@ -45,12 +45,12 @@
             this.motivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mayorSalidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.salidaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlForms = new System.Windows.Forms.Panel();
-            this.productosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.salidaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,7 +187,6 @@
             this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
             this.reporteToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.reporteToolStripMenuItem.Text = "Reporte";
-            this.reporteToolStripMenuItem.Click += new System.EventHandler(this.reporteToolStripMenuItem_Click);
             // 
             // mayorSalidaToolStripMenuItem
             // 
@@ -195,6 +194,20 @@
             this.mayorSalidaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mayorSalidaToolStripMenuItem.Text = "Entrada";
             this.mayorSalidaToolStripMenuItem.Click += new System.EventHandler(this.mayorSalidaToolStripMenuItem_Click);
+            // 
+            // productosToolStripMenuItem1
+            // 
+            this.productosToolStripMenuItem1.Name = "productosToolStripMenuItem1";
+            this.productosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.productosToolStripMenuItem1.Text = "Productos";
+            this.productosToolStripMenuItem1.Click += new System.EventHandler(this.reporteToolStripMenuItem_Click);
+            // 
+            // salidaToolStripMenuItem1
+            // 
+            this.salidaToolStripMenuItem1.Name = "salidaToolStripMenuItem1";
+            this.salidaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.salidaToolStripMenuItem1.Text = "Salida";
+            this.salidaToolStripMenuItem1.Click += new System.EventHandler(this.salidaToolStripMenuItem1_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
@@ -226,19 +239,6 @@
             this.pnlForms.Name = "pnlForms";
             this.pnlForms.Size = new System.Drawing.Size(980, 534);
             this.pnlForms.TabIndex = 2;
-            // 
-            // productosToolStripMenuItem1
-            // 
-            this.productosToolStripMenuItem1.Name = "productosToolStripMenuItem1";
-            this.productosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.productosToolStripMenuItem1.Text = "Productos";
-            // 
-            // salidaToolStripMenuItem1
-            // 
-            this.salidaToolStripMenuItem1.Name = "salidaToolStripMenuItem1";
-            this.salidaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.salidaToolStripMenuItem1.Text = "Salida";
-            this.salidaToolStripMenuItem1.Click += new System.EventHandler(this.salidaToolStripMenuItem1_Click);
             // 
             // frmMenu
             // 

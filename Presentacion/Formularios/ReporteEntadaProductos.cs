@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace capaPresentacion {
+namespace capaPresentacion.Formularios {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace capaPresentacion {
         
         public override string FullResourceName {
             get {
-                return "capaPresentacion.ReporteEntadaProductos.rpt";
+                return "capaPresentacion.Formularios.ReporteEntadaProductos.rpt";
             }
             set {
                 // Do nothing
