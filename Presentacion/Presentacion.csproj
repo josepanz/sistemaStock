@@ -75,6 +75,12 @@
     <Compile Include="Formularios\frmEntrada.Designer.cs">
       <DependentUpon>frmEntrada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmReporteSalidaProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmReporteSalidaProductos.Designer.cs">
+      <DependentUpon>frmReporteSalidaProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmReporteEntradaProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,9 +141,6 @@
     <Compile Include="Formularios\frmReporteProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\frmReporteSalidaProductos.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Formularios\frmSalida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +191,9 @@
     <EmbeddedResource Include="Formularios\frmEntrada.resx">
       <DependentUpon>frmEntrada.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmReporteSalidaProductos.resx">
+      <DependentUpon>frmReporteSalidaProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmReporteEntradaProductos.resx">
       <DependentUpon>frmReporteEntradaProductos.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,9 +226,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmReporteProducto.resx">
       <DependentUpon>frmReporteProducto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\frmReporteSalidaProductos.resx">
-      <DependentUpon>frmReporteSalidaProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmSalida.resx">
       <DependentUpon>frmSalida.cs</DependentUpon>
