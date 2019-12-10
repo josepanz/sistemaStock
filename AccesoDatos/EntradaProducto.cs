@@ -13,7 +13,7 @@ namespace Clases
         //id, fechaRecepcion, nroDocumento, receptor, direccion
         public int id { get; set; }
         public int nrodocumento { get; set; }
-        public Empleado empleado { get; set; }
+        public string receptor { get; set; }
         public string direccion { get; set; }
         public DateTime fecharecepcion { get; set; }
         public List<DetalleEntradaProducto> detalle = new List<DetalleEntradaProducto>();
@@ -37,12 +37,12 @@ namespace Clases
                     //parametros
                     SqlParameter p1 = new SqlParameter("@fecharecepcion", p.fecharecepcion);
                     SqlParameter p2 = new SqlParameter("@nrodocumento", p.nrodocumento);
-                    SqlParameter p3 = new SqlParameter("@receptor", p.empleado.idPK);
+                    SqlParameter p3 = new SqlParameter("@receptor", p.receptor);
                     SqlParameter p4 = new SqlParameter("@direccion", p.direccion);
 
                     p1.SqlDbType = System.Data.SqlDbType.DateTime;
                     p2.SqlDbType = System.Data.SqlDbType.Int;
-                    p3.SqlDbType = System.Data.SqlDbType.Int;
+                    p3.SqlDbType = System.Data.SqlDbType.VarChar;
                     p4.SqlDbType = System.Data.SqlDbType.VarChar;
                     cmd.Parameters.Add(p1);
                     cmd.Parameters.Add(p2);

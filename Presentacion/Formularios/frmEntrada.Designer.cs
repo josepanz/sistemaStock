@@ -44,7 +44,7 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.lblReceptor = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.NumericUpDown();
-            this.txtReceptor = new System.Windows.Forms.ComboBox();
+            this.txtReceptor = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEntradaProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
             this.SuspendLayout();
@@ -177,9 +177,9 @@
             this.lblReceptor.AutoSize = true;
             this.lblReceptor.Location = new System.Drawing.Point(285, 16);
             this.lblReceptor.Name = "lblReceptor";
-            this.lblReceptor.Size = new System.Drawing.Size(54, 13);
+            this.lblReceptor.Size = new System.Drawing.Size(51, 13);
             this.lblReceptor.TabIndex = 47;
-            this.lblReceptor.Text = "Empleado";
+            this.lblReceptor.Text = "Receptor";
             // 
             // txtCantidad
             // 
@@ -190,10 +190,9 @@
             // 
             // txtReceptor
             // 
-            this.txtReceptor.FormattingEnabled = true;
-            this.txtReceptor.Location = new System.Drawing.Point(354, 8);
+            this.txtReceptor.Location = new System.Drawing.Point(354, 12);
             this.txtReceptor.Name = "txtReceptor";
-            this.txtReceptor.Size = new System.Drawing.Size(121, 21);
+            this.txtReceptor.Size = new System.Drawing.Size(124, 20);
             this.txtReceptor.TabIndex = 53;
             // 
             // frmEntrada
@@ -247,6 +246,6 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label lblReceptor;
         private System.Windows.Forms.NumericUpDown txtCantidad;
-        private System.Windows.Forms.ComboBox txtReceptor;
+        private System.Windows.Forms.TextBox txtReceptor;
     }
 }

@@ -24,8 +24,6 @@ namespace capaPresentacion.Formularios
             dtgDetalleEntradaProducto.AutoGenerateColumns = true;
             cmbProducto.DataSource = Producto.ObtenerProductos();
             cmbProducto.SelectedItem = null;
-            txtReceptor.DataSource = Empleado.ObtenerEmpleados();
-            txtReceptor.SelectedItem = null;
             entrada = new EntradaProducto();
 
         }
@@ -52,7 +50,7 @@ namespace capaPresentacion.Formularios
         {
             txtCantidad.Value = 0;
             cmbProducto.SelectedItem = null;
-            txtReceptor.SelectedItem =null;
+            txtReceptor.Text ="";
             txtDireccion.Text = "";
             txtNumeroDoc.Text = "";
 
@@ -73,30 +71,92 @@ namespace capaPresentacion.Formularios
             DetalleEntradaProducto pd = (DetalleEntradaProducto)dtgDetalleEntradaProducto.CurrentRow.DataBoundItem;
             entrada.detalle.Remove(pd);
             ActualizarDataGrid();
-
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            entrada.fecharecepcion = dtpFechaRemision.Value.Date;
-            entrada.direccion = txtDireccion.Text;
-            if (txtReceptor.SelectedItem !=null) {
-                entrada.empleado = (Empleado)txtReceptor.SelectedItem;
-            } else {
-                frmException excepcion = new frmException();
-                excepcion.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
-                excepcion.Show();
-            }
-            try
+            if (validarNulos())
             {
-                entrada.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
+                entrada.fecharecepcion = dtpFechaRemision.Value.Date;
+                entrada.direccion = txtDireccion.Text;
+                if (txtReceptor.Text != null)
+                {
+                    entrada.receptor = txtReceptor.Text;
+                }
+                else
+                {
+                    frmException excepcion = new frmException();
+                    excepcion.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+                    excepcion.Show();
+                }
+                try
+                {
+                    entrada.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
+                }
+                catch (FormatException f) { }
+                EntradaProducto.Agregar(entrada);
+                Limpiar();
+                dtgDetalleEntradaProducto.DataSource = null;
+                dtpFechaRemision.Value = System.DateTime.Now;
+                entrada = new EntradaProducto();
             }
-            catch (FormatException f) { }
-            EntradaProducto.Agregar(entrada);
-            Limpiar();
-            dtgDetalleEntradaProducto.DataSource = null;
-            dtpFechaRemision.Value = System.DateTime.Now;
-            entrada = new EntradaProducto();
+
+        }
+
+        private bool validarNulos() {
+            bool flag = true;
+            if (dtpFechaRemision.Value ==null){
+                
+                MessageBox.Show("Debe cargar el valor del campo de fecha", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtpFechaRemision.Focus();
+                return flag = false;
+            }
+
+            if (cmbProducto.SelectedItem == null)
+            {
+                MessageBox.Show("Debe cargar el valor del Producto", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmbProducto.Focus();
+                return flag = false;
+
+            }
+
+            if (txtCantidad.Value <= 0)
+            {
+                MessageBox.Show("Debe cargar el valor de la cantidad recibida", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCantidad.Focus();
+                return flag = false;
+
+            }
+            if (txtReceptor.Text.Trim() == null)
+            {
+                MessageBox.Show("Debe cargar el valor del receptor", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtReceptor.Focus();
+                return flag = false;
+
+            }
+            if (txtDireccion.Text.Trim() == null)
+            {
+                MessageBox.Show("Debe cargar el valor de la direccion de recepcion", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDireccion.Focus();
+                return flag = false;
+
+            }
+            if (txtNumeroDoc.Text.Trim() == null)
+            {
+                MessageBox.Show("Debe cargar el valor del numero de documento de la recepcion", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNumeroDoc.Focus();
+                return flag = false;
+
+            }
+            if (dtgDetalleEntradaProducto.RowCount <=0 )
+            {
+                MessageBox.Show("Debe agregar por lo menos un producto al detalle", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmbProducto.Focus();
+                return flag = false;
+
+            }
+
+            return flag;
         }
 
     }

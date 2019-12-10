@@ -95,7 +95,7 @@ namespace Presentacion
         private void btnlogin_Click(object sender, EventArgs e)
         {
 
-            if (txtUsuario.Text != "Usuario" && txtUsuario.TextLength > 2)
+            if (txtUsuario.Text != "Usuario" )
             {
                 if (txtPass.Text != "Contraseña")
                 {
