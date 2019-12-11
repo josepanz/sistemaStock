@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clases;
+using System.Media;
 
 
 namespace capaPresentacion.Formularios
@@ -79,20 +80,111 @@ namespace capaPresentacion.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            salida.fecharemision = dtpFechaRemision.Value.Date;
-            salida.motivo = (Motivo)cmbMotivo.SelectedItem;
-            salida.direccion = txtDireccion.Text;
-            salida.destinatario = txtDireccion.Text;
+            if (validarNulos())
+            {
+                salida.fecharemision = dtpFechaRemision.Value.Date;
+                salida.motivo = (Motivo)cmbMotivo.SelectedItem;
+                salida.direccion = txtDireccion.Text;
+                salida.destinatario = txtDireccion.Text;
+                try
+                {
+                    salida.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
+                }
+                catch (FormatException f) { }
+                SalidaProducto.Agregar(salida);
+                Limpiar();
+                dtgDetalleSalidaProducto.DataSource = null;
+                dtpFechaRemision.Value = System.DateTime.Now;
+                cmbMotivo.SelectedItem = null;
+                salida = new SalidaProducto();
+            }
+        }
+        private bool validarNulos()
+        {
+            bool flag = true;
+            frmException err = new frmException();
+            err.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+
+            if (dtpFechaRemision.Value == null)
+            {
+                err.Controls["txtMensaje"].Text = "Fecha";
+                MessageBox.Show("Debe cargar el valor del campo de fecha", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtpFechaRemision.Focus();
+                return flag = false;
+            }
+
+            if (cmbProducto.SelectedItem == null)
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del Producto";
+                cmbProducto.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+            if (cmbMotivo.SelectedItem == null)
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del Motivo de Salida";
+                cmbMotivo.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+
+            if (txtCantidad.Value <= 0)
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor de la cantidad recibida";
+                txtCantidad.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+            if (txtDestinatario.Text.Trim() == null)
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del Destinatario";
+                txtDestinatario.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+            if (txtDireccion.Text.Trim() == null)
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor de la direccion de recepcion";
+                txtDireccion.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+            if (txtNumeroDoc.Text.Trim() == null)
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del numero de documento de la recepcion";
+                txtNumeroDoc.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+            if (dtgDetalleSalidaProducto.RowCount <= 0)
+            {
+                err.Controls["txtMensaje"].Text = "Debe agregar por lo menos un producto al detalle";
+                cmbProducto.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+
+            return flag;
+        }
+        public void mostrarForm(Form err)
+        {
             try
             {
-                salida.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
-            } catch (FormatException f) { }
-            SalidaProducto.Agregar(salida);
-            Limpiar();
-            dtgDetalleSalidaProducto.DataSource = null;
-            dtpFechaRemision.Value = System.DateTime.Now;
-            cmbMotivo.SelectedItem = null;
-            salida = new SalidaProducto();
+                SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\algoandamal.wav");
+                playError.Play();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("no hay audio");
+            }
+            err.Show();
         }
     }
 }

@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
+using Presentacion;
 
 namespace capaPresentacion.Formularios
 {
@@ -31,8 +33,10 @@ namespace capaPresentacion.Formularios
         {
             if (MessageBox.Show("¿Está seguro que desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)==DialogResult.Yes)
             {
-                Application.Exit();
-                //Close();
+                //Application.Exit();
+                frmLogin form = new frmLogin();
+                form.Show();
+                this.Hide();
                 //YO CREO QUE HAY QUE CERRAR LA CONEXIÓN... NO SE NOMAS COMO XD
             }
         }
@@ -73,6 +77,8 @@ namespace capaPresentacion.Formularios
         {
             frmEntrada form = new frmEntrada();
             form.Show();
+            //abrirFormPanel<frmEntrada>();
+
         }
 
         private void SalidaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -136,7 +142,25 @@ namespace capaPresentacion.Formularios
         private void SistemaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmException form = new frmException();
-            form.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\acercaDelSistema.jpg");
+            try
+            {
+                form.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\acercaDelSistema.jpg");
+                form.Controls["txtMensaje"].Text = "Sistem Stock Pajaro Osado: Version Alpha 69";
+                form.Controls["txtMensaje"].ForeColor = Color.Green;
+                try
+                {
+                    SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\/Todo_el_maldito_sistema_esta_mal.wav");
+                    playError.Play();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("no hay audio");
+                }
+                
+            }
+            catch (Exception ex) {
+                Console.WriteLine("No se encontro la direccion de la imagen");
+            }
             form.Show();
         }
 
@@ -155,6 +179,12 @@ namespace capaPresentacion.Formularios
         private void salidaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmReporteSalidaProductos form = new frmReporteSalidaProductos();
+            form.Show();
+        }
+
+        private void IntegrantesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDevelopers form = new frmDevelopers();
             form.Show();
         }
     }

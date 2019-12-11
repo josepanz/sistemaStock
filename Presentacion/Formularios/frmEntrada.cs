@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clases;
+using System.Media;
 
 namespace capaPresentacion.Formularios
 {
@@ -105,8 +106,11 @@ namespace capaPresentacion.Formularios
 
         private bool validarNulos() {
             bool flag = true;
+            frmException err = new frmException();
+            err.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+
             if (dtpFechaRemision.Value ==null){
-                
+                err.Controls["txtMensaje"].Text = "Fecha";
                 MessageBox.Show("Debe cargar el valor del campo de fecha", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dtpFechaRemision.Focus();
                 return flag = false;
@@ -114,44 +118,50 @@ namespace capaPresentacion.Formularios
 
             if (cmbProducto.SelectedItem == null)
             {
-                MessageBox.Show("Debe cargar el valor del Producto", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del Producto";
                 cmbProducto.Focus();
+                mostrarForm(err);                
                 return flag = false;
 
             }
 
             if (txtCantidad.Value <= 0)
             {
-                MessageBox.Show("Debe cargar el valor de la cantidad recibida", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor de la cantidad recibida";
                 txtCantidad.Focus();
+                mostrarForm(err);
                 return flag = false;
 
             }
             if (txtReceptor.Text.Trim() == null)
             {
-                MessageBox.Show("Debe cargar el valor del receptor", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del receptor";
                 txtReceptor.Focus();
+                mostrarForm(err);
                 return flag = false;
 
             }
             if (txtDireccion.Text.Trim() == null)
             {
-                MessageBox.Show("Debe cargar el valor de la direccion de recepcion", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor de la direccion de recepcion";
                 txtDireccion.Focus();
+                mostrarForm(err);
                 return flag = false;
 
             }
             if (txtNumeroDoc.Text.Trim() == null)
             {
-                MessageBox.Show("Debe cargar el valor del numero de documento de la recepcion", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor del numero de documento de la recepcion";
                 txtNumeroDoc.Focus();
+                mostrarForm(err);
                 return flag = false;
 
             }
             if (dtgDetalleEntradaProducto.RowCount <=0 )
             {
-                MessageBox.Show("Debe agregar por lo menos un producto al detalle", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                err.Controls["txtMensaje"].Text = "Debe agregar por lo menos un producto al detalle";
                 cmbProducto.Focus();
+                mostrarForm(err);
                 return flag = false;
 
             }
@@ -159,5 +169,17 @@ namespace capaPresentacion.Formularios
             return flag;
         }
 
+        public void mostrarForm(Form err) {
+            try
+            {
+                SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\algoandamal.wav");
+                playError.Play();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("no hay audio");
+            }
+            err.Show();
+        }
     }
 }

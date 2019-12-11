@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clases;
+using System.Media;
+
 
 namespace capaPresentacion.Formularios
 {
@@ -32,6 +34,7 @@ namespace capaPresentacion.Formularios
             
             pcbErr.Image =   err.mostrarErr(url);
             pcbErr.SizeMode = PictureBoxSizeMode.StretchImage;
+
 
         }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clases;
+using System.Media;
 
 namespace capaPresentacion.Formularios
 {
@@ -38,9 +39,12 @@ namespace capaPresentacion.Formularios
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Motivo m = ObtenerMotivoFormulario();
-            Motivo.AgregarMotivo(m);
-            ListarMotivo();
-            LimpiarFormulario();
+            if (validarNulos())
+            {
+                Motivo.AgregarMotivo(m);
+                ListarMotivo();
+                LimpiarFormulario();
+            }
         }
 
         private Motivo ObtenerMotivoFormulario()
@@ -101,6 +105,38 @@ namespace capaPresentacion.Formularios
                 txtDescripcion.Text = mar.descripcion;
 
             }
+        }
+        private bool validarNulos()
+        {
+            bool flag = true;
+            frmException err = new frmException();
+            err.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+
+           
+            if (txtDescripcion.Text.Trim() == null || txtDescripcion.Text.Trim()=="") 
+            {
+                err.Controls["txtMensaje"].Text = "Debe cargar el valor de la descripcion del motivo";
+                txtDescripcion.Focus();
+                mostrarForm(err);
+                return flag = false;
+
+            }
+            
+
+            return flag;
+        }
+        public void mostrarForm(Form err)
+        {
+            try
+            {
+                SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\algoandamal.wav");
+                playError.Play();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("no hay audio");
+            }
+            err.Show();
         }
     }
 }
