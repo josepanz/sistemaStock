@@ -11,7 +11,7 @@ namespace Clases
     public class SalidaProducto
     {
         public int id { get; set; }
-        public int nrodocumento { get; set; }
+        public string nrodocumento { get; set; }
         public Motivo motivo { get; set; }
         public string destinatario { get; set; }
         public string direccion { get; set; }
@@ -42,7 +42,7 @@ namespace Clases
                     SqlParameter p5 = new SqlParameter("@motivoremision_id", p.motivo.id);
 
                     p1.SqlDbType = System.Data.SqlDbType.DateTime;
-                    p2.SqlDbType = System.Data.SqlDbType.Int;
+                    p2.SqlDbType = System.Data.SqlDbType.VarChar;
                     p3.SqlDbType = System.Data.SqlDbType.VarChar;
                     p4.SqlDbType = System.Data.SqlDbType.VarChar;
                     p5.SqlDbType = System.Data.SqlDbType.Int;

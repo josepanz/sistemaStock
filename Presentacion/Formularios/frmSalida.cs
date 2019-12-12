@@ -96,11 +96,9 @@ namespace capaPresentacion.Formularios
                 salida.motivo = (Motivo)cmbMotivo.SelectedItem;
                 salida.direccion = txtDireccion.Text;
                 salida.destinatario = txtDestinatario.Text;
-                try
-                {
-                    salida.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
-                }
-                catch (FormatException f) { }
+                salida.nrodocumento = txtNumeroDoc.Text;
+                
+           
                 SalidaProducto.Agregar(salida);
                 LimpiarCab();
                 dtgDetalleSalidaProducto.DataSource = null;
