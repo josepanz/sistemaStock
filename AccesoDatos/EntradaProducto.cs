@@ -12,7 +12,7 @@ namespace Clases
     {
         //id, fechaRecepcion, nroDocumento, receptor, direccion
         public int id { get; set; }
-        public int nrodocumento { get; set; }
+        public string nrodocumento { get; set; }
         public string receptor { get; set; }
         public string direccion { get; set; }
         public DateTime fecharecepcion { get; set; }
@@ -41,7 +41,7 @@ namespace Clases
                     SqlParameter p4 = new SqlParameter("@direccion", p.direccion);
 
                     p1.SqlDbType = System.Data.SqlDbType.DateTime;
-                    p2.SqlDbType = System.Data.SqlDbType.Int;
+                    p2.SqlDbType = System.Data.SqlDbType.VarChar;
                     p3.SqlDbType = System.Data.SqlDbType.VarChar;
                     p4.SqlDbType = System.Data.SqlDbType.VarChar;
                     cmd.Parameters.Add(p1);

@@ -34,13 +34,16 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            DetalleSalidaProducto pd = new DetalleSalidaProducto();
-            pd.cantidad = Convert.ToInt32(txtCantidad.Value);
-            pd.producto = (Producto)cmbProducto.SelectedItem;
-            salida.detalle.Add(pd);
-            ActualizarDataGrid();
+            if (validarNulosDetalle())
+            {
+                DetalleSalidaProducto pd = new DetalleSalidaProducto();
+                pd.cantidad = Convert.ToInt32(txtCantidad.Value);
+                pd.producto = (Producto)cmbProducto.SelectedItem;
+                salida.detalle.Add(pd);
+                ActualizarDataGrid();
 
-            Limpiar();
+                Limpiar();
+            }
         }
 
         private void ActualizarDataGrid()
@@ -51,6 +54,13 @@ namespace capaPresentacion.Formularios
         }
 
         private void Limpiar()
+        {
+            txtCantidad.Value = 0;
+            cmbProducto.SelectedItem = null;
+
+
+        }
+        private void LimpiarCab()
         {
             txtCantidad.Value = 0;
             cmbProducto.SelectedItem = null;
@@ -80,26 +90,26 @@ namespace capaPresentacion.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (validarNulos())
+            if (validarNulosCabecera())
             {
                 salida.fecharemision = dtpFechaRemision.Value.Date;
                 salida.motivo = (Motivo)cmbMotivo.SelectedItem;
                 salida.direccion = txtDireccion.Text;
-                salida.destinatario = txtDireccion.Text;
+                salida.destinatario = txtDestinatario.Text;
                 try
                 {
                     salida.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
                 }
                 catch (FormatException f) { }
                 SalidaProducto.Agregar(salida);
-                Limpiar();
+                LimpiarCab();
                 dtgDetalleSalidaProducto.DataSource = null;
                 dtpFechaRemision.Value = System.DateTime.Now;
                 cmbMotivo.SelectedItem = null;
                 salida = new SalidaProducto();
             }
         }
-        private bool validarNulos()
+        private bool validarNulosDetalle()
         {
             bool flag = true;
             frmException err = new frmException();
@@ -162,6 +172,16 @@ namespace capaPresentacion.Formularios
                 return flag = false;
 
             }
+
+
+            return flag;
+        }
+
+        public bool validarNulosCabecera() {
+            bool flag = true;
+            frmException err = new frmException();
+            err.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+
             if (dtgDetalleSalidaProducto.RowCount <= 0)
             {
                 err.Controls["txtMensaje"].Text = "Debe agregar por lo menos un producto al detalle";

@@ -23,7 +23,7 @@ namespace capaPresentacion.Formularios
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ReporteEntradaProductos1 = new capaPresentacion.ReporteEntradaProductos();
+            this.ReporteEntradaProductos1 = new ReporteEntradaProductos();
             this.SuspendLayout();
             // 
             // crystalReportViewer1

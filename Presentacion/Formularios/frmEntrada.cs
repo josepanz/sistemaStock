@@ -31,13 +31,14 @@ namespace capaPresentacion.Formularios
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            DetalleEntradaProducto pd = new DetalleEntradaProducto();
-            pd.cantidad = Convert.ToInt32(txtCantidad.Value);
-            pd.producto = (Producto)cmbProducto.SelectedItem;
-            entrada.detalle.Add(pd);
-            ActualizarDataGrid();
-
-            Limpiar();
+            if (validarNulosDetalle()) { 
+                DetalleEntradaProducto pd = new DetalleEntradaProducto();
+                pd.cantidad = Convert.ToInt32(txtCantidad.Value);
+                pd.producto = (Producto)cmbProducto.SelectedItem;
+                entrada.detalle.Add(pd);
+                ActualizarDataGrid();
+                Limpiar();
+            }
         }
 
         private void ActualizarDataGrid()
@@ -51,7 +52,15 @@ namespace capaPresentacion.Formularios
         {
             txtCantidad.Value = 0;
             cmbProducto.SelectedItem = null;
-            txtReceptor.Text ="";
+
+
+        }
+
+        private void LimpiarCab()
+        {
+            txtCantidad.Value = 0;
+            cmbProducto.SelectedItem = null;
+            txtReceptor.Text = "";
             txtDireccion.Text = "";
             txtNumeroDoc.Text = "";
 
@@ -76,10 +85,12 @@ namespace capaPresentacion.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (validarNulos())
+            if (validarNulosCabecera())
             {
                 entrada.fecharecepcion = dtpFechaRemision.Value.Date;
                 entrada.direccion = txtDireccion.Text;
+                entrada.receptor = txtReceptor.Text;
+                entrada.nrodocumento = txtNumeroDoc.Text;
                 if (txtReceptor.Text != null)
                 {
                     entrada.receptor = txtReceptor.Text;
@@ -90,13 +101,11 @@ namespace capaPresentacion.Formularios
                     excepcion.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
                     excepcion.Show();
                 }
-                try
-                {
-                    entrada.nrodocumento = Convert.ToInt32(txtNumeroDoc.Text);
-                }
-                catch (FormatException f) { }
+
+                    entrada.nrodocumento = txtNumeroDoc.Text;
+
                 EntradaProducto.Agregar(entrada);
-                Limpiar();
+                LimpiarCab();
                 dtgDetalleEntradaProducto.DataSource = null;
                 dtpFechaRemision.Value = System.DateTime.Now;
                 entrada = new EntradaProducto();
@@ -104,7 +113,7 @@ namespace capaPresentacion.Formularios
 
         }
 
-        private bool validarNulos() {
+        private bool validarNulosDetalle() {
             bool flag = true;
             frmException err = new frmException();
             err.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
@@ -157,7 +166,15 @@ namespace capaPresentacion.Formularios
                 return flag = false;
 
             }
-            if (dtgDetalleEntradaProducto.RowCount <=0 )
+
+
+            return flag;
+        }
+        public bool validarNulosCabecera() {
+            bool flag = true;
+            frmException err = new frmException();
+            err.setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\algoAndaMal.jpg");
+            if (dtgDetalleEntradaProducto.RowCount <= 0)
             {
                 err.Controls["txtMensaje"].Text = "Debe agregar por lo menos un producto al detalle";
                 cmbProducto.Focus();
@@ -167,8 +184,8 @@ namespace capaPresentacion.Formularios
             }
 
             return flag;
-        }
 
+        }
         public void mostrarForm(Form err) {
             try
             {

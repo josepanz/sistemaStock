@@ -24,8 +24,8 @@ namespace capaPresentacion.Formularios
         {
             try
             {
-                setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\juan.png");
-                lblDescripcion.Text = "DESCRIPCION: ";
+                setearUrl("C:\\Users\\Panza\\source\\repos\\josepanz\\sistemaStock\\img\\pratt.jpg");
+                lblDescripcion.Text = "DESCRIPCION: Latrell Spencer: El negro del grupo, no tiene nada de parecido con la personalidad, pero ambos son negros, Sebastian Pratt";
                 lblDescripcion.ForeColor = Color.Black;
                 try
                 {
