@@ -37,7 +37,6 @@
             this.txtPass = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnlogin = new System.Windows.Forms.Button();
-            this.linkpass = new System.Windows.Forms.LinkLabel();
             this.btncerrar = new System.Windows.Forms.PictureBox();
             this.btnminimizar = new System.Windows.Forms.PictureBox();
             this.linkServer = new System.Windows.Forms.LinkLabel();
@@ -144,19 +143,6 @@
             this.btnlogin.UseVisualStyleBackColor = false;
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
-            // linkpass
-            // 
-            this.linkpass.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.linkpass.AutoSize = true;
-            this.linkpass.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkpass.LinkColor = System.Drawing.Color.DarkGray;
-            this.linkpass.Location = new System.Drawing.Point(535, 291);
-            this.linkpass.Name = "linkpass";
-            this.linkpass.Size = new System.Drawing.Size(182, 17);
-            this.linkpass.TabIndex = 0;
-            this.linkpass.TabStop = true;
-            this.linkpass.Text = "¿Ha olvidado contraseña?";
-            // 
             // btncerrar
             // 
             this.btncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -187,12 +173,12 @@
             this.linkServer.AutoSize = true;
             this.linkServer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkServer.LinkColor = System.Drawing.Color.DarkGray;
-            this.linkServer.Location = new System.Drawing.Point(307, 291);
+            this.linkServer.Location = new System.Drawing.Point(417, 294);
             this.linkServer.Name = "linkServer";
-            this.linkServer.Size = new System.Drawing.Size(46, 17);
+            this.linkServer.Size = new System.Drawing.Size(206, 17);
             this.linkServer.TabIndex = 9;
             this.linkServer.TabStop = true;
-            this.linkServer.Text = "Server";
+            this.linkServer.Text = "Configure su servidor Por favor";
             this.linkServer.Click += new System.EventHandler(this.LinkServer_Click);
             // 
             // frmLogin
@@ -204,7 +190,6 @@
             this.Controls.Add(this.linkServer);
             this.Controls.Add(this.btnminimizar);
             this.Controls.Add(this.btncerrar);
-            this.Controls.Add(this.linkpass);
             this.Controls.Add(this.btnlogin);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPass);
@@ -235,7 +220,6 @@
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnlogin;
-        private System.Windows.Forms.LinkLabel linkpass;
         private System.Windows.Forms.PictureBox btncerrar;
         private System.Windows.Forms.PictureBox btnminimizar;
         private System.Windows.Forms.LinkLabel linkServer;

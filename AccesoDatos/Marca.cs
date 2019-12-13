@@ -91,8 +91,14 @@ namespace Clases
                     con.Open();
                     string textoCmd = "INSERT INTO Marca (descripcion)VALUES (@descripcion)";
                     SqlCommand cmd = new SqlCommand(textoCmd, con);
-                    cmd = M.ObtenerParametros(cmd);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd = M.ObtenerParametros(cmd);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex) {
+
+                    }
                 }
             }
         }

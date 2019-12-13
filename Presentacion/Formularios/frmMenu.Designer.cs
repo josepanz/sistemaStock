@@ -268,6 +268,7 @@
             this.Text = "Sistema de Control de Stock - Pájaro Osado";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMenu_FormClosed);
+            this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

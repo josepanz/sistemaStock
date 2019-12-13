@@ -55,7 +55,7 @@ namespace capaPresentacion.Formularios
             }
             if (txtDescripcion.Text != "")
             {
-                marca.descripcion = txtDescripcion.Text;
+                marca.descripcion = txtDescripcion.Text.Trim();
             }
             else
             {
@@ -156,7 +156,7 @@ namespace capaPresentacion.Formularios
                     if (mar != null)
                     {
                         txtCodigo.Text = Convert.ToString(mar.id);
-                        txtDescripcion.Text = mar.descripcion;
+                        txtDescripcion.Text = mar.descripcion.Trim();
 
                     }
                 }

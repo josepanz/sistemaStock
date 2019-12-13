@@ -187,5 +187,19 @@ namespace capaPresentacion.Formularios
             frmDevelopers form = new frmDevelopers();
             form.Show();
         }
+
+        private void FrmMenu_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\titanic.wav");
+                playError.Play();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("no hay audio");
+            }
+            
+        }
     }
 }
