@@ -26,14 +26,15 @@ namespace Clases
           
                 using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
-                try
-                {
+                
                     con.Open();
                     //cabecera
                     string textoCMD = "INSERT INTO remision (fecharemision, nrodocumento, destinatario, direccion, motivoremision_id) output INSERTED.id VALUES (@fecharemision, @nrodocumento, @destinatario, @direccion, @motivoremision_id)";
                     SqlCommand cmd = new SqlCommand(textoCMD, con);
                     SqlTransaction transaction = con.BeginTransaction("SampleTransaction");
                     cmd.Transaction = transaction;
+                try
+                {
                     //parametros
                     SqlParameter p1 = new SqlParameter("@fecharemision", p.fecharemision);
                     SqlParameter p2 = new SqlParameter("@nrodocumento", p.nrodocumento);
@@ -77,12 +78,17 @@ namespace Clases
                             cmd2.Parameters.Add(p8);
                             cmd2.Transaction = transaction;
                             cmd2.ExecuteNonQuery();
+                            transaction.Commit();
 
+                        }
+                        else
+                        {
+                            transaction.Rollback();
+                            break;
                         }
 
                     }
                 
-                transaction.Commit();
                 con.Close();
             }
             catch(Exception ex){ 

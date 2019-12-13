@@ -222,14 +222,14 @@
             // sistemaToolStripMenuItem
             // 
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
-            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.sistemaToolStripMenuItem.Text = "Sistema";
             this.sistemaToolStripMenuItem.Click += new System.EventHandler(this.SistemaToolStripMenuItem_Click);
             // 
             // integrantesToolStripMenuItem
             // 
             this.integrantesToolStripMenuItem.Name = "integrantesToolStripMenuItem";
-            this.integrantesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.integrantesToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.integrantesToolStripMenuItem.Text = "Integrantes";
             this.integrantesToolStripMenuItem.Click += new System.EventHandler(this.IntegrantesToolStripMenuItem_Click);
             // 
@@ -242,6 +242,8 @@
             // 
             // pnlForms
             // 
+            this.pnlForms.BackgroundImage = global::capaPresentacion.Properties.Resources.logoBarjonazo1;
+            this.pnlForms.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForms.Location = new System.Drawing.Point(0, 24);
             this.pnlForms.MinimumSize = new System.Drawing.Size(700, 500);

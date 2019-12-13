@@ -178,8 +178,8 @@ namespace capaPresentacion.Formularios
 
                     pcbDev.Image = MyImage;
                     pcbDev.SizeMode = PictureBoxSizeMode.StretchImage;
-                    /*SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\/Todo_el_maldito_sistema_esta_mal.wav");
-                    playError.Play();*/
+                    SoundPlayer playError = new SoundPlayer(@"C:\Users\Panza\source\repos\josepanz\sistemaStock\sound\harryFlaute.wav");
+                    playError.Play();
                 }
                 catch (Exception ex)
                 {
