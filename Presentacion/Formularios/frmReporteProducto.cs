@@ -42,8 +42,11 @@ namespace capaPresentacion.Formularios
             // 
             this.ClientSize = new System.Drawing.Size(1234, 611);
             this.Controls.Add(this.crystalReportViewer1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmReporteProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
